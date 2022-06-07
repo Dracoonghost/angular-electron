@@ -1,11 +1,20 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
+import { operationMapping } from './operations/operations';
+import * as Sentry from "@sentry/electron";
+
+Sentry.configureScope((scope) => {
+  scope.setTag('service', 'main');
+  // scope.clear();
+});
+
+Sentry.init({ dsn: "https://b68a3b9f9e3c4546a9ebc186744c3e68@o931102.ingest.sentry.io/6395497" });
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
-  serve = args.some(val => val === '--serve');
+serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
 
@@ -64,7 +73,19 @@ try {
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
   app.on('ready', () => setTimeout(createWindow, 400));
-
+  ipcMain.on('IPCCALL', async (event, args) => {
+    try {
+      const { internalModule, type, payload, id } = args;
+      const internalModuleOperations = operationMapping[internalModule];    
+      const result = await internalModuleOperations[type](payload);
+      console.log({id});
+      event.sender.send('IPCCALLRESP_' + id, { result });
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  })
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar

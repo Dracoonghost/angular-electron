@@ -1,0 +1,68 @@
+<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <p class="text-muted text-center text-md-left mb-0 cursor-pointer" ><a (click)="openLinkInBrowser('https://nes.tech/')" class="text-black">NEST<sup>®</sup></a></p>
+    <p class="text-muted text-center text-md-left mb-0"><a href="#" class="colorBlue font14 font700" data-toggle="modal" data-target="#ContactModal">Need help?</a></p>
+    <!-- <p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Crafted with <i class="fas fa-heart"></i></p> -->
+    <p class="text-muted text-center text-md-left mb-0 d-none d-md-block">QP - DLT</p>
+</footer>
+
+
+<div class="modal CreateORganizationModal" id="ContactModal">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Help ticket request</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                    <form [formGroup]="requestTicketForm" class="UserDataForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+                                    <input type="text" class="form-control" placeholder="Your Name" name="fullName" formControlName="fullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="Your Email"  name="email" formControlName="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Message</label>
+                                    <textarea type="text" class="form-control textareaInput" placeholder="How can we help?"  name="message" formControlName="message" required></textarea>
+                                </div>
+                                <div class="form-group UploadInput">
+                                    <label class="control-label">Upload</label>
+                                    <input (change)="parseFile($event)" type="file" name="img[]" class="file-upload-default hide" formControlName="documentImage" id="file-input" required>
+                                    <div class="d-flex cursor-pointer">
+                                        <div class="input-group col-xs-12" (click)="chooseFile()">
+                                            <span class="input-group-append w-100">
+                                                <div class="UploadTextDiv text-center text-black d-grid">
+                                                    <span class="PlusText">+</span>
+                                                    <span class="UploadText">Upload Image</span>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div class="PreviewImgDiv" *ngIf="fileSrc">
+                                            <img class="uploaded_Image" [src]="fileSrc" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <button type="button" class="btn btn-secondary text-center BackBtnCustom" data-dismiss="modal" aria-label="Close">Close</button>
+                            <button type="button" class="btn btn-primary text-center" data-dismiss="modal" (click)="submitForm(requestTicketForm.value)">Next</button>
+                        </div>
+                    </form>
+                    
+                    </div>
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

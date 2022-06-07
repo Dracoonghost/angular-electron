@@ -1,0 +1,243 @@
+<app-select-client-id></app-select-client-id>
+<div class="row FilterDark">
+  <div class="col-md-12">
+    <div class="card  Slide SecondAnimate">
+      <div class="card-body">
+        <form class="UserDataForm" [formGroup]="NFTForm">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <div class="form-group UploadInput">
+                <label class="control-label">Asset of this NFT</label>
+                <input (change)="parseFile($event)" type="file" name="img[]" class="file-upload-default hide"
+                  id="file-input">
+                <div class="d-flex cursor-pointer">
+                  <div class="input-group col-xs-12" (click)="chooseFile(1)">
+                    <span class="input-group-append w-100">
+                      <div class="UploadTextDiv text-center text-black d-grid">
+                        <span class="PlusText">+</span>
+                        <!-- <span class="UploadText">Upload Image</span> -->
+                      </div>
+                    </span>
+                  </div>
+                  <div class="PreviewImgDiv" *ngIf="fileSrc">
+                    <img class="uploaded_Image" [src]="fileSrc" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- Row -->
+          <div class="row">
+            <!-- Col -->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="primary name of this NFT">
+                <div class="msg-error imgBox"
+                  *ngIf="!NFTForm.controls['name'].valid && NFTForm.controls['name'].touched">
+                  Enter your title</div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea type="text" class="form-control textarea-input" formControlName="description"
+                  placeholder="secondary content like additional meta-data or details that you would like to enter in this NFT"></textarea>
+                <div class="msg-error imgBox"
+                  *ngIf="!NFTForm.controls['description'].valid && NFTForm.controls['description'].touched">
+                  Enter your NFT description</div>
+              </div>
+            </div>
+            <!-- Col -->
+          </div>
+          <!-- Row -->
+          <div class="row">
+            <div class="col-sm-4 col50">
+              <div class="form-group PriceCol position-relative">
+                <label class="control-label d-flex">Price [USD]</label>
+                <input type="number" class="form-control" formControlName="price"
+                  placeholder="Enter price for one piece">
+                <span class="NotationInput font14">$</span>
+                <div class="msg-error imgBox"
+                  *ngIf="!NFTForm.controls['price'].valid && NFTForm.controls['price'].touched">
+                  Enter your price</div>
+              </div>
+            </div>
+            <!-- Col -->
+            <div class="col-sm-4 col50">
+              <div class="form-group RoyalityCol position-relative">
+                <label class="control-label">Persistent Royalty <span class="HelpIcon" data-toggle="tooltip"
+                    data-placement="top"
+                    title="A set percentage of future sales will be automatically transferred to the original creator - specifically - this will be transferred to the Client ID that was used to create this NFT. If the royalty here is set at 10% and then the NFT is later sold for $100USD, then this Client ID wallet will receive 10% of that price or say $10USD equivalent..."><i
+                      class="far fa-question-circle"></i></span></label>
+                <input type="number" class="form-control" formControlName="royalties" placeholder="e.g. 10%">
+                <span class="NotationInput font14">%</span>
+                <div class="msg-error imgBox"
+                  *ngIf="!NFTForm.controls['royalties'].valid && NFTForm.controls['royalties'].touched">
+                  enter your Royalties</div>
+              </div>
+            </div>
+            <div class="col-sm-4 d-flex align-items-center col100">
+              <div class="form-group mb-10 W-100">
+
+                <div class="lblSwitch d-flex justify-content-between align-items-center">
+                  <div class="left-label">
+                    <label class="control-label">This contains sensitive or explicit content</label>
+                  </div>
+                  <div class="right-switch ml-10">
+                    <div class="custom-control custom-switch cursor-pointer">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                      <label class="custom-control-label" for="customSwitch2"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- Col -->
+            <div class="col-sm-12">
+              <div class="form-group position-relative">
+                <label class="control-label">This NFT's Individual Blockchain Provenance Page</label>
+                <input type="text" class="form-control" formControlName="personalizedEndpoint"
+                  placeholder="select any available end-point for the NFT's permanent provenance page">
+                <span class="NFT_URL font_medium font14 m-t-5">https://volary.network/locked/{{PE}}</span>
+                <div class="msg-error imgBox mt-20"
+                  *ngIf="!NFTForm.controls['personalizedEndpoint'].valid && NFTForm.controls['personalizedEndpoint'].touched">
+                  Enter your personalized End point</div>
+                <div class="availability-div">
+                  <div *ngIf="!peAlreadyExists">
+                    <p class="text-success">{{peText}}</p>
+                  </div>
+                  <div *ngIf="peAlreadyExists">
+                    <p class="text-danger">{{peText}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-20">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Minting Location of this NFT</label>
+                <app-location-search (listenLocation)="getLocation($event)"></app-location-search>
+                <div class="msg-error imgBox" *ngIf="locationError">Try Entering different location</div>
+              </div>
+            </div>
+          </div>
+          <!-- Col -->
+          <!-- </div> -->
+          <div class="row">
+            <div class="form-group col-md-12 SerachSuggestionsMain position-relative SerachSuggestionsMainCNFT">
+              <label class="control-label">Tag this NFT</label>
+              <input type="text" class="form-control" id="exampleInputSerachSuggestions" formControlName="tags"
+                placeholder="short keywords assigned in this NFT's meta-data">
+              <div class="SerachSuggestionsMainDiv" *ngFor="let tag of _tags">
+                <span class="SuggestionsTag" (click)="selectTag(tag?._source.tag)">{{tag?._source.tag}}</span>
+                <span class="SuggestionsTag font700">{{tag?._source.useCount}} posts</span>
+              </div>
+            </div>
+            <div class="form-group grpBox col-md-12 tagsMain-12">
+              <label class="control-label">Trending Tags</label>
+              <ul class="tagList p-0 m-0 NFTtags">
+                <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                  (click)="selectTag('tattoo')">tattoo <button class="addTagBtn text-white font14" type="button"><i
+                      class="fas fa-plus"></i></button></li>
+                <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                  (click)="selectTag('art')">art <button class="addTagBtn text-white font14" type="button"><i
+                      class="fas fa-plus"></i></button></li>
+                <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                  (click)="selectTag('paintings')">paintings <button class="addTagBtn text-white font14"
+                    type="button"><i class="fas fa-plus"></i></button>
+                </li>
+              </ul>
+            </div>
+            <div class="form-group grpBox col-md-12 tagsMain-12 mb-0">
+              <div class="form-group grpBox" *ngIf="_selectedTag.length > 0">
+                <label class="control-label">Selected Tag</label>
+                <ul class="tagList p-0 m-0 NFTtags">
+                  <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                    *ngFor="let tag of _selectedTag">
+                    {{tag}}<button class="removeBtn" (click)="removeTag(tag)" class="RemoveIcon text-white font14"
+                      type="button"><i class="fas fa-times"></i></button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row -->
+          <div class="row">
+            <div class="col-sm-12 SelectCategoryMainDiv">
+              <div class="form-group">
+                <label class="control-label">Category for this NFT</label>
+                <div class="radio-toolbar row">
+                  <input id="radio1" formControlName="category" name="category" value="da" type="radio"
+                    autocomplete="off">
+                  <label class="col-md-4 single-radio" for="radio1">
+                    <div class="radioInnerDiv">
+                      <div class="radioInnerDivSub">
+                        <img class="category-img" src="assets/images/Digital art.svg">
+                        <span class="font14 font700">Digital Art</span>
+                      </div>
+                    </div>
+                  </label>
+                  <input id="radio2" name="category" formControlName="category" type="radio" value="photo"
+                    autocomplete="off">
+                  <label class="col-md-4 single-radio" for="radio2">
+                    <div class="radioInnerDiv">
+                      <div class="radioInnerDivSub">
+                        <img class="category-img" src="assets/images/photo.svg">
+                        <span class="font14 font700">Photo</span>
+                      </div>
+                    </div>
+                  </label>
+                  <input id="radio3" name="category" formControlName="category" type="radio" value="audio"
+                    autocomplete="off">
+                  <label class="col-md-4 single-radio" for="radio3">
+                    <div class="radioInnerDiv">
+                      <div class="radioInnerDivSub">
+                        <img class="category-img" src="assets/images/audio.svg">
+                        <span class="font14 font700">Audio</span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="msg-error imgBox"
+                  *ngIf="!NFTForm.controls['category'].valid && NFTForm.controls['category'].touched">
+                  select your category</div>
+              </div>
+            </div>
+            <!-- Col -->
+            <div class="col-sm-12">
+              <h3 class="control-label">Sign this NFT - this will be displayed on certificates and provenance pages</h3>
+              <div class="signpad_wrapper">
+                <canvas id="signature-pad" class="signature-pad"></canvas>
+                <div class="Signpad_btns">
+                  <button type="button" class="Circle_Btn Clear_Sign" id="clear"><i class="fas fa-eraser"></i></button>
+                  <button type="button" class="Circle_Btn Save_Sign hide" id="save-sign"><i
+                      class="fa fa-floppy-o"></i></button>
+                </div>
+              </div>
+              <div class="msg-error imgBox" *ngIf="showSignError">
+                Sign Your NFT</div>
+            </div>
+          </div>
+
+        </form>
+        <div class="row">
+          <div class="col-md-12 mt-20 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" (click)="saveMe(NFTForm.value,1)">Preview NFT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!common.selectedSSID" class="card mb-20 mt-20 Slide ThirdAnimate">
+      <div class="Card-Header" (click)="common.openSSIDDialog()">
+        <h6 class="card-title font18 font700 m-0">A CLIENT ID MUST FIRST BE SELECTED IN ORDER TO PROCEED</h6>
+      </div>
+    </div>
+  </div>
+</div>

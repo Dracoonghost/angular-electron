@@ -1,50 +1,5610 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
-  margin: 0;
-  padding: 0;
 
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;700;800&display=swap');
+
+@font-face {
+    font-family: 'Luna';
+    src: url('assets/fonts/LUNABAR_.TTF') format('truetype');
 }
 
-/* CAN (MUST) BE REMOVED ! Sample Global style */
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+strong,
+a,
+b,
+div {
+    font-family: 'Poppins', sans-serif !important;
+}
 
-  background: url(./assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
+.hide {
+    display: none !important;
+}
 
-  .title {
-    color: white;
-    margin: 0;
-    padding: 50px 20px;
-  }
+.font14,
+div#swal2-html-container {
+    font-size: 14px !important;
+}
 
-  a {
+body .font22 {
+    font-size: 22px !important;
+}
+
+.font18,
+.swal2-title {
+    font-size: 18px !important;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.font30 {
+    font-size: 30px;
+}
+
+.font24 {
+    font-size: 24px;
+}
+
+.font400 {
+    font-weight: 400 !important;
+}
+
+.font700 {
+    font-weight: 700 !important;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.btn-primary,
+.btn-secondary,
+button.swal2-styled, 
+.CustomBTn {
+    background-color: transparent !important;
+    border: 1px solid #323438 !important;
+    height: 45px;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    min-width: 150px;
+    border-radius: 50px;
+    color: #323438 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    font-size: 16px !important;
+    padding: 15px;
+}
+.btn-primary .arrow{
+    margin-left: 5px;
+}
+// .btn-secondary,
+// button.swal2-deny.swal2-styled {
+//     background-color: #59535C !important;
+//     border-color: #59535C !important;
+// }
+.rightSearch_Email i.fas.fa-plus {
+    font-size: 12px;
+    margin-right: 5px;
+}
+.btn-primary:after, .btn-secondary:after, button.swal2-styled:after {
+    content: " ";
+    margin-left: 5px;
+    background-image: url(assets/images/RightArrow.svg);
+    width: 15px;
+    height: 10px;
+    background-size: contain;
+    background-position: center;
+}
+.BackBtnCustom:before {
+    content: " ";
+    margin-right: 5px;
+    background-image: url(assets/images/RightArrow.svg);
+    width: 15px;
+    height: 10px;
+    background-size: contain;
+    background-position: center;
+    transform: rotate(180deg);
+}
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: none !important;
+}
+.btn-primary:hover, .btn-secondary:hover, button.swal2-styled:hover, .CustomBTn:hover{
+    
     color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #ed3330;
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-
-    &:hover {
-      background: #fff;
-      color: #ed3330 !important;
-      letter-spacing: 1px;
-      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-      box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-      transition: all 0.4s ease 0s;
-    }
-  }
+    background-color: #323438 !important;
+}
+.btn-primary:hover:after, .BackBtnCustom:hover:before, .btn-secondary:hover:after, button.swal2-styled:hover:after, .CustomBTn:hover img, .btn-primary:hover .arrow, .SingleBigBtnPreviewRow .CustomBTn img{
+    filter: invert(1);
+}
+.BackBtnCustom:after{
+    display:none !important;
+}
+.SingleBigBtnPreviewRow .CustomBTn {
+    padding: 5px 12px 3px;
+    border-color: #fff !important;
+    color: #fff !important;
+}
+.SingleBigBtnPreviewRow .CustomBTn:hover img{
+    filter: invert(0);
+}
+.SingleBigBtnPreviewRow .CustomBTn:hover {
+    padding: 5px 12px 3px;
+    border-color: #fff !important;
+    background-color: #fff !important;
+    color: #323438 !important;
+}
+.control-label {
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    margin-bottom: 3px;
+    color: #555555 !important;
+    //text-transform: uppercase;
 }
 
+.swal2-title {
+    text-align: left !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+}
+
+div#swal2-html-container {
+    text-align: left !important;
+    color: #000 !important;
+    font-weight: 400 !important;
+}
+
+.UserDataForm .form-group {
+    margin-bottom: 25px;
+}
+
+.colorBlue {
+    color: #5A62A8 !important;
+}
+
+.loginSlider {
+    height: 100%;
+    width: 100%;
+}
+
+.innerSlider {
+    padding: 50px;
+    position: relative;
+    width: 100%;
+}
+
+.loginSlider a.carousel-control-prev,
+.loginSlider a.carousel-control-next {
+    display: none;
+}
+
+.loginSlider .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: transparent;
+    border: 1px solid #000 !important;
+    opacity: 1;
+}
+
+.loginSlider .carousel-indicators li.active {
+    background-color: #000;
+}
+
+.LoginMainDiv .card {
+    background-color: transparent;
+    border: 0px solid transparent;
+}
+
+.auth-form-wrapper,
+.auth-form-wrapper label.control-label {
+    color: #4f4f4f !important;
+}
+
+.auth-form-wrapper .form-control {
+    border-color: #4f4f4f !important;
+}
+
+.TextBig {
+    font-size: 28px;
+}
+
+.carousel-inner,
+.carousel-inner .carousel-item,
+.innerSlider {
+    height: 100%;
+}
+
+.LowerSliderText {
+    display: grid;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.LowerSliderText span {
+    background-color: #0039FD;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.rightColumnLogin {
+    background-color: #fff;
+}
+
+body.sidebar-light.sidebar-dark .rightColumnLogin {
+    background-color: #000;
+}
+
+.form-control,
+.dataTable-wrapper .dataTable-top .dataTable-search .dataTable-input,
+.ng-select .ng-select-container,
+select {
+    border: 1px solid #7a7a7a !important;
+    color: #000 !important;
+    font-size: 14px;
+    background-color: transparent !important;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.form-control::placeholder,
+.dataTable-wrapper .dataTable-top .dataTable-search .dataTable-input::placeholder {
+    color: #333 !important;
+    font-size: 14px !important;
+    opacity: 0.7;
+}
+
+.form-check-primary.form-check label input[type=checkbox]+.input-frame:before,
+.form-check-primary.form-check label input[type=radio]+.input-frame:before {
+    border-color: #000000 !important;
+}
+
+.rightColumnLogin .auth-form-wrapper p.font14 {
+    margin-bottom: 15px;
+}
+
+.mb-10 {
+    margin-bottom: 15px !important;
+}
+
+.mb-20 {
+    margin-bottom: 25px !important;
+}
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.mb-5px {
+    margin-bottom: 5px !important;
+}
+
+.mr-10 {
+    margin-right: 15px !important;
+}
+
+// .margin-r-10 {
+//     margin-right: 10px;
+// }
+
+.AlreadyUser {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    left: 0px;
+}
+
+.AlreadyUser.AlreadyUser2 {
+    bottom: 60px;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.OTPrightlbl label.form-check-label {
+    margin: 0px;
+}
+
+.OTPrightlbl {
+    margin-top: 0px;
+}
+
+.AlreadyUser span.colorBlue:hover {
+    text-decoration: underline;
+}
+
+.AlreadyUser {
+    color: #4f4f4f !important;
+    text-decoration: none !important;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.loginSlider .TextBig {
+    display: grid;
+    position: relative;
+    text-align: left;
+}
+
+.loginSlider .TextBig span {
+    background-color: #000;
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.innerSlider.loginFirstSlide .LowerSliderText {
+    bottom: 20px;
+    transform: none;
+}
+
+.innerSlider.loginSecondSlide .LowerSliderText span {
+    background-color: #ffffff;
+    color: #000;
+    padding: 10px 10px;
+}
+
+.innerSlider.loginThirdSlide .LowerSliderText span,
+.innerSlider.loginFourthSlide .LowerSliderText span {
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 10px;
+}
+
+span.bg-Light-Blue.FirstBottom {
+    transform: skewY(10deg);
+}
+
+span.bg-Light-Blue.SecondBottom {
+    transform: skewY(-10deg);
+    margin-top: 50px;
+}
+
+.loginFourthSlide .text-uppercase {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.loginThirdSlide .TextBig.text-white span {
+    background-color: #fff;
+    color: #000;
+}
+
+// Login Slider
+.WoohoTitle {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/assets/images/WoohooBG.svg);
+    background-size: contain;
+}
+
+.rightColumnLogin .auth-form-wrapper.WoohooMainDiv p.font14.mb-10 {
+    margin-bottom: 40px;
+}
+
+.pa12,
+.rightColumnLogin .auth-form-wrapper {
+    padding: 12% !important;
+}
+
+.height80vh {
+    min-height: 80vh;
+}
+
+// Sign Up
+.row.w-100.mx-0.auth-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#yourMultiSigKey .rightLi{
+    text-overflow: inherit !important;
+    overflow: inherit !important;
+    white-space: inherit !important;
+    max-width: 100% !important;
+    width: 100%;
+    word-break: break-word;
+    text-align: center;
+}
+
+#yourMultiSigKey .tableUl .leftLi {
+    min-width: inherit !important;
+}
+
+#yourMultiSigKey ul.tableUl {
+    padding: 10px 60px !important;
+    border-bottom: 0 none !important;
+    background: #eee;
+    border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+}
+// Sign Up
+// Modal Organization
+.CreateORganizationModal .innerModal {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.CreateORganizationModal .innerModal .modal-dialog {
+    max-width: 700px !important;
+    width: 95%;
+}
+
+.CreateORganizationModal .innerModal .modal-dialog .modal-body {
+    padding: 55px;
+}
+
+.CreateORganizationModal .innerModal .modal-dialog .modal-body .ModalBodyInner {
+    padding: 1.5rem 2.5rem;
+}
+
+.CreateORganizationModal .innerModal .modal-dialog .modal-body .Card-Header {
+    padding: 1.5rem 2.5rem;
+}
+
+.ViewImg.CreateORganizationModal .innerModal .modal-dialog .modal-content {
+    overflow: initial;
+}
+
+.form-group.RoyalityCol.position-relative span.HelpIcon {
+    top: 12px;
+    right: 0px !important;
+    left: inherit !important;
+}
+
+.createInner {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    margin-top: 30px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.CreateOrganizationSingle .form-group {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.CreateOrganizationSingle .form-group textarea {
+    height: 100%;
+    border: 0px !important;
+}
+
+.CreateOrganizationSingle.active .createInner,
+.CreateOrganizationSingle .createInner:hover {
+    background-color: #5a62a8;
+    color: #fff;
+    border-color: #5a62a8 !important;
+}
+
+.createInner:hover .colorBlue {
+    color: #fff !important;
+}
+
+// Modal Organization
+// Modal Search by email
+.SearchByEmailMain input#exampleInputSearchbyemail {
+    height: 45px;
+    border-radius: 2px;
+}
+
+.SearchByEmailMain select#exampleFormControlSelect1 {
+    position: absolute;
+    width: 140px;
+    right: 17px;
+    top: 5px;
+    background-color: #5a62a8 !important;
+    color: #fff !important;
+    border-color: #5a62a8 !important;
+    border-radius: 2px;
+}
+
+.modal {
+    padding-right: 0px !important;
+}
+
+.row.SearchByEmailMainRow {
+    min-height: 150px;
+}
+
+.TagsMainDiv {
+    margin-top: 25px;
+    display: inline-block;
+    max-height: 102px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.TagsMainDiv::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+
+.TagsMainDiv::-webkit-scrollbar-track,
+.SerachSuggestionsMainDiv::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+
+.TagsMainDiv::-webkit-scrollbar-thumb,
+.SerachSuggestionsMainDiv::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover,
+.SerachSuggestionsMainDiv::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.SingleTag {
+    padding: 10px 15px;
+    background-color: #7C8E32;
+    color: #fff;
+    border-radius: 50px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    max-height: 50px;
+    display: inherit;
+}
+
+.SingleTag .closeBtn {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.SingleTag:nth-child(odd) {
+    background-color: #AA7441;
+}
+
+// Modal Search by email
+// User Profile
+.UploadInput button.file-upload-browse.btn.btn-primary {
+    height: 35px;
+    padding: 5px;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #5a62a8 !important;
+    background-color: #5a62a8 !important;
+}
+
+.single-tab-btn .inner-tabBtn {
+    display: -webkit-box;
+    display: flex;
+    text-align: center;
+    color: #000;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.single-tab-btn {
+    height: 150px;
+    background-color: transparent;
+    border: 0;
+}
+
+.img-title-div span.font14,
+.radioInnerDivSub span.font14 {
+    display: block;
+}
+
+.img-title-div img,
+img.category-img {
+    margin-bottom: 10px;
+    height: 50px;
+    filter: invert(1);
+}
+
+.disabledtab {
+    opacity: .3;
+    pointer-events: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.radio-toolbar input[type=radio] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.single-radio .radioInnerDiv {
+    height: 150px;
+    align-items: center;
+    display: flex!important;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: transparent!important;
+    border: 1px solid #000;
+    border-radius: 10px;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+}
+
+.radio-toolbar label>.radioInnerDiv :after,
+.ImportNFTMainDiv .radioInnerDiv:after,
+.SingleNFTDiv:after {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 50px;
+    content: "\f00c";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    opacity: 1;
+    -webkit-transition: .5s;
+    transition: .5s;
+    color: #fff;
+    background-color: #d8d8d8;
+}
+
+.row.MultiCryptoWalletCreate .NftCryptosMainDiv:after {
+    position: absolute;
+    right: 40px;
+    top: 30px;
+}
+
+.NotationInput {
+    position: absolute;
+    top: 37px;
+    right: 10px;
+}
+
+.RoyalityCol .control-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.radio-toolbar input[type=radio]:checked+label>.radioInnerDiv,
+.radio-toolbar input[type=radio]:checked+label>.radioInnerDiv :after,
+.nft_radioItem.active .radioInnerDiv :after,
+.ImportNFTMainDiv .radioInnerDiv.active:after,
+.SingleNFTDiv.selected:after,
+.MultiCryptoWalletCreate .NftCryptosMainDiv.Selected:after {
+    -webkit-transition: .5s;
+    transition: .5s;
+    background-color: #5a62a8;
+}
+
+.radio-toolbar label.ComingSoonBox>.radioInnerDiv :after {
+    opacity: 0 !important;
+}
+
+.radio-toolbar input[type=radio] :checked+label>.radioInnerDiv,
+.nft_radioItem.active .radioInnerDiv,
+.ImportNFTMainDiv .radioInnerDiv.active {
+    transform: scale(1.05);
+    transition: .5s;
+}
+
+.input-group-append {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    height: 140px;
+    border: 1px dashed #000 !important;
+    border-radius: 5px;
+}
+
+.textareaInput {
+    min-height: 80px;
+    padding-top: 10px;
+}
+
+.KYCPendingDiv img {
+    max-height: 200px;
+}
+
+.UploadTextDiv {
+    display: grid;
+}
+
+.PreviewImgDiv img {
+    width: 150px;
+    border: 1px solid #000;
+    height: 140px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+span.PlusText {
+    font-size: 42px;
+    line-height: 32px;
+}
+
+.HelpTootltip {
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    font-size: 12px;
+    position: absolute;
+    top: 0px;
+    right: 15px;
+}
+
+// User Profile
+// Create NFT
+.invert-white-Img {
+    filter: invert(1);
+}
+
+.SelectCategoryMainDiv .category-img {
+    height: 40px;
+}
+
+.NftCryptosMainDiv .card-header button i.fas {
+    position: absolute;
+    right: 30px;
+    transition: 0.5s;
+}
+
+button.btn.btn-link.active i.fas {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+
+.SingleRecordCrypto {
+    display: block;
+    width: 100%;
+    padding: 15px 50px 15px 15px;
+    border-bottom: 1px solid #f2f4f9;
+    position: relative;
+}
+
+.tagsMain-12 ul.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.addTagBtn,
+.RemoveIcon {
+    background-color: transparent;
+    opacity: 1;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0px;
+}
+
+.signpad_wrapper {
+    border: 1px solid #000;
+    border-radius: 5px;
+    position: relative;
+}
+
+span.font14.font700.SingleRecordCrypto:after {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    height: 21px;
+    width: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    content: "\f00c";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 12px;
+    opacity: 1;
+    transition: 0.5s;
+    color: #fff;
+    background-color: #d8d8d8;
+    padding-top: 0px;
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+span.font14.font700.SingleRecordCrypto.selected:after {
+    background-color: #5a62a8;
+}
+
+.gm-style .gm-style-cc a,
+.gm-style .gm-style-cc button,
+.gm-style .gm-style-cc span,
+a[title="Open this area in Google Maps (opens a new window)"],
+.gmnoprint[data-control-height="81"],
+.pac-logo:after {
+    display: none !important;
+}
+
+// Create NFT
+label.--switch.auth {
+    position: absolute;
+    top: 100px;
+    width: 40px;
+    right: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    display: none;
+}
+.LoginMainDiv {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0px;
+}
+// Sidebar css
+.imgIconSidebar {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+}
+
+li.nav-item.mm-active .imgIconSidebar,
+a.nav-link:hover img.imgIconSidebar {
+    filter: invert(43%) sepia(13%) saturate(1860%) hue-rotate(196deg) brightness(88%) contrast(94%) !important;
+}
+
+.sidebar-dark label.form-check-label span.colorBlue {
+    filter: inherit !important;
+}
+
+.sidebar-dark .colorBlue {
+    filter: invert(1);
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .mm-active:hover::before,
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .mm-active::before {
+    background-color: #5a62a8 !important;
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .nav-link::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid #a9b4ca;
+    position: absolute;
+    left: -20px;
+    top: 15px;
+    transition: all 0.4s ease-in-out;
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .nav-link:hover::before {
+    border: 1px solid #5a62a8;
+    background: #5a62a8;
+}
+
+ul.sidebar-nav.sub-menu.nav-second-level.mm-collapse.mm-show {
+    display: block;
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .nav-link {
+    position: relative;
+}
+
+.nav-second-level {
+    display: none;
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item {
+    padding: 5px 30px;
+}
+
+.SubMenuBtn {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    font-size: 12px;
+    transition: 0.5s;
+    width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item:last-child {
+    border: 0px;
+}
+
+.fetchingNFT_ImportCard::after, .SingleNFTDiv.NotClickable:after {
+    display: none;
+}
+
+.SubMenuBtn.transform {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+
+// .FixedPreviewTable {
+//     position: fixed;
+//     top: 86px;
+//     width: calc(100% - 290px);
+//     transition: 0.5s;
+//     left: 265px;
+//     z-index: 9999;
+// }
+
+// .FixedPreviewTable.fixed {
+//     top: 60px;
+//     transition: 0.5s;
+// }
+
+// .FixedPreviewTable .ClosePrevieImg {
+//     color: #000;
+//     padding: 0px !important;
+// }
+
+// .CustomMargin {
+//     margin-top: 87px;
+// }
+
+// .RemoveCustom .CustomMargin {
+//     margin-top: 0px;
+// }
+
+.Btn-Big {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.Btn-Big i {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.NFTPreviewRow .Btn-Big.w-100 {
+    display: flex;
+    align-items: center;
+}
+
+// .FixedPreviewTable.closeTable {
+//     display: none;
+// }
+
+ul.tableUl {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 6px 15px;
+    margin: 0px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+body.sidebar-folded .SubMenuBtn,
+body.sidebar-folded ul.sidebar-nav.sub-menu.nav-second-level.mm-collapse {
+    display: none;
+}
+
+body.sidebar-folded.open-sidebar-folded .SubMenuBtn,
+body.sidebar-folded.open-sidebar-folded ul.sidebar-nav.sub-menu.nav-second-level.mm-collapse {
+    display: block;
+}
+
+// Sidebar css
+// succesful div
+.SucessMainDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// succesful div
+// Dark Mode
+.sidebar-dark .btn-primary,
+.sidebar-dark img,
+.sidebar-dark .custom-control-input:checked~.custom-control-label::before,
+.sidebar-dark .custom-switch .custom-control-input:checked~.custom-control-label::after,
+.custom-control-input:focus~.custom-control-label::before,
+.sidebar-dark .radio-toolbar label>.radioInnerDiv :after,
+.sidebar-dark .footer a,
+.sidebar-dark label.--switch,
+.sidebar-dark .badge-success,
+.sidebar-dark .badge-warning,
+.sidebar-dark .SearchByEmailMain input,
+body.sidebar-dark .auth-form-wrapper.WoohooMainDiv,
+.sidebar-dark .loginSlider,
+.sidebar-dark .btn-secondary,
+.sidebar-dark .rightColumnLogin .auth-form-wrapper .form-group,
+.sidebar-dark .rightColumnLogin .auth-form-wrapper p.font14,
+.sidebar-dark .rightColumnLogin .auth-form-wrapper .font18,
+.sidebar-dark .OTPrightlbl label.form-check-label,
+.sidebar-dark .AlreadyUser,
+body.sidebar-dark .AlreadyUser span.colorBlue,
+.sidebar-dark .loginSlider .colorBlue,
+body.sidebar-dark app-footer footer.footer,
+body.sidebar-dark nav.navbar .dropdown-menu,
+body.sidebar-dark .FilterDark,
+body.sidebar-dark .CreateORganizationModal .modal-dialog,
+body.sidebar-dark svg.feather.colorBlue,
+body.sidebar-dark .auth-form-wrapper.WoohooMainDiv.text-center button.btn.btn-primary,
+.sidebar-dark .bg-blue,
+.sidebar-dark .NftTagsMainDiv .card-header button,
+.sidebar-dark .NftCryptosMainDiv .card-header button,
+body.sidebar-dark .radio-toolbar label>.radioInnerDiv :after,
+body.sidebar-dark .ImportNFTMainDiv .radioInnerDiv:after,
+body.sidebar-dark .SingleNFTDiv .SingleNFTTopDiv:after,
+body.sidebar-dark .textblue,
+// body.sidebar-dark .ImportedSpan,
+body.sidebar-dark .btn-secondary,
+body.sidebar-dark .CreateORganizationModal .modal-dialog form,
+body.sidebar-dark .CreateORganizationModal .modal-dialog form .msg-error,
+body.sidebar-dark .CreateORganizationModal .modal-dialog form button.btn.btn-primary,
+body.sidebar-dark .CreateORganizationModal .modal-dialog button.close,
+.sidebar-dark .a-Tag,
+.sidebar-dark #clear,
+.sidebar-dark button#undo,
+.sidebar-dark .LowerSliderText span,
+.sidebar-dark .importedtd,
+.sidebar-dark .Importedno,
+.sidebar-dark .Secure,
+.sidebar-dark .NotSecure,
+.sidebar-dark span.PreviewImg.cursor-pointer,
+.sidebar-dark .SingleBigBtnPreviewRow,
+.sidebar-dark span.font14.font700.SingleRecordCrypto.selected:after,
+.sidebar-dark .radio-toolbar input[type=radio]:checked+label>.radioInnerDiv,
+.sidebar-dark .radio-toolbar input[type=radio]:checked+label>.radioInnerDiv :after,
+.sidebar-dark .nft_radioItem.active .radioInnerDiv :after,
+.sidebar-dark .ImportNFTMainDiv .radioInnerDiv.active:after,
+.sidebar-dark .SingleNFTDiv.selected:after,
+.sidebar-dark .MultiCryptoWalletCreate .NftCryptosMainDiv.Selected:after  {
+    filter: invert(1);
+}
+
+.sidebar-dark .CreateORganizationModal .innerModal {
+    background-color: #00000078;
+}
+
+.sidebar-dark .modal-backdrop.show {
+    display: none;
+}
+
+.sidebar-dark .close {
+    color: #1e1e1e;
+}
+
+.sidebar-dark .close:hover {
+    color: #000;
+}
+
+.sidebar-dark .modal-content .btn-primary,
+.sidebar-dark .rightColumnLogin .auth-form-wrapper button.btn.btn-primary,
+.sidebar-dark .innerComingSoon img {
+    filter: invert(0);
+}
+
+.sidebar-dark .cryptoModal .card {
+    background-color: transparent;
+}
+
+.sidebar-dark .cryptoModal .MultiCryptoWallet .radioInnerDivSub span.font14 {
+    color: #000;
+}
+
+.sidebar-dark .modal .form-group,
+.sidebar-dark .transactionDetailsBox i.fas.fa-external-link-alt,
+.sidebar-dark .modal .radio-toolbar label>.radioInnerDiv :after,
+.sidebar-dark .modal .ImportNFTMainDiv .radioInnerDiv:after,
+.sidebar-dark .modal .SingleNFTDiv:after,
+.sidebar-dark .modal .MultiCryptoWalletCreate .NftCryptosMainDiv:after {
+    filter: invert(0) !important;
+}
+
+.sidebar-dark .Card-Header {
+    background-color: transparent !important;
+}
+
+.sidebar-dark .card {
+    border-color: transparent !important;
+}
+
+.sidebar-dark .ClientSearchBox{
+    border: 1px solid #000 !important;
+    filter: invert(1);
+}
+
+.sidebar-dark .textred,
+.sidebar-dark .textgreen,
+.sidebar-dark div#myModalSsidList .table-responsive,
+.sidebar-dark .CreateORganizationModal .innerModal .modal-dialog .modal-body .Card-Header,
+.sidebar-dark .modal .radio-toolbar input[type=radio]:checked+label>.radioInnerDiv,
+.sidebar-dark .modal .radio-toolbar input[type=radio]:checked+label>.radioInnerDiv :after,
+.sidebar-dark .modal .nft_radioItem.active .radioInnerDiv :after,
+.sidebar-dark .modal .ImportNFTMainDiv .radioInnerDiv.active:after,
+.sidebar-dark .modal .SingleNFTDiv.selected:after,
+.sidebar-dark .modal .MultiCryptoWalletCreate .NftCryptosMainDiv.Selected:after,
+.sidebar-dark .modal .row.FilterDark.MultiCryptoWallet button.btn.btn-primary,
+.sidebar-dark .sidebar .sidebar-header {
+    filter: invert(1) !important;
+}
+.sidebar-dark .sidebar .sidebar-body {
+    background: #000000;
+}
+.sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item > .nav-link,  .sidebar-dark .SubMenuBtn {
+    color: #fff;
+}
+.sidebar-dark .SingleBigBtnPreviewRow {
+    background: linear-gradient(162.11deg, #252525 6.98%, #6c6c6c 87.8%) !important;
+}
+.sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item > .nav-link .imgIconSidebar {
+    filter: invert(1);
+}
+.sidebar-dark .SingleBigBtnPreviewRow .imgDivBtn:after {
+    background: linear-gradient(180deg, #626262 0%, #3c3c3c 100%) !important;
+}
+
+.sidebar-dark .CreateORganizationModal .innerModal .modal-dialog .modal-body .Card-Header .card-title {
+    color: #000;
+    font-weight: 800 !important;
+}
+
+body.sidebar-dark a#profileDropdown img,
+body.sidebar-dark .rightColumnLogin .auth-form-wrapper.WoohooMainDiv p.font14,
+body.sidebar-dark,
+.sidebar-dark .NftTagsMainDiv .card-header button,
+.sidebar-dark .NftCryptosMainDiv .card-header button {
+    filter: initial;
+}
+
+.sidebar-dark .auth-page .auth-left-wrapper {
+    background-color: #1B1B1B;
+}
+
+.sidebar-dark .PreviewImgDiv img {
+    border: 1px solid #fff;
+}
+
+.sidebar-dark .modal-content {
+    background-color: #1A1A1A;
+    border: 1px solid #1A1A1A;
+    filter: invert(1);
+    color: #fff;
+}
+
+.sidebar-dark .nav-item .imgIconSidebar,
+.sidebar-dark .SingleBigBtnPreviewRow .imgDivBtn img {
+    filter: none;
+}
+
+.sidebar-dark .NftTagsMainDiv .card-header button,
+.sidebar-dark .NftCryptosMainDiv .card-header button,
+.sidebar-dark .TopHeaderDiv {
+    background-color: #dbdbdb;
+    border: 1px solid #dbdbdb !important;
+}
+
+.sidebar-dark .AlreadyUser:hover,
+.sidebar-dark .rightColumnLogin .form-check.form-check-flat.form-check-primary.OTPrightlbl label.form-check-label {
+    color: #000 !important;
+}
+
+body.sidebar-dark .form-check.form-check-flat.form-check-primary label.form-check-label,
+body.sidebar-dark .dataTable-wrapper .dataTable-top .dataTable-search .dataTable-input::placeholder {
+    color: #fff !important;
+}
+
+body.sidebar-dark .form-check-primary.form-check label input[type=checkbox]+.input-frame:before,
+body.sidebar-dark .form-check-primary.form-check label input[type=radio]+.input-frame:before,
+body.sidebar-dark .createInner,
+body.sidebar-dark .CreateOrganizationSingle .form-group {
+    border-color: #fff !important;
+}
+
+body.sidebar-dark .navbar {
+    background: #000;
+    border-bottom: 1px solid #000;
+}
+
+body.sidebar-dark .main-wrapper .page-wrapper {
+    background: #141414;
+    border-bottom: 1px solid #000;
+}
+
+body.sidebar-dark .navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item:hover .nav-link {
+    color: #a59d57;
+}
+
+body.sidebar-light.sidebar-dark .auth-page {
+    background-color: #000;
+}
+
+body.sidebar-light.sidebar-dark .auth-page:after {
+    z-index: 0;
+    opacity: 0.3;
+    background-color: #000;
+}
+
+body.sidebar-light.sidebar-dark .LoginMainDiv {
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-dark .msg-error {
+    filter: inherit;
+}
+
+// Dark Mode
+// Toggle
+.--switch {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: initial;
+    margin-bottom: 0px;
+    transition: 0.5s;
+    box-shadow: 0px 0px 2px rgb(0 0 0 / 30%);
+    border-radius: 50px;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.--switch:hover {
+    transition: 0.5s;
+}
+
+.--switch input {
+    display: none;
+}
+
+.--slider .fa-sun {
+    color: #FFFFFF;
+    position: absolute;
+    right: initial;
+    font-size: 16px;
+    display: none;
+}
+
+.--slider .fa-moon {
+    color: #fff;
+    position: absolute;
+    font-size: 16px;
+    right: initial;
+}
+
+.--slider {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    justify-content: center;
+}
+
+.--switch input:checked+.--slider .fa-sun {
+    display: block;
+}
+
+.--switch input:checked+.--slider .fa-moon {
+    display: none;
+}
+
+.--switch input:focus+.--slider {
+    box-shadow: 0 0 1px #52b69a;
+}
+
+.--slider:hover {
+    background-color: #fff !important;
+    border: 0px !important;
+}
+
+.--slider:hover .fa-sun,
+.--slider:hover .fa-moon {
+    color: #000;
+}
+
+.sidebar-dark .--slider .fa-moon {
+    color: #fff;
+}
+
+.sidebar-dark .--slider {
+    background-color: #000;
+    border: 2px solid #000;
+}
+
+.sidebar-dark .--slider:hover {
+    background-color: #5a62a8 !important;
+    border: 2px solid #5a62a8 !important;
+    filter: invert(1);
+}
+
+.sidebar-dark .--slider:hover .fa-sun {
+    color: #fff;
+}
+
+// Toggle
+
+.page-content>div[contentanimate] {
+    position: relative;
+}
+
+.auth-page:after {
+    content: " ";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-image: url(assets/images/authbg.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.auth-page .auth-left-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+img.SlideImg {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    left: 0px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.msg-error {
+    color: red !important;
+}
+
+.SelectKey.text-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SelectKey .btn-primary{
+    width: 90px !important;
+    min-width: auto !important;
+}
+
+@media(max-width:767px) {
+    .UploadInput .d-flex {
+        flex-wrap: wrap;
+    }
+    .PreviewImgDiv img {
+        margin-top: 10px;
+    }
+    .UserDataForm .form-group {
+        margin-bottom: 35px;
+    }
+    .single-tab-btn {
+        margin-bottom: 10px;
+    }
+    .UserDataForm .form-group {
+        margin-bottom: 35px !important;
+    }
+    .CreateORganizationModal .innerModal .modal-dialog .modal-body {
+        padding: 15px;
+    }
+    .previousNextDiv button.btn {
+        margin-bottom: 0px !important;
+    }
+    .col-md-6.pr-md-0.height80vh {
+        display: none;
+    }
+    .rightColumnLogin.height80vh {
+        max-width: 95vw;
+        margin-left: 2.5vw;
+        padding: 0px 15px;
+    }
+    .pa12,
+    .rightColumnLogin .auth-form-wrapper {
+        padding: 15px 0px !important;
+    }
+    .btn-primary,
+    .btn-secondary {
+        min-width: 120px;
+    }
+}
+
+@media(max-width:450px) {
+    .PreviewImgDiv {
+        min-width: 100%;
+    }
+    .PreviewImgDiv img {
+        width: 100%;
+        margin-left: 0px;
+        object-fit: contain;
+    }
+    .SingleTag {
+        margin: 5px 0px;
+    }
+    .SearchByEmailMain select#exampleFormControlSelect1 {
+        position: relative;
+        width: 100%;
+        right: initial;
+        top: initial;
+        margin-top: 10px;
+        height: 45px;
+    }
+    .CreateOrganizationSingle:last-child {
+        margin-bottom: 30px;
+    }
+    .CreateOrganizationSingle .createInner {
+        margin-bottom: 0px;
+    }
+}
+
+.CreateORganizationModal .innerModal .modal-dialog .modal-content {
+    max-height: 95vh;
+    overflow-y: auto;
+    border: 0px !important;
+}
+
+// Multi crypto wallet
+.MultiCryptoWallet img.category-img {
+    filter: invert(1);
+    margin-bottom: 0;
+}
+
+.MultiCryptoWallet .radioInnerDivSub {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.MultiCryptoWallet .single-radio .radioInnerDiv {
+    height: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.pl-20 {
+    padding-left: 20px;
+}
+
+.pr-20 {
+    padding-right: 20px;
+}
+
+.MultiCryptoWallet .single-radio {
+    margin-bottom: 25px;
+}
+
+// span.CS_Text {
+//     position: absolute;
+//     right: 30px;
+// }
+
+// span.CS_Text:after {
+//     display: none !important;
+// }
+
+.ComingSoonBox {
+    opacity: 0.5 !important;
+    pointer-events: none;
+}
+
+.ComingSoonBox .radioInnerDiv:after {
+    content: "Coming Soon";
+    font-size: 14px;
+    position: absolute;
+    color: #000;
+    right: 30px;
+}
+
+.cryptoModal .ComingSoonBox .radioInnerDiv:after {
+    right: 12px;
+    top: 3px;
+}
+
+span.copyIcon.font18,
+.cursor-pointer {
+    cursor: pointer;
+}
+
+span.Qrcode.font18,
+span.PasteIcon.font18 {
+    position: absolute;
+    right: 27px;
+    top: 34px;
+    cursor: pointer;
+}
+
+span.PasteIcon.font18 {
+    right: 55px;
+}
+
+.a-Tag {
+    color: #5a62a8;
+    text-decoration: underline;
+}
+
+.row.CreateyptoGenerateDiv.ImportDiv input.form-control {
+    padding-right: 60px;
+}
+
+.cryptoModal .card {
+    box-shadow: none !important;
+    border: 0px;
+}
+
+span.HelpIcon {
+    position: absolute;
+    top: 52%;
+    color: #000;
+    font-size: 14px;
+    left: -6px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+span.HelpIcon.RightHelpIcon {
+    left: inherit !important;
+    right: -6px;
+}
+
+// Multi crypto wallet
+// Grid css
+.stretch-card {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.grid-margin {
+    margin-bottom: 1.5rem;
+}
+
+.main-wrapper {
+    display: flex;
+    overflow: hidden;
+}
+
+.table-responsive .table td,
+.table-responsive .table th {
+    border-top: 0px solid #dee2e6;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.table-responsive .table tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+// Grid css
+// reset css
+.btn,
+.swal2-modal .swal2-actions button,
+.fc .fc-button,
+.btn-group.open .dropdown-toggle,
+.btn:active,
+.btn:focus,
+.btn:hover,
+.btn:visited,
+a,
+a:active,
+a:checked,
+a:focus,
+a:hover,
+a:visited,
+body,
+button,
+button:active,
+button:hover,
+button:visited,
+div,
+input,
+input:active,
+input:hover,
+input:focus,
+input:visited,
+select,
+select:active,
+select:focus,
+select:visited,
+textarea,
+textarea:active,
+textarea:focus,
+textarea:visited {
+    box-shadow: none;
+}
+
+a,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    text-shadow: none;
+}
+
+// reset css
+// sidebar css
+.sidebar {
+    width: 240px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.1s ease, margin 0.1s ease-out;
+    z-index: 999;
+}
+
+.sidebar .sidebar-header {
+    background: #ffffff;
+    height: 60px;
+    // border-bottom: 1px solid #f2f4f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    // border-right: 1px solid #f2f4f9;
+    z-index: 999;
+    width: 240px;
+    transition: width 0.1s ease;
+}
+
+.sidebar .sidebar-header .sidebar-brand {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item {
+    position: relative;
+    border-bottom: 1px solid #dee0ed;
+    padding: 10px 25px;
+}
+.sidebar-dark .sidebar .sidebar-body .sidebar-nav .nav-item {
+    border-bottom: 1px solid #2d2d2d;
+}
+
+// .sidebar-dark .sidebar .sidebar-body {
+//     border-right: 1px solid #2d2d2d;
+// }
+
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 32px;
+    white-space: nowrap;
+    color: #000;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item.mm-active>.nav-link,
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link:hover,
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item .nav-link:hover {
+    color: #5A62A8;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-icon,
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-title,
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-arrow {
+    transition: all 0.3s ease;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-title {
+    margin-left: 10px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    text-decoration: none;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-icon,
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-title,
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-arrow {
+    transition: all 0.3s ease;
+}
+
+.sidebar .sidebar-body .sidebar-nav .nav-item>.nav-link .link-icon {
+    width: 16px;
+    fill: rgba(233, 236, 239, 0.21);
+    position: absolute;
+    color: inherit;
+}
+
+.sidebar .sidebar-body .sidebar-nav {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .sidebar-header .sidebar-toggler span {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    height: 2px;
+    background: #535353;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.sidebar .sidebar-header .sidebar-toggler span+span {
+    margin-top: 4px;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active.active span:nth-child(1) {
+    -webkit-animation: ease 0.6s top-2 forwards;
+    animation: ease 0.6s top-2 forwards;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active.active span:nth-child(2) {
+    -webkit-animation: ease 0.6s scaled-2 forwards;
+    animation: ease 0.6s scaled-2 forwards;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active.active span:nth-child(3) {
+    -webkit-animation: ease 0.6s bottom-2 forwards;
+    animation: ease 0.6s bottom-2 forwards;
+}
+
+.sidebar .sidebar-header .sidebar-toggler {
+    cursor: pointer;
+    width: 18px;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active span:nth-child(1) {
+    -webkit-animation: ease 0.6s top forwards;
+    animation: ease 0.6s top forwards;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active span:nth-child(2) {
+    -webkit-animation: ease 0.6s scaled forwards;
+    animation: ease 0.6s scaled forwards;
+}
+
+.sidebar .sidebar-header .sidebar-toggler.not-active span:nth-child(3) {
+    -webkit-animation: ease 0.6s bottom forwards;
+    animation: ease 0.6s bottom forwards;
+}
+
+.sidebar-folded .sidebar .sidebar-header,
+.sidebar-folded:not(.open-sidebar-folded) .sidebar {
+    width: 70px;
+}
+
+.sidebar-folded.open-sidebar-folded .sidebar .sidebar-header {
+    width: 240px;
+}
+
+.sidebar-folded .page-wrapper .navbar {
+    width: calc(100% - 70px);
+    left: 70px;
+    right: 0;
+}
+
+.sidebar-folded .page-wrapper {
+    width: calc(100% - 70px) !important;
+    margin-left: 70px !important;
+}
+
+.sidebar-folded:not(.open-sidebar-folded) .sidebar .sidebar-header .sidebar-brand {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+.sidebar-folded .sidebar .sidebar-header .sidebar-brand {
+    display: none;
+}
+
+.sidebar .sidebar-body {
+    max-height: calc(100% - 115px);
+    position: relative;
+    // border-right: 1px solid #f2f4f9;
+    height: 100%;
+    // box-shadow: 0 8px 10px 0 rgb(183 192 206 / 20%);
+    background: #ffffff;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 20px;
+    // justify-content: center;
+}
+
+.ps {
+    overflow: hidden !important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
+
+.sidebar-folded:not(.open-sidebar-folded) .sidebar .sidebar-body .sidebar-nav .nav-item .nav-link .link-title,
+.sidebar-folded:not(.open-sidebar-folded) .sidebar .sidebar-body .sidebar-nav .nav-item .nav-link .link-arrow {
+    visibility: hidden;
+    opacity: 0;
+}
+
+img.DashboardLogo {
+    width: 45px;
+}
+
+@-webkit-keyframes top {
+    0% {
+        top: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    50% {
+        top: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        top: 6px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes top {
+    0% {
+        top: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    50% {
+        top: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        top: 6px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes top-2 {
+    0% {
+        top: 6px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        top: 6px;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        top: 0;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes top-2 {
+    0% {
+        top: 6px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    50% {
+        top: 6px;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        top: 0;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@-webkit-keyframes bottom {
+    0% {
+        bottom: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    50% {
+        bottom: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 6px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes bottom {
+    0% {
+        bottom: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    50% {
+        bottom: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 6px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+}
+
+@-webkit-keyframes bottom-2 {
+    0% {
+        bottom: 6px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    50% {
+        bottom: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+}
+
+@keyframes bottom-2 {
+    0% {
+        bottom: 6px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    50% {
+        bottom: 6px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 0;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+}
+
+@-webkit-keyframes scaled {
+    50% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes scaled {
+    50% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@-webkit-keyframes scaled-2 {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scaled-2 {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+// sidebar css
+// Autofill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+    -webkit-text-fill-color: #000 !important;
+}
+
+.LoginMainDiv input:-webkit-autofill,
+.LoginMainDiv input:-webkit-autofill:hover,
+.LoginMainDiv input:-webkit-autofill:focus,
+.LoginMainDiv input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+}
+
+// Autofill
+// reboot css
+article,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+    display: block;
+}
+
+// reboot css
+// Card css
+.stretch-card>.card {
+    width: 100%;
+    min-width: 100%;
+}
+
+.card {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    -ms-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    // border: 1px solid #f2f4f9;
+    border-radius: 10px;
+}
+
+.Card-Header {
+    // background-color: #dee0ed !important;
+    background-color: transparent !important;
+    padding: 1.25rem 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-transform: uppercase;
+}
+.card-body {
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.card {
+    box-shadow: none !important;
+    background-color: transparent;
+    border: 0px;
+}
+.NFTImageInner {
+    margin-bottom: 20px;
+}
+
+.HeadingBig {
+    color: #D1D1D1;
+    font-size: clamp(20px, 4vw, 90px);
+}
+
+// Card css
+// Form css
+.form-control,
+.dataTable-wrapper .dataTable-top .dataTable-search .dataTable-input,
+.ng-select .ng-select-container,
+select {
+    display: block;
+    width: 100%;
+    height: 45px;
+    line-height: 1;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input::placeholder,
+.form-control::placeholder {
+    color: #333 !important;
+    font-size: 14px !important;
+    font-family: "Lato", sans-serif !important;
+    opacity: 0.7;
+}
+
+// Form css
+// vertical css
+.main-wrapper .page-wrapper {
+    min-height: 100vh;
+    background: #fff;
+    width: calc(100% - 240px);
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    transition: margin 0.1s ease, width 0.1s ease;
+}
+
+.main-wrapper .page-wrapper .page-content {
+    flex-grow: 1;
+    padding: 25px;
+    margin-top: 60px;
+    border-radius: 30px 0 0 30px;
+    background: #ebeef2;
+}
+
+// vertical css
+// Navbar css
+.navbar {
+    width: calc(100% - 240px);
+    height: 60px;
+    background: #ffffff;
+    // border-bottom: 1px solid #f2f4f9;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    left: 240px;
+    z-index: 978;
+    // box-shadow: 3px 0 10px 0 rgb(183 192 206 / 20%);
+    transition: width 0.1s ease, left 0.1s ease;
+    justify-content: space-between;
+}
+
+.navbar .sidebar-toggler {
+    height: 100%;
+    border-right: 1px solid #e8ebf1;
+    align-items: center;
+    padding: 0 25px;
+    display: none;
+}
+
+.navbar .sidebar-toggler i {
+    font-size: 20px;
+    color: #9b9b9b;
+}
+
+.navbar .navbar-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.navbar .navbar-content .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .nav-link img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    max-width: 100%;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item {
+    width: auto;
+    margin: 0 0 5px 0;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item .nav-link {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    color: #383838;
+    transition: color 0.2s ease-in-out;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item .nav-link {
+    padding: 0;
+    position: relative;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item .nav-link i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.navbar .navbar-content .navbar-nav .nav-item.nav-profile .dropdown-menu .dropdown-body .profile-nav .nav-item .nav-link span {
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+// Navbar css
+// footer css
+.footer {
+    background: #fff;
+    padding: 15px 25px 15px;
+    // border-top: 1px solid #e8ebf1;
+    transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    font-size: calc(0.875rem - 0.05rem);
+    font-family: "Overpass", sans-serif;
+    font-weight: 400;
+    margin-top: auto;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+// footer css
+// NFT Preview
+.Signpad_btns {
+    border-bottom-left-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+    position: absolute;
+    bottom: 12px;
+    right: 10px;
+}
+
+span.NFT_URL {
+    position: absolute;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.textarea-input {
+    height: 90px !important;
+    padding-top: 15px;
+}
+
+.availability-div {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+}
+
+button#clear,
+button#undo {
+    color: #fff;
+    border: 0px;
+    background-color: #5a62a8;
+    border-radius: 2px;
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+.CertificateImageInner,
+.NFTImageInner {
+    border: 1px solid #F5F5F5;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%)
+}
+
+.NftTagsMainDiv .card-header {
+    padding: 0px;
+}
+
+.NftTagsMainDiv .card-header button,
+.NftCryptosMainDiv .card-header button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    align-items: center;
+    text-decoration: none !important;
+    padding: 15px 15px;
+    background-color: #dee0ed;
+    border: 0px solid #dee0ed !important;
+    border-bottom: 0px !important;
+    border-radius: 0 !important;
+}
+.accordion .collapse .card-body {
+    // border-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    box-shadow: none !important;
+}
+.card-header{
+    background-color: transparent !important;
+}
+.NftCryptosMainDiv .TagsParent {
+    border: 1px solid #d8d8d8;
+    border-top: 0px;
+}
+
+.TopHeaderDiv b {
+    margin-left: 5px;
+}
+
+.TagsParent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.TagsParent .SingleTagNft {
+    padding: 3px 15px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background-color: #dee0ed;
+    color: #000000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.AiSingle span.SingleTagNft {
+    cursor: auto;
+    justify-content: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.pt-20 {
+    padding-top: 20px;
+}
+
+.NftTopRightDetailDiv,
+.CertificateTopRightDetailDiv {
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%);
+}
+
+.TopHeaderDiv {
+    color: #000;
+    padding: 15px 15px;
+    border-bottom: 1px solid #F5F5F5;
+    // background-color: #dee0ed;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.cryptoModal .card-body {
+    box-shadow: none !important;
+    border: 0px !important;
+}
+.CertificateDiv .card-body {
+    box-shadow: none !important;
+    border: 0px !important;
+    padding: 1.5rem 2.5rem;
+}
+.MiddleDiv {
+    padding: 15px 15px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.MiddleDiv img {
+    height: 30px;
+    margin-right: 5px;
+}
+
+.MiddleDiv .fas {
+    margin-left: 10px;
+}
+
+.BottomDiv {
+    padding: 15px 15px;
+}
+
+.transactionDetailsBox tr td:last-child {
+    text-align: right;
+}
+
+.transactionDetailsBox {
+    border: 0px solid #F5F5F5;
+    border-radius: 10px;
+}
+
+.transactionDetailsBox tr:last-child {
+    border: 0px;
+}
+
+.transactionDetailsBox tr {
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.transactionDetailsBox tr td {
+    padding: 5px 10px;
+}
+
+.textblue {
+    color: #5a62a8 !important;
+}
+
+.TextLimit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 200px;
+}
+
+.TextLimit80 {
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.SingleNFTDiv .TextLimit {
+    width: calc(100% - 130px);
+}
+
+.SingleNFTDiv.NotClickable .TextLimit {
+    width: calc(100% - 90px);
+}
+
+.floatLeft {
+    float: left !important;
+}
+
+.transactionDetailsBox i.fas.fa-external-link-alt {
+    margin-left: 5px;
+}
+
+.NFTImage {
+    height: 385px;
+}
+
+.NFTImage img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #F5F5F5;
+}
+.NFTImage {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.tableUl .leftLi {
+    min-width: 110px;
+}
+
+.rightLi {
+    max-width: calc(100% - 130px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.singleAccount img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.text-greyc {
+    color: #707070;
+}
+
+.text-grey {
+    color: #C6C6C6;
+}
+
+img.IconCrypto {
+    filter: invert(1);
+}
+
+.MapMainDiv {
+    height: 325px;
+}
+
+.MapMainDiv img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+div#multiWallet .innerModal {
+    background-color: #0000008a;
+}
+
+.ProvenanceSingle {
+    padding-bottom: 10px;
+}
+
+.ProvenanceSingle b {
+    padding-right: 10px;
+}
+
+div#BridgeModal .ComingSoonBox .radioInnerDiv:after {
+    right: 50%;
+    transform: translateX(50%);
+    top: 25px;
+}
+
+.TextLimit2lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.SingleBigBtnPreviewRow {
+    background: linear-gradient(162.11deg, #BBBBBB 6.98%, #898989 87.8%);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.SingleBigBtnPreviewRow .inner {
+    background-image: url(/assets/images/NFT\ PreviewBtn\ 1\ bg.svg);
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: calc(100% + 25px);
+}
+
+.SingleBigBtnPreviewRow .imgDivBtn {
+    background-color: transparent;
+    height: 100%;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+}
+
+.SingleBigBtnPreviewRow .imgDivBtn img {
+    width: 40px;
+    height: 40px;
+}
+
+.SingleBigBtnPreviewRow .CustomBTn {
+    padding: 5px 12px 3px;
+}
+
+.SingleBigBtnPreviewRow .imgDivBtn:after {
+    content: " ";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(180deg, #D7D7D7 0%, #AFAFAF 100%);
+    z-index: -1;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.CreatedWalletBlock {
+    border: 1px solid #D8D8D8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 14.5px 15px;
+}
+
+.CreatedWalletBlock img.category-img {
+    filter: initial;
+}
+
+.CreatedWalletBlock.Selected:after {
+    content: "Selected";
+    position: absolute;
+    bottom: -25px;
+    right: 20px;
+    color: green;
+}
+
+.CreatedWalletBlock.Selected {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+}
+
+.WalletBottom {
+    width: calc(100% - 50px);
+}
+
+.TitlenDes {
+    margin-bottom: 10px;
+}
+
+.RightDivBtn {
+    padding-left: 15px;
+    padding-right: 65px;
+    width: calc(100% - 80px);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.CTAMainRow .RightDivBtn {
+    width: 100%;
+}
+
+.SingleBigBtnPreviewRow.FirstBtn {
+    background: linear-gradient(147.42deg, #4D9E50 5.83%, #97CD99 93.5%);
+}
+
+.SingleBigBtnPreviewRow.FirstBtn .imgDivBtn:after {
+    background: linear-gradient(180deg, #4D9E50 5.83%, #97CD99 93.5%);
+}
+
+.SingleBigBtnPreviewRow.SecondBtn {
+    background: linear-gradient(180deg, #876cab 0%, #694d8c 100%);
+}
+
+.SingleBigBtnPreviewRow.SecondBtn .imgDivBtn:after {
+    background: linear-gradient(162.11deg, #694d8d 6.98%, #886cab 87.8%);
+}
+
+.SingleBigBtnPreviewRow.ThirdBtn {
+    background: linear-gradient(147.42deg, #bc5c5c 5.83%, #d57575 93.5%);
+}
+
+.SingleBigBtnPreviewRow.ThirdBtn .imgDivBtn:after {
+    background: linear-gradient(180deg, #b94545 5.83%, #dd9191 93.5%);
+}
+
+.SingleBigBtnPreviewRow.FourthBtn {
+    background: linear-gradient(147.42deg, #596ba9 5.83%, #7587c4 93.5%);
+}
+
+.SingleBigBtnPreviewRow.FourthBtn .imgDivBtn:after {
+    background: linear-gradient(180deg, #4e5d91 5.83%, #8a99c9 93.5%);
+}
+
+span.NFTApproved img.Approvedimg {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0px;
+    z-index: 99;
+}
+
+.SingleNFTDiv.ImportNFT img.Approvedimg {
+    right: 20px;
+}
+
+.BridgeSingleAccordion img.category-img,
+div#BridgeModal .radioInnerDivSub img.category-img {
+    filter: initial;
+}
+
+.BridgeSingleAccordion .card-header {
+    background-color: transparent;
+    border: 0px;
+}
+
+.BridgeSingleAccordion .card {
+    border: 1px solid #B4B4B4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.singleAccountBridge img {
+    width: 50px;
+    border-radius: 50px;
+}
+
+.col-md-6.accordion.ComingSoonBox.BridgeSingleAccordion.mb-20:after {
+    content: "Coming Soon";
+    font-size: 14px;
+    position: absolute;
+    color: #000;
+    right: 50%;
+    transform: translateX(50%);
+    top: 25px;
+}
+
+div#BridgeSummaryModal .modal-dialog {
+    max-width: 700px !important;
+}
+
+div#BridgeSummaryModal .innerModal {
+    background-color: #000000b0;
+}
+
+.NFTListBtnMain .col-md {
+    max-width: 33.33%;
+}
+
+.NFTListBtnMain .col-md .RightDivBtn {
+    display: block;
+}
+
+.NFTListBtnMain .col-md .RightDivBtn p.font12.TextLimit2lines.m-0 {
+    display: none;
+}
+
+// NFT Preview
+// Logout
+.LogoutSpan {
+    margin-left: 10px;
+}
+
+.LogoutSpan img {
+    width: 20px;
+}
+
+.LogoutSpan {
+    color: red;
+}
+
+// Logout
+// Loader css
+.LoaderMain {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 2999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffffc7;
+}
+
+.LoaderMain .spinner {
+    max-width: 80vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-transform: capitalize;
+}
+
+// Loader css
+// Certificate
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.bg-blue {
+    background-color: #7E70D6 !important;
+    padding: 5px 15px;
+    color: #fff !important;
+    border-radius: 50px;
+    text-decoration: none !important;
+}
+
+.CertificateTopRightDetailDiv td {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+// Certificate 
+// Serch Suggestions css
+span.SuggestionsTag {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.SerachSuggestionsMainDiv {
+    display: grid;
+    border-top: 0px;
+    margin-top: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+    max-height: 120px;
+    overflow-y: auto;
+    position: absolute;
+    width: calc(100% - 30px);
+    background-color: #fff;
+    z-index: 99;
+    border: 1px solid;
+}
+
+.ClientSearchBox .SerachSuggestionsMainDiv{
+    top: 45px;
+    width: calc(100% - 0px);
+}
+
+.SerachSuggestionsMainCNFT .SerachSuggestionsMainDiv{
+    border-color: #7a7a7a;
+}
+
+.SerachSuggestionsMainDiv1 {
+    display: grid;
+    border: 1px solid #000;
+    border-top: 0px;
+    margin-top: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    width: calc(100% - 30px);
+    background-color: #fff;
+    z-index: 99;
+}
+
+.form-group.col-md-12.SerachSuggestionsMain {
+    position: relative;
+}
+
+// Serch Suggestions css
+// payment Card css
+.innerModal {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+// ssid css
+.CreateORganizationModal.PaymentCardModal .modal-dialog {
+    max-width: fit-content !important;
+}
+
+.cryptoWallteTable {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+select {
+    padding: 8px;
+}
+
+.addMoreWallet{
+    position: relative !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    left: inherit !important;
+    bottom: inherit !important;
+    min-width: auto;
+    padding: 6px 0 !important;
+    margin-left: 7px;
+    font-size: 13px !important;
+}
+
+.addTagsMainBtn{
+    position: relative !important;
+    width: auto !important;
+    left: inherit !important;
+    bottom: inherit !important;
+    border-radius: 5px !important;
+    margin-bottom: 15px;
+    padding: .375rem .75rem !important;
+    border-radius: 30px !important;
+}
+
+.Client_ListCards .SingleNFTDiv .card{
+    height: auto !important;
+}
+
+.Client_ListCards .SingleNFTDiv .card .card-body{ 
+    padding-bottom: 75px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+// ssid css
+// payment Card css
+.badge-cancel, .TagsParent .SingleTagNft.badge-cancel{
+    color: #ffffff;
+    background-color: red;
+}
+
+.badge-warning {
+    color: #ffffff;
+}
+
+.badge,
+.badge-success,
+.badge-warning,
+.badge-cancel {
+    padding: 5px 10px 4px !important;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    border-radius: 50px;
+}
+
+img.CrypotIconSSID {
+    filter: invert(1);
+    height: 30px;
+}
+
+.cryptoDivtable span {
+    font-size: 10px;
+    margin-right: 5px;
+}
+
+.cryptoDivtable {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+// Invoice css
+.mlr-5 {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.InvoiceLogo {
+    height: 120px;
+}
+
+.QR .fa-qrcode {
+    font-size: 100px;
+}
+
+.CardFullWidthRow {
+    border-radius: 0px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.InvoiceBlueBand {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.mt-10, .mt-10px {
+    margin-top: 10px !important;
+}
+.SingleCTA {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.CTAMainRow canvas {
+    height: 100% !important;
+}
+.InvoiceMainDiv:after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background-image: url(/assets/images/Nest-Logo.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.2;
+}
+
+.InvoiceMainDiv .row {
+    position: relative;
+    z-index: 2;
+}
+
+// Invoice css
+// NFT slider
+.SingleNFTTopDiv img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.bg-Grey {
+    background-color: #f2f4f9;
+}
+
+.SingleNFTDiv .card-body.bg-Grey {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.ml-5px {
+    margin-left: 5px;
+}
+
+.owl-nav.disabled {
+    display: block !important;
+}
+
+.owl-nav button span {
+    font-size: 42px !important;
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev {
+    width: 50px;
+}
+
+.owl-theme .owl-nav [class*=owl-] {
+    color: #000 !important;
+    background-color: #fff !important;
+    background: transparent !important;
+}
+
+.Secure,
+.NotSecure {
+    background-color: #73CC71;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    line-height: 15px;
+    margin-right: 10px;
+}
+
+.NotSecure {
+    background-color: #E67373;
+}
+
+.NotClickable .Secure,
+.NotClickable .NotSecure {
+    padding: 6px 13px;
+}
+
+// NFT slider
+.signature-pad {
+    width: 100% !important;
+    height: 150px;
+}
+
+// Multicrypto css
+.MultiCryptoWallet .grid-margin {
+    margin: 0px;
+}
+
+.cryptoModal h6.card-title {
+    display: none;
+}
+
+div#myModalSsidList .ActionSSID span.badge {
+    background-color: transparent;
+    color: #000;
+}
+
+div#myModalSsidList .ActionSSID span.badge.badge-warning {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: auto;
+}
+
+.cursor-pointer-none {
+    pointer-events: none !important;
+}
+
+div#multiWallet .innerModal .modal-dialog {
+    max-width: 900px !important;
+}
+#PaymentDetails .innerModal .modal-dialog {
+    max-width: 800px !important;
+}
+.BridgeModal .innerModal .modal-dialog {
+    max-width: 1200px !important;
+}
+
+.singleAccountBridge .TextAccount {
+    padding-left: 10px;
+}
+
+.BridgeBottomDiv {
+    padding-top: 30px;
+}
+
+div#multiWallet .innerModal .card-body.DataTableInfo {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+div#multiWallet .innerModal .btn-primary.submit.mb-20 {
+    margin-bottom: 0px !important;
+}
+
+.MultiCryptoWallet .radioInnerDiv.active,
+.MultiCryptoWallet .radioInnerDiv:hover,
+.nft_radioItem.active .radioInnerDiv {
+    background-color: #F5F5F5 !important;
+    border: 1px solid #F5F5F5;
+    transition: 0.5s;
+}
+
+// Multicrypto css
+// Import NFT css
+
+.LastStepImport img {
+    width: 200px;
+}
+
+.SingleNFTDiv {
+    position: relative;
+}
+
+.SingleNFTDiv.mb-20.cursor-pointer.selected .card {
+    box-shadow: 0 0 10px 0 rgb(118 118 118);
+    -webkit-box-shadow: 0 0 10px 0 rgb(118 118 118);
+    transition: 1s;
+}
+
+.SingleNFTDiv.mb-20.cursor-pointer.selected .card {
+    transition: 1s;
+}
+
+.OverflowScrollImport .SingleNFTDiv {
+    position: relative;
+    padding-top: 10px;
+}
+
+.ModalBig.CreateORganizationModal .innerModal .modal-dialog {
+    max-width: 1100px !important;
+}
+
+.card.bshadow0 {
+    box-shadow: none;
+    border: 0px;
+}
+
+
+.thumbPreview_NFT {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.ComingSoonBox .d-grid::after {
+    content: "Coming Soon";
+    font-size: 14px;
+    position: absolute;
+    color: #000;
+    left: 20%;
+    transform: translateX(50%);
+    top: 50px;
+}
+// Import NFT css   
+// SSID table
+button#dropdownMenuButton {
+    background-color: transparent;
+    border: 0px;
+}
+
+// SSID table
+// Bridge NFT css   
+
+.invertImg {
+    filter: invert(1);
+}
+
+.leftBridgeInfo img {
+    width: 50px;
+}
+
+// .pr-20px {
+//     padding-right: 20px;
+// }
+
+.pt-20px {
+    padding-top: 20px;
+}
+
+.pb-20px {
+    padding-bottom: 20px;
+}
+
+.mb-10px {
+    margin-bottom: 10px;
+}
+
+.pl-10px {
+    padding-left: 10px;
+}
+
+.pl-5px {
+    padding-left: 5px;
+}
+
+.bg-Grey {
+    background-color: #F5F5F5;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.succesfullyBridged {
+    display: flex;
+    align-items: center;
+}
+
+img.BridgeArrow {
+    width: 70px;
+    margin: 0px;
+}
+
+select#SelectCrypto {
+    border: 0px !important;
+    box-shadow: none !important;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.WholeDivClickable {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+// Bridge NFT css   
+// NFT List
+.ViewMore {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 9;
+}
+
+.NotClickable .SingleNFTTopDiv {
+    min-width: 220px;
+}
+
+.NotClickable .SingleNFTTopDiv img {
+    height: 220px;
+}
+
+.NotClickable .SingleNFTMidDiv {
+    max-width: calc(100% - 220px);
+    padding-left: 10px;
+}
+
+.SingleNFTDiv.NotClickable .card-body.bg-Grey {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+span.tabsSpan {
+    background-color: transparent;
+    border-radius: 50px;
+    border: 1px solid #323438;
+}
+.tabsSpan button.btn-primary {
+    border: 0px !important;
+}
+.tabsSpan button.btn-primary:after{
+    display: none;
+}
+
+span.tabsSpan button.btn-primary.active {
+    background-color: #323438 !important;
+    color: #fff !important;
+}
+.tabsSpan button.btn-primary:hover {
+    background-color: transparent !important;
+    color: #323438 !important;
+}
+
+.NoNftAvali .HeadingBig {
+    width: calc(100% - 257px);
+    text-align: center;
+}
+
+.gmnoprint,
+.gm-style-cc {
+    display: none;
+}
+
+// NFT List
+.OverflowScrollImport {
+    max-height: 66vh;
+    overflow-y: auto;
+}
+
+.ClosePrevieImg {
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px !important;
+    padding-top: 10px !important;
+    color: #fff;
+    opacity: 1;
+    top: -20px !important;
+    right: -20px !important;
+}
+
+.ClosePrevieImg:hover {
+    color: #c5c5c5ff !important;
+    opacity: 1;
+}
+
+.ViewImg .modal-content {
+    background-color: transparent;
+    border: 0px solid rgba(0, 0, 0, .2);
+}
+
+.ViewImg.CreateORganizationModal .innerModal .modal-dialog .modal-body {
+    padding: 20px;
+}
+
+.NFTImage {
+    position: relative;
+}
+
+span.PreviewImg.cursor-pointer {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    background-color: rgb(0 0 0 / 30%);
+}
+
+.NFTPreviewRow .transactionDetailsBox tr td.font700 {
+    min-width: 110px;
+}
+
+.SelectCategoryMainDiv img.category-img {
+    filter: inherit;
+}
+
+button.close {
+    width: fit-content;
+    right: 40px;
+    position: absolute;
+    top: 25px;
+    z-index: 2;
+    font-size: 35px;
+    line-height: 22px;
+}
+
+.feesDetailsBox button.close {
+    top: 36px;
+}
+
+.feesDetailsBox .Timer {
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+
+.feesDetailsBox .feesDetailsBoxInner {
+    padding-right: 50px;
+}
+
+span.MetaIdSpan {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.text-grey3 {
+    color: #333 !important;
+}
+
+.text-grey5 {
+    color: #555 !important;
+}
+
+.MultiCryptoWallet .TextLimit {
+    max-width: calc(100% - 60px);
+    float: left;
+}
+
+.nav-link.parentDiv {
+    position: relative;
+    z-index: 2;
+}
+
+// .parentDiv::after{
+//     position: absolute;
+//     content: "\f078";
+//     right: 0px;
+//     top: 10px;
+//     width: 20px;
+//     height: 20px;
+//     z-index: 0;
+//     font: normal normal normal 14px/1 FontAwesome;
+// }
+
+// Dashboard css
+.SingleCTA .card-body {
+    border-radius: 10px;
+}
+
+.SingleCTA.CTA1 .card-body {
+    background: linear-gradient(162.11deg, #97CD99 6.98%, #4D9E50 87.8%);
+}
+
+.SingleCTA.CTA2 .card-body {
+    background: linear-gradient(147.42deg, #DC7979 5.83%, #BC5C5C 93.5%);
+}
+
+.SingleCTA.CTA3 .card-body {
+    background: linear-gradient(143.3deg, #7E8FCC 3.7%, #596BA9 95.32%);
+}
+
+.SingleCTA.CTA4 .card-body {
+    background: linear-gradient(140.8deg, #9074B4 5%, #694D8C 92.13%);
+}
+
+.CustomBTn {
+    background-color: #fff;
+    padding: 3px 15px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    color: #323438 !important;
+    text-decoration: none !important;
+    font-size: 12px;
+}
+
+.CustomBTn img {
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+
+.BottomCTA {
+    padding: 20px 10px;
+    text-align: -webkit-center;
+}
+
+.TrendingMainUl {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.TrendingMainUl img {
+    margin-right: 5px;
+    width: 25px;
+    height: 20px;
+}
+
+.TrendingMainUl.SingleTrending img {
+    width: 22px;
+    height: 22px;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.TrendingMainUl.SingleTrending .text-grey {
+    width: 25px;
+    display: flex;
+    float: left;
+    text-align: center;
+    margin-right: 5px;
+    justify-content: center;
+}
+
+.TrendingMainUl.SingleTrending li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.textred {
+    color: red;
+}
+
+.textgreen {
+    color: green;
+}
+
+.NFTSliderDashboardMainRow .carousel-item .col-md-6 {
+    padding: 20px;
+}
+
+.dashboard_nftList{
+    display: inherit;
+    padding: 0 12px;
+}
+
+
+.ImportedText{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 20px;
+    padding-right: 12px;
+}
+// Dashboard css
+// topMenu coin css
+.navbar .navbar-content .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-body.TrendingMain.TopBarTrendingCoins {
+    display: flex;
+    padding: 0px;
+    height: 100%;
+}
+
+.TrendingMain.TopBarTrendingCoins span.text-grey {
+    width: auto;
+    margin-right: 10px;
+}
+
+.TrendingMain.TopBarTrendingCoins li {
+    margin-right: 12px;
+}
+
+.TrendingMain.TopBarTrendingCoins li:last-child {
+    margin-right: 30px;
+}
+
+.backBtn{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.CoinLi {
+    width: calc(100% - 150px);
+}
+
+.card-body.TrendingMain.TopBarTrendingCoins {
+    display: flex;
+    padding: 0px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+
+.SingleCTA .card {
+    border-radius: 10px;
+}
+
+// topMenu coin css
+// Dashboard slider
+img.SliderImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.SliderImgDiv {
+    position: relative;
+}
+
+.SliderImgDiv img{
+    border-radius: 6px;
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.SingleNFTSliderDiv, .NFTs_OWL_Slider .owl-item {
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 6px rgb(0 0 0 / 15%);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.controls-top .btn-floating {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+}
+
+.controls-top .btn-floating.rightArrow {
+    left: initial;
+    right: 0px;
+}
+
+.carousel-multi-item {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.ComingSoonInvitation {
+    position: relative;
+}
+
+.innerComingSoon img {
+    height: 80px;
+    margin-right: 10px;
+}
+
+.innerComingSoon {
+    position: absolute;
+    background-color: #fffc;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0pc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SingleNFTSliderDiv .SliderImgDiv span.Secure {
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+}
+
+// Dashboard slider
+// Bulk NFT popup
+.BulkMainSecondDiv progress {
+    height: 30px;
+}
+
+.StepperCirlce {
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    border: 5px solid #d1d1d1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+    color: #5a62a8;
+    margin-bottom: 15px;
+}
+
+.StepperCirlce p {
+    margin: 0px;
+    font-weight: 800;
+}
+
+.InnerStepper {
+    width: fit-content;
+    text-align: center !important;
+    margin: auto;
+}
+
+.SingleStepper:after {
+    content: " ";
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    background-color: #d1d1d1;
+    top: 32px;
+}
+
+.SingleStepper {
+    width: -webkit-fill-available;
+    position: relative;
+}
+
+.SingleStepper:last-child:after {
+    display: none;
+}
+
+.SingleStepper.active .StepperCirlce {
+    color: #fff;
+    background-color: #5a62a8;
+    border: 5px solid #5a62a8;
+}
+
+.SingleStepper.active:after {
+    background-color: #5a62a8;
+}
+
+.d-flex.TagsParent.BulkStatusMain span.SingleTagNft {
+    background-color: #5a62a8;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+.Timer {
+    margin-left: 13px !important;
+    border: 3px solid #000;
+    padding: 5px 6px;
+    border-radius: 50px;
+    min-width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#users {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#users td,
+#users th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #dee0ed;
+}
+
+.mytable {
+    max-height: 500px;
+    overflow: auto !important;
+}
+// Bulk NFT popup
+.seperatorP {
+    border-bottom: 1px solid #000;
+}
+
+.seperatorP span.OrSpan {
+    background-color: #ebeef2;
+    position: relative;
+    top: 11px;
+    padding: 5px 10px;
+}
+
+.BtnOrDiv {
+    margin-top: -20px;
+}
+
+.NFTDashboardMain .col-md-4 {
+    max-width: 20%;
+}
+
+.importedtd,
+.Importedno {
+    background-color: #CF5555;
+    color: #fff;
+    border-radius: 50px;
+    padding: 2px 10px;
+}
+
+.importedtd {
+    background-color: #6EB144;
+}
+
+.PreviewImgDiv {
+    margin-left: 10px;
+}
+
+// .MultiCryptoWallet span.HelpIcon {
+//     position: absolute;
+//     right: -3px;
+//     top: calc(50% - 9px);
+// }
+// .MultiCryptoWallet .NFTListBtnMain .col-md:last-child span.HelpIcon {
+//     right: initial;
+//     left: -3px;
+// }
+// Dashboard css
+.User_infoProfileImg {
+    margin-bottom: 25px;
+}
+
+.User_infoProfileImg img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.User_infoDetails .font14 {
+    margin: 7px 0;
+}
+ 
+.DataTableInfo tbody th:first-child,
+.DataTableInfo thead th:first-child {
+    padding-left: 0;
+}
+
+.DataTableInfo tbody td:last-child,
+.DataTableInfo thead th:last-child {
+    padding-right: 0;
+    text-align: right;
+}
+
+// Dashboard css
+// Create SSID css
+.unclickable {
+    pointer-events: none;
+}
+
+// Create SSID css
+// Create NFT css
+.cryptoModal .card {
+    box-shadow: none !important;
+    border: 0px;
+}
+
+agm-map {
+    height: 300px;
+}
+
+// Create NFT css
+// Preview NFT css
+.MultiCryptoWallet .single-radio {
+    margin-bottom: 0px !important;
+}
+
+.MultiCryptoWallet .single-radio .radioInnerDiv {
+    margin-bottom: 25px;
+}
+
+.MultiCryptoWallet .single-radio .radioInnerDiv.active {
+    border-color: #5a62a8;
+}
+
+.bridgeBtns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.CO_tag {
+    background-color: #60CD7F;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 20px;
+    margin-left: 5px;
+}
+
+.map_Image {
+    width: 100%;
+    display: block;
+    height: 342px !important;
+    border-radius: 10px;
+}
+
+.InnerBlock p.font14:last-child {
+    border: 0px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.InnerBlock p.font14 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #6f7077a6;
+    padding-bottom: 10px;
+}
+
+// Preview NFT css
+// Navbar css
+.navbar-content .search-form {
+    display: none !important;
+}
+
+#profileDropdown img {
+    object-fit: cover;
+}
+
+// Navbar css
+.SingleNFTDiv:after {
+    top: 20px;
+}
+
+@media(max-width:1280px) {
+    .row.NFTListMain .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media(max-width:1440px) {
+    .row.FilterDark.HistoryDiv .col-md-6.grid-margin.stretch-card,
+    .CTAMainRow>.col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .NFTListBtnMain .col-md {
+        max-width: 33%;
+        flex: 0 0 100%;
+    }
+}
+
+@media(max-width:992px) {
+    .NFTListBtnMain .col-md {
+        max-width: 50%;
+        flex: 0 0 100%;
+    }
+}
+
+@media(max-width:767px) {
+    .NFTListBtnMain .col-md {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
+app-location-search {
+    height: 100px;
+}
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item>div {
+        display: none;
+    }
+    .carousel-inner .carousel-item>div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+
+/* display 3 */
+
+@media (min-width: 768px) {
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(33.333%);
+    }
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-33.333%);
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+    transform: translateX(0);
+}
+
+.NFTmainCol .col-md-3 {
+    max-width: 25%;
+}
+
+// Certificate
+img.TOFLogoCertificateImg {
+    float: left;
+    width: 40px;
+}
+
+.TOFLogoCertificate h5 {
+    float: left;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 2px;
+    margin-top: 7px;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.SignBox img {
+    width: 170px;
+    position: absolute;
+    left: 30px;
+    bottom: 180px;
+}
+
+.TOFweb_Img {
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+.NoNftAvali {
+    padding: 30px;
+}
+
+@keyframes orbit {
+0% {
+    transform: rotate(0deg) translateX(20px) rotate(0deg);
+}
+100% {
+    transform: rotate(360deg) translateX(20px) rotate(-360deg);
+}
+}
+.NoNftAvali img{
+    animation: orbit 12s linear infinite;
+}
+.TOFLogoCertificate {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 210px;
+}
+
+.CertificateImage {
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.AddressBox h4 {
+    font-size: 32px;
+    font-weight: 700;
+    padding: 15px;
+    color: #59535c;
+    position: relative;
+    top: 210px;
+    width: 50%;
+    float: right;
+    margin-bottom: 0px !important;
+}
+.search-container input[type="text"] {
+    background-color: transparent;
+    height: 43px;
+    // border-top-left-radius: 5px;
+    border: 0px solid #000;
+    padding: 5px 10px 5px 20px;
+    // border-bottom-left-radius: 5px;
+    color: #000;
+    outline: none !important;
+}
+.ClientSearchBox {
+    border-radius: 50px;
+    border: 1px solid #323438;
+    align-items: center;
+}
+.search-container button {
+    background-color: #323438;
+    color: #fff;
+    border: 0px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    max-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2px;
+    margin-right: 5px
+} 
+.PaymentDashboardMainRow .search-container button {
+    max-height: 45px;
+}
+.PaymentDashboardMainRow input.form-control {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    border-radius: 50px;
+}
+.search-container{
+    padding-left: 15px;
+}
+
+.CertificateRightSideBox td{
+    display: flex;
+    align-items: center;
+}
+
+.CertificateRightSideBox td i{
+    display: flex;
+    padding-left: 10px;
+    color: #5A62A8;
+    text-decoration: underline;
+}
+// Certificate
+
+.CreatedTopbar{
+    border: 0px;
+}
+// Request List
+.Voter_TR td{
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+// Request List
+
+// map
+#map {
+    width: 100%;
+    height: 248px;
+}
+// map
+// Payment Dashboard
+.PaymentDashboardMainRow .SingleTagNft, #PaymentDetails .SingleTagNft  {
+    margin-left: 10px;
+    width: fit-content;
+}
+canvas#doughnutGraph, #TransactionsGraph {
+    max-width: 70%;
+    max-height: 60% !important;
+    margin: auto;
+    object-fit: contain;
+}
+
+.StafflistSingle .SingleNFTMidDiv.w-100 {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+}
+.StafflistSingle .TagsParent .SingleTagNft {
+    margin-right: 0px;
+}
+.StafflistSingle .card-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px !important;
+}
+.col_memberDetails span.slider.new-rounded {
+    float: right;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+.rightColumnLogin span#check1, .rightColumnLogin span#err1, .spinner-grow{
+    position: absolute;
+    right: 25px;
+    top: 41px;
+}
+span.slashbetn {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+// Staff list
+
+// Staff detail
+.staffCard_bottom ul {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.staffCard_bottom ul li {
+    display: grid;
+    width: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.staffCard_bottom ul li span.label, .Filter_RequestNFTs .col-md-3 label {
+    width: 100%;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 5px;
+    padding: 25px 25px;
+    background-image: url(/assets/images/CounterBG.png);
+    background-size: 100% 100%;
+}
+
+
+.staffCard_bottom ul li span.label.bg_LinePurple, .Filter_RequestNFTs .col-md-3 label.bg_LinePurple {
+    background-image: url(/assets/images/CounterBG_Purple.png) !important;
+}
+
+span.label.bg-blue.label-warning, .bg-warning {
+    background-color: #DF9D4F !important;
+    border-color: #DF9D4F !important;
+}
+span.label.bg-blue.label-success, .bg-rejected  {
+    background-color: #DA6868 !important;
+    border-color: #DA6868 !important;
+    background-image: url(/assets/images/CounterBG_Red.png) !important;
+}
+span.label.bg-blue.bg-lightviolet, .bg-success {
+    background-color: #7CD266 !important;
+    border-color: #7CD266 !important;
+    background-image: url(/assets/images/CounterBG_Green.png) !important;
+}
+.StaffMemberImg  {
+    height: 400px;
+    font-size: 50px !important;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #dee0ed;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.StaffMemberImg span{
+    font-family: 'Luna' !important;
+    -o-transform: rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+
+// .StaffMemberImg img {
+//     height: 400px;
+//     object-fit: cover;
+//     width: 100%;
+//     border-radius: 10px;
+//     margin-bottom: 20px;
+// }
+.SingleNFTDiv .card{
+    height: 335px;
+}
+// Staff detail
+
+// Staff member
+.rightSearch_Email{
+    justify-content: center;
+}
+
+.rightSearch_Email .switch{
+    margin: 0 0 0 10px;
+}
+
+label.switch{
+	margin-bottom: 0 !important;
+	display: block;
+}
+
+.switch input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+    display: none;
+}
+
+.switch span {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 25px;
+	background: grey;
+	display: block;
+	border-radius: 50px;
+	position: relative;
+}
+
+.switch span:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 40px;
+	transition: 0.3s;
+    transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+.switch input:checked + span {
+	background: #bada55;
+}
+
+.switch input:checked + span:after {
+	left: calc(100% - 4px);
+	transform: translate(-100%, -50%);
+	-o-transform: translate(-100%, -50%);
+	-moz-transform: translate(-100%, -50%);
+	-webkit-transform: translate(-100%, -50%);
+}
+
+.switch span:active:after {
+	width: 130px;
+}
+// Staff member
+.toast-center-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toast-top-center {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-center {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-left {
+    top: 12px;
+    left: 12px;
+}
+
+.toast-top-right {
+    top: 12px;
+    right: 12px;
+}
+
+.toast-bottom-right {
+    right: 12px;
+    bottom: 12px;
+}
+
+.toast-bottom-left {
+    bottom: 12px;
+    left: 12px;
+}
+
+
+/* toast styles */
+
+
+.toast-title {
+    font-weight: bold;
+}
+
+.toast-message {
+    word-wrap: break-word;
+}
+
+.toast-message a,
+.toast-message label {
+    color: #FFFFFF;
+}
+
+.toast-message a:hover {
+    color: #CCCCCC;
+    text-decoration: none;
+}
+
+.toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+.toast-close-button:hover,
+.toast-close-button:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+/*Additional properties for button version
+   iOS requires the button element instead of an anchor tag.
+   If you want the anchor version, it requires `href="#"`.*/
+
+button.toast-close-button {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}
+
+.toast-container {
+    pointer-events: none;
+    position: fixed;
+    z-index: 999999;
+}
+
+.toast-container * {
+    box-sizing: border-box;
+}
+
+.toast-container .ngx-toastr {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 12px #999999;
+    color: #FFFFFF;
+}
+
+.toast-container .ngx-toastr:hover {
+    box-shadow: 0 0 12px #000000;
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/info-circle.svg */
+
+.toast-info {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMic+PHBhdGggZmlsbD0ncmdiKDI1NSwyNTUsMjU1KScgZD0nTTI1NiA4QzExOS4wNDMgOCA4IDExOS4wODMgOCAyNTZjMCAxMzYuOTk3IDExMS4wNDMgMjQ4IDI0OCAyNDhzMjQ4LTExMS4wMDMgMjQ4LTI0OEM1MDQgMTE5LjA4MyAzOTIuOTU3IDggMjU2IDh6bTAgMTEwYzIzLjE5NiAwIDQyIDE4LjgwNCA0MiA0MnMtMTguODA0IDQyLTQyIDQyLTQyLTE4LjgwNC00Mi00MiAxOC44MDQtNDIgNDItNDJ6bTU2IDI1NGMwIDYuNjI3LTUuMzczIDEyLTEyIDEyaC04OGMtNi42MjcgMC0xMi01LjM3My0xMi0xMnYtMjRjMC02LjYyNyA1LjM3My0xMiAxMi0xMmgxMnYtNjRoLTEyYy02LjYyNyAwLTEyLTUuMzczLTEyLTEydi0yNGMwLTYuNjI3IDUuMzczLTEyIDEyLTEyaDY0YzYuNjI3IDAgMTIgNS4zNzMgMTIgMTJ2MTAwaDEyYzYuNjI3IDAgMTIgNS4zNzMgMTIgMTJ2MjR6Jy8+PC9zdmc+");
+}
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/times-circle.svg */
+
+.toast-error {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMic+PHBhdGggZmlsbD0ncmdiKDI1NSwyNTUsMjU1KScgZD0nTTI1NiA4QzExOSA4IDggMTE5IDggMjU2czExMSAyNDggMjQ4IDI0OCAyNDgtMTExIDI0OC0yNDhTMzkzIDggMjU2IDh6bTEyMS42IDMxMy4xYzQuNyA0LjcgNC43IDEyLjMgMCAxN0wzMzggMzc3LjZjLTQuNyA0LjctMTIuMyA0LjctMTcgMEwyNTYgMzEybC02NS4xIDY1LjZjLTQuNyA0LjctMTIuMyA0LjctMTcgMEwxMzQuNCAzMzhjLTQuNy00LjctNC43LTEyLjMgMC0xN2w2NS42LTY1LTY1LjYtNjUuMWMtNC43LTQuNy00LjctMTIuMyAwLTE3bDM5LjYtMzkuNmM0LjctNC43IDEyLjMtNC43IDE3IDBsNjUgNjUuNyA2NS4xLTY1LjZjNC43LTQuNyAxMi4zLTQuNyAxNyAwbDM5LjYgMzkuNmM0LjcgNC43IDQuNyAxMi4zIDAgMTdMMzEyIDI1Nmw2NS42IDY1LjF6Jy8+PC9zdmc+");
+}
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/check.svg */
+
+.toast-success {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMic+PHBhdGggZmlsbD0ncmdiKDI1NSwyNTUsMjU1KScgZD0nTTE3My44OTggNDM5LjQwNGwtMTY2LjQtMTY2LjRjLTkuOTk3LTkuOTk3LTkuOTk3LTI2LjIwNiAwLTM2LjIwNGwzNi4yMDMtMzYuMjA0YzkuOTk3LTkuOTk4IDI2LjIwNy05Ljk5OCAzNi4yMDQgMEwxOTIgMzEyLjY5IDQzMi4wOTUgNzIuNTk2YzkuOTk3LTkuOTk3IDI2LjIwNy05Ljk5NyAzNi4yMDQgMGwzNi4yMDMgMzYuMjA0YzkuOTk3IDkuOTk3IDkuOTk3IDI2LjIwNiAwIDM2LjIwNGwtMjk0LjQgMjk0LjQwMWMtOS45OTggOS45OTctMjYuMjA3IDkuOTk3LTM2LjIwNC0uMDAxeicvPjwvc3ZnPg==");
+}
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/exclamation-triangle.svg */
+
+.toast-warning {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1NzYgNTEyJyB3aWR0aD0nNTc2JyBoZWlnaHQ9JzUxMic+PHBhdGggZmlsbD0ncmdiKDI1NSwyNTUsMjU1KScgZD0nTTU2OS41MTcgNDQwLjAxM0M1ODcuOTc1IDQ3Mi4wMDcgNTY0LjgwNiA1MTIgNTI3Ljk0IDUxMkg0OC4wNTRjLTM2LjkzNyAwLTU5Ljk5OS00MC4wNTUtNDEuNTc3LTcxLjk4N0wyNDYuNDIzIDIzLjk4NWMxOC40NjctMzIuMDA5IDY0LjcyLTMxLjk1MSA4My4xNTQgMGwyMzkuOTQgNDE2LjAyOHpNMjg4IDM1NGMtMjUuNDA1IDAtNDYgMjAuNTk1LTQ2IDQ2czIwLjU5NSA0NiA0NiA0NiA0Ni0yMC41OTUgNDYtNDYtMjAuNTk1LTQ2LTQ2LTQ2em0tNDMuNjczLTE2NS4zNDZsNy40MTggMTM2Yy4zNDcgNi4zNjQgNS42MDkgMTEuMzQ2IDExLjk4MiAxMS4zNDZoNDguNTQ2YzYuMzczIDAgMTEuNjM1LTQuOTgyIDExLjk4Mi0xMS4zNDZsNy40MTgtMTM2Yy4zNzUtNi44NzQtNS4wOTgtMTIuNjU0LTExLjk4Mi0xMi42NTRoLTYzLjM4M2MtNi44ODQgMC0xMi4zNTYgNS43OC0xMS45ODEgMTIuNjU0eicvPjwvc3ZnPg==");
+}
+
+.toast-container.toast-top-center .ngx-toastr,
+.toast-container.toast-bottom-center .ngx-toastr {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toast-container.toast-top-full-width .ngx-toastr,
+.toast-container.toast-bottom-full-width .ngx-toastr {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ngx-toastr {
+    background-color: #030303;
+    pointer-events: auto;
+}
+
+.toast-success {
+    background-color: #51A351;
+}
+
+.toast-error {
+    background-color: #BD362F;
+}
+
+.toast-info {
+    background-color: #2F96B4;
+}
+
+.toast-warning {
+    background-color: #F89406;
+}
+
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000000;
+    opacity: 0.4;
+}
+// Request css
+.fullHeightImg img{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.fullHeightImg {
+    position: relative;
+    padding-bottom: 100%;
+}
+.RequestImageDiv {
+    border-radius: 20px;
+    overflow: hidden;
+}
+.SingleRequestList .card-body {
+    background: linear-gradient(180deg, #E9EDF4 0%, #F8F8F8 100%);
+    border: 7px solid #F6F8FB;
+    box-shadow: 0px 0px 11px rgb(0 0 0 / 5%);
+    border-radius: 42px;
+    padding: 15px;
+}
+.DeleteBtnRequest {
+    background: #DA6868;
+    border-radius: 50%;
+    padding: 0;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.RequestBottomDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px 10px;
+    // background: #FFFFFF;
+    // box-shadow: 0px 0px 11px rgb(0 0 0 / 5%);
+    // border-radius: 23px;
+    height: 70px;
+}
+.RequestBottomDiv .btn.btn-success {
+    background: #7CD266;
+    border-radius: 77px;
+    border-color: #7cd266;
+}
+
+.RequestBottomDiv .btn.btn-danger {
+    background: #DA6868;
+    border-radius: 77px;
+    border-color: #DA6868;
+}
+.SpanBGGrey{
+    background: #E6E6E6;
+    border-radius: 77px;
+    padding: 15px;
+}
+.ReqestTopDiv .col-md-6:last-child {
+    border-left: 1px solid #5a62a8;
+}
+.ReqestTopDiv {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 11px rgb(0 0 0 / 5%);
+    border-radius: 25px;
+    padding: 15px;
+}
+// Request css
+/* Responsive Design */
+
+@media all and (min-width: 241px) and (max-width: 480px) {
+    .toast-container .ngx-toastr.div {
+        padding: 8px 8px 8px 50px;
+        width: 18em;
+    }
+    .toast-container .toast-close-button {
+        right: -0.2em;
+        top: -0.2em;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+    .toast-container .ngx-toastr.div {
+        padding: 15px 15px 15px 50px;
+        width: 25em;
+    }
+}
+
+#toast-container div {
+    display: block !important;
+    position: relative !important;
+    z-index: 999999 !important;
+}
+
+#toast-container>div {
+    opacity: 1;
+}
+
+.pulseAnimation2{
+    animation: pulse-animation 5s; 
+
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1.07);
+    }
+    10% {
+        transform: scale(1.0);
+    }
+    20% {
+        transform: scale(1.07);
+    }
+    30% {
+        transform: scale(1.0);
+    }
+    40% {
+        transform: scale(1.07);
+    }
+    50% {
+        transform: scale(1.0);
+    }
+    60% {
+        transform: scale(1.07);
+    }
+    70% {
+        transform: scale(1.0);
+    }
+    80% {
+        transform: scale(1.07);
+    }
+    90% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.07);
+    }
+}
+  .table thead th {
+    font-weight: 800;
+    text-transform: uppercase;
+}
+@media(min-width:1800px) {
+    .NFTmainCol .col-md-3 {
+        max-width: 20%;
+    }
+}
+.SingleAdminPanelBG {
+    background-image: url(/assets/images/AdminPanelBG.png);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.PaymentDashboardMainRow .SingleAdminPanelBG{
+    background-image: url(/assets/images/Expenses.png) !important;
+}
+.StafflistSingle .card .card-body .btn-primary{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #dee0ed;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #dee0ed;
+	border: 2px solid #f0f0f0;
+}
+
+.btn-primary:disabled{
+    opacity: 0.7;
+}
+
+.table td, .table th{
+	vertical-align: middle;
+    font-size: 14px;
+}
+
+.table th:first-child, .table td:first-child{
+    padding-left: 0;
+}
+
+.table th:last-child, .table td:last-child{
+    padding-right: 0;
+}
+
+
+.Filter_RequestNFTs span{
+    display: block;
+}
+
+.Filter_RequestNFTs .col-md-3 label{
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.Staff_ListRow .StafflistSingleCol3:first-child{
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: auto !important;
+}
+
+.Staff_ListRow .StafflistSingleCol3:first-child .SingleNFTDiv .card{
+    height: auto !important;
+}
+
+.Staff_ListRow .StafflistSingleCol3:first-child .SingleNFTDiv .card div.card-body.bg-Grey{
+    padding-bottom: 60px;
+    background-color: #F5F5F5 !important;
+}
+
+.switch_disabled{
+    opacity: 0.5 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+// .StafflistSingleCol3 .SingleNFTDiv .card .card-body.bg-Grey{
+//    background-color: #F9FAFB !important;
+//    border-radius: 10px;
+// }
+
+// .StafflistSingleCol3 .SingleNFTDiv .card{
+//     border: 1px solid #5962a8;
+//     border-radius: 10px;
+// }
+
+.StafflistSingleCol3 .SingleNFTDiv .card .card-body p.font14{
+    margin-bottom: 20px !important;
+}
+.NestedCard.card-body {
+    padding: 0px;
+    box-shadow: none !important;
+    border: 0px;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+.raiseTicketArea{
+    height: 70px !important;
+}
+
+.Controls_Text:first-child td, .Controls_Text:nth-child(2) td{
+    text-transform: uppercase !important;
+}
+
+.ClientID_Para{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 200px;
+    text-align: right;
+}
+.table-responsive .table tr:last-child {
+    border: 0px;
+}
+.table {
+    margin-bottom: 0;
+}
+.ComingSoonBox4 {
+    display: none;
+}
+
+.LocationDetailsBox{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #dde1ed;
+    border-radius: 0 0 10px 10px;
+}
+
+.NFT_ImgBox4{
+    background-color: #dde1ed;
+    border-radius: 5px;
+    height: 150px;
+}
+
+.NFT_ImgBox4 img{
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.SummaryTable th:first-child, .SummaryTable td:first-child{
+    padding-left: 10px;
+}
+
+.SummaryTable th:last-child, .SummaryTable td:last-child{
+    padding-right: 10px;
+}
+
+.bg-darkGrey{
+    background-color: #59535C !important;
+}
+
+.client_categoriesTag{
+    display: inline-block !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+.NftCryptosMainDiv .card-header{
+    border-bottom: 0 !important;
+}
+
+.NftCryptosMainDiv .card-header button.active{
+    border-radius: 0 !important;
+}
+
+.SingleTagNft_noneFlex{
+    display: inline !important;
+    align-items: inherit !important;
+}
+
+.StafflistSingleCol3 .StafflistSingle.SingleNFTDiv:after{
+    display: none !important;
+}
+
+.Circle_Btn:hover{
+    background-color: #000 !important;
+}
+
+.linkBtn_transparent{
+    background-color: transparent;
+    border: 0 none;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+}
+
+.Pending_ActionSSID{
+    cursor: not-allowed;
+    color: #aaa !important;
+}
+
+.SliderbotDiv{
+    min-height: 42px;
+}
+
+.flex-direction-column{
+    flex-direction: column;
+}
+
+.Total_RequestBox{
+    border-left: 6px solid #6BE258;
+}
+
+.Pending_RequestBox{
+    border-left: 6px solid #E7CA34;
+}
+
+.Total_RequestBox p{
+    color: #6BE258;
+}
+
+.Pending_RequestBox p{
+    color: #E7CA34;;
+}
+
+.CreateStaff_DB .CustomBTn {
+    padding: 10px 25px;
+    font-size: 16px;
+    border: 1px solid #323438 !important;
+}
+
+.CreateStaff_DB .createStaffImg{
+    margin-top: -100px;
+    width: 340px;
+    position: relative;
+    z-index: 980;
+    margin-right: 50px;
+    margin-bottom: -20px;
+}
+
+.CreateStaff_DB .SSIDDetailsDiv{
+    width: 580px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.importNFT_card .card-body{
+    padding: 0 !important;
+}
+
+.importNFT_card .card-body .SingleNFTMidDiv{
+    padding: 0 35px;
+}
+
+.SingleNFTDiv .importNFT_card{
+    height: auto !important;
+}
+
+.sidebar-brand:hover{
+    text-decoration: none;
+}
+
+.mat-dialog-container{
+    border-radius: 10px;
+    padding: 0 !important;
+}
+
+.mat-dialog-container .ModalBodyInner {
+    padding: 20px 30px;
+    max-height: 400px;
+    padding: 1.5rem 2.5rem;
+    overflow-y: auto;
+}
+.mat-dialog-container .modal-body {
+    padding: 0px;
+}
+.mat-dialog-container .Card-Header {
+    padding: 1.5rem 2.5rem;
+    padding-bottom: 0px;
+}
+.cdk-overlay-pane {
+    height: auto !important;
+}
+.mat-dialog-container {
+    overflow: hidden !important;
+    height: auto !important;
+    min-height: initial !important;
+    max-height: inherit !important;
+}
+
+.marqueeBox{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: calc(100% - 200px);    
+}
+
+.marqueeBox ul{
+    padding: 0;
+    margin: 0;
+}
+
+.marqueeBox li{
+    display: inline-block;
+    list-style-type: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.marqueeBox li img{
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.border-bottom1{
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.border-radius0{
+    border-radius: 0 !important;
+}
+
+.pb-20{
+    padding-bottom: 20px !important;
+}
+
+.Client_ListCards .addMoreWallet::after{
+    display: none;
+}
+
+.DetailsBtn_StaffMain{
+    position: relative !important;
+}
+
+.transparent_Card{
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.RightDivBtn .CustomBTn{
+    min-width: auto !important;
+    padding: 5px 20px !important;
+    height: auto !important;
+}
+
+
+.text-blueGray {
+    color: #929BAD
+}
+
+.aiPreviewImgBox img{
+    object-fit: contain !important;
+}
+
+.Display_Keys {
+    padding: 15px;
+}
+
+.Display_Keys span{
+    text-align: left !important;
+    word-break: break-all;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account {
+    padding: 0px 20px 25px;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account .card-body {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account .avalaibleBlockChain_AccountCustom1 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account .avalaibleBlockChain_AccountCustom1.Card-Header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account .seperatorP span.OrSpan, .bg-white, .modal app-avaliable-block-chain .avalaibleBlockChain_Account span.OrSpan {
+    background-color: #fff !important;
+}
+
+.bigFont_3Extra{
+    font-size: 52px !important;
+}
+
+ul.tableUl:last-child{
+    border-bottom: 0 !important;
+}
+
+.word-all-break {
+    word-break: break-all;
+}
+
+.common_btn_circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50% !important;
+}
+
+.NewMemberWrapper{
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-top: 10px;
+}
+
+.field-icon {
+    float: right;
+    margin-left: -30px;
+    margin-top: -30px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.Totalvotes_Shows{
+    text-align: right;
+    display: block;
+    font-size: 11px !important;
+    margin-top: -7px;
+    margin-right: 3px;
+}  
+
+.SingleRequestList .progress{
+    border-radius: 20px;
+}
+
+.SingleRequestList .progress-bar {
+    background-image: none !important;
+}
+
+#myModalRequestDetail .requestPoupimgBox{
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+    background-color: #dee0ed;
+}
+
+#myModalRequestDetail .requestPoupimg{
+    width: auto;
+    border-radius: 10px;
+    height: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+#myModalRequestDetail .stytransactionDetailsBox .leftLi{
+    padding-right: 5px;
+}
+
+.backBtnBC_Account{
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.mat-dialog-container app-avaliable-block-chain .backBtnBC_Account, .modal app-avaliable-block-chain .backBtnBC_Account{
+    right: 100px;
+    top: 11px;
+}
+
+.mat-dialog-container .avalaibleBlockChain_Account .card-body, .modal .avalaibleBlockChain_Account .card-body{
+    background-color: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.modal app-avaliable-block-chain .avalaibleBlockChain_Account {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.modal app-avaliable-block-chain .avalaibleBlockChain_Account .Card-Header.avalaibleBlockChain_AccountCustom1 {
+    display: none;
+}
+
+.modal app-avaliable-block-chain .avalaibleBlockChain_Account .avalaibleBlockChain_AccountCustom1.NFTListBtnMain {
+    padding: 0 15px 30px;
+}
+
+.m-t-5 {
+    margin-top: 5px !important;
+}
+.no-pc{
+    display: none;
+}
+.SelectSSIDCard a.btn.btn-primary {
+    min-width: 250px !important;
+}
+@media(min-width:768px) and (max-width:1240px){
+    .sidebar {
+        width: 170px;
+    }
+    .main-wrapper .page-wrapper {
+        width: calc(100% - 170px);
+        margin-left: 170px;
+    }
+    .CreateStaff_DB .createStaffImg {
+        max-width: 50%;
+        margin-right: 0px;
+    }
+    .btn-primary, .btn-secondary, button.swal2-styled, .CustomBTn {
+        min-width: 180px;
+    }
+    .Client_ListCards span.font-weight-bold {
+        margin-right: 10px;
+    }
+    .no-pc{
+        display: flex;
+    }
+    .no-tab{
+        display: none;
+    }
+   .SingleRequestList {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-bottom: 20px;
+    }
+    .PreviewLeftCol{
+        margin-bottom: 20px;
+    }
+    .NFTPreviewRow .NFTListBtnMain .col-md {
+        max-width: 50%;
+        flex: 0 0 100%;
+    }
+}
+
+@media(min-width:768px) and (max-width:1024px){
+    .SelectSSIDCard {
+        display: block !important;
+    }
+    app-preview-nft .card-body.DataTableInfo>.row>.col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .col50, .Staff_ListRow .col-sm-4{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .col100{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .StaffMemberImg {
+        font-size: 38px !important;
+    }
+}
+
+@media(min-width:768px) and (max-width:991px){
+    app-crypto-wallet .row.NFTListBtnMain, .MultiCryptoWalletCreate .row.NFTListBtnMain {
+        display: block;
+        text-align: -webkit-center;
+    }
+    app-crypto-wallet .row .col-md.d-flex.align-items-center, .MultiCryptoWalletCreate .row.NFTListBtnMain .col-md.d-flex.align-items-center {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    span.HelpIcon, span.HelpIcon.RightHelpIcon {
+        top: -10px;
+        left: 49% !important;
+    }
+    span.HelpIcon.RightHelpIcon {
+        right: initial;
+    }
+    app-create-ssid .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .ProvenanceSingle {
+        word-break: break-all;
+    }
+    .pa12, .rightColumnLogin .auth-form-wrapper {
+        padding: 20px !important;
+    }
+    .col-md-10.col-xl-10.mx-auto.LoginMainDiv {
+        flex: 0 0 90%;
+        max-width: 90%;
+    }
+    .MultiCryptoWalletCreate.avalaibleBlockChain_Account .col-md-6.single-radio {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .SingleAdminPanelBG {
+        background-size: 325px 100%;
+    }
+
+}
+
+@media(min-width:768px) and (max-width:870px){
+    .backBtnBC_Account {
+        position: relative;
+    }
+}
+@media(min-width:768px) and (max-width:855px){
+    .TabDisplay {
+        display: block !important;
+    }
+    .TabDisplay .rightSearch_Email {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+    .NFTPreviewRow .NFTListBtnMain .col-md {
+        max-width: 75%;
+        flex: 0 0 100%;
+        margin: auto;
+    }
+    .SingleRequestList {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .Client_ListCards .col-sm-6.StafflistSingleCol3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+.btn[aria-expanded="true"] i, i[aria-expanded="true"]{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
+app-request-list #showNetwork app-avaliable-block-chain .close{
+    display: none;
+}
+
+app-request-list #showNetwork button.close {
+    top: 44px;
+}
+.page-content > div[contentanimate] {
+    position: relative;
+    height: 100%;
+}
+app-ssid-list .row.FilterDark, app-ssid-list .Client_ListCards, app-ssid-list .Client_ListCards .NoNftAvaliRow {
+    height: 100%;
+}
+app-ssid-list .NoNftAvali {
+    height: calc(100% - 45px);
+}
+.RqeuestCard {
+    height: calc(100% - 131px);
+}
+.NFTListMainRowFull{
+    height: calc(100% - 85px);
+}
+
+.BottomBtnPreviewRow .CustomBTn {
+    width: 100%;
+    height: 65px;
+}
+.BottomBtnPreviewRow .CustomBTn img.iconImg {
+    margin-right: 10px;
+}
+// Animation
+.active .LowerSliderText span {
+    transition: 0.5s;
+    transition-delay: 0.6s;
+    opacity: 1;
+}
+.LowerSliderText span {
+    opacity: 0;
+    transition: 0.5s;
+}
+.loginSlider .TextBig {
+    opacity: 0;
+    transition: 0.5s;
+}
+.loginSlider .active .TextBig {
+    transition: 0.5s;
+    transition-delay: 0.3s;
+    opacity: 1;
+}
+.leftColumnLogin {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: 1s forwards slideleft;
+}
+.rightColumnLogin {
+    opacity: 0;
+    transform: translateX(100px);
+    animation: 1s forwards slideright;
+}
+.CreateORganizationModal .innerModal {
+    background-color: #00000075;
+}
+.CreateORganizationModal .innerModal .modal-dialog{    
+    opacity: 0;
+    transform: translateY(70px);
+    -webkit-animation: 1s forwards 2.5s slide;
+    animation: 1s forwards slide;
+}
+.modal-backdrop.show {
+    display: none;
+}
+.Slide{
+    opacity: 0;
+    transform: translateY(70px);
+    animation: 1s forwards slide;
+}
+.SlideLeft{
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: 1s forwards slideleft;
+}
+.SlideRight {
+    opacity: 0;
+    transform: translateX(100px);
+    animation: 1s forwards slideright;
+}
+.Client_ListCards .StafflistSingleCol3:nth-child(even) {
+    opacity: 0;
+    transform: translateX(100px);
+    animation: 1s forwards slideright;
+}
+.Client_ListCards .StafflistSingleCol3 {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: 1s forwards slideleft;
+}
+.firstanimate{
+    animation-delay: 0.1s;
+}
+.SecondAnimate{
+    animation-delay: 0.6s;
+}
+.ThirdAnimate{
+    animation-delay: 1.2s;
+}
+.FourthAnimate{
+    animation-delay: 1.8s;
+}
+.FifthAnimate{
+    animation-delay: 2.4s;
+}
+.SixthAnimate{
+    animation-delay: 3.0s;
+}
+.SeventhAnimate{
+    animation-delay: 3.6s;
+}
+.EightAnimate, app-payments-dashboard.Slide.SeventhAnimate .PaymentDashboardMainRow .card.Slide.firstanimate{
+    animation-delay: 4.8s;
+}
+.NinthAnimate{
+    animation-delay: 5.2s;
+}
+.TenthAnimate, app-payments-dashboard.Slide.SeventhAnimate .PaymentDashboardMainRow .card.Slide.FourthAnimate{
+    animation-delay: 6.0s;
+}
+.EleventhAnimate{
+    animation-delay: 6.6s;
+}
+.TwelthAnimate{
+    animation-delay: 7.2s;
+}
+.ThirteenththAnimate{
+    animation-delay: 7.8s;
+}
+body.modal-open nav.sidebar, .modal-open nav.navbar {
+    z-index: 0;
+}
+@keyframes slideleft {
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+@keyframes slideright {
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+@keyframes slide {
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+// Animation
+
+.cursor-text{
+    cursor: text !important;
+}
+
+.swal2-actions .swal2-confirm, .swal2-actions .swal2-cancel {
+    display: flex !important;
+}
+
+#swal2-title, div#swal2-html-container {
+    text-align: center !important;
+}

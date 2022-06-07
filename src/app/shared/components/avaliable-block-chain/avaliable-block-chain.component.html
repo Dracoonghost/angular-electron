@@ -1,0 +1,296 @@
+<div class="Card-Header position-relative mb-10 mt-20 CustTabBlock">
+  <button type="button" *ngIf="isModal" class="close Slide SecondAnimate" aria-label="Close"
+    (click)="closeDialog();selectedChain=null;showScreen=1;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h6 class="card-title font18 font700 m-0 Slide SecondAnimate">{{title}}</h6>
+  <button type="button" *ngIf="showScreen === 2"
+    class="btn btn-secondary BackBtnCustom backBtnBC_Account Slide SecondAnimate"
+    (click)="showScreen = showScreen-1;back(showScreen)">Back</button>
+</div>
+<div class="row MultiCryptoWalletCreate avalaibleBlockChain_Account">
+  <div class="col-sm-12">
+    <div class="form-group m-0" *ngIf="showScreen === 1">
+      <div class="card-body Slide ThirdAnimate">
+        <div class="radio-toolbar row">
+          <div
+            [ngClass]="item.class === 'ComingSoonBox'? 'col-md-4 single-radio mb-10 ComingSoonBox4':'col-md-4 mb-10 single-radio'"
+            *ngFor="let item of blockchainTypes;let i = index">
+            <label [ngClass]="selectedChain === item.value ? 'nft_radioItem w-100 active' : 'nft_radioItem w-100'"
+              for="radio1" (click)="selectedCrypto(item.value)">
+              <div class="radioInnerDiv">
+                <div class="radioInnerDivSub">
+                  <img class="category-img" [src]="item.image">
+                  <span class="font14 font700">{{item.value}}</span>
+                </div>
+                {{item.Value}}
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="d-flex w-100 justify-content-end">
+          <button [disabled]="!selectedChain" type="button" class="btn btn-primary submit"
+            (click)="next()">Next</button>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="walletForm">
+      <div *ngIf="showScreen === 2">
+
+        <div class="form-group m-0 Slide ThirdAnimate">
+          <div class="card-body" *ngIf="avalaibleBlockChainData[0]?.keys">
+            <div class="radio-toolbar row">
+              <div class="col-md-6 single-radio mb-10"
+                *ngFor="let item of avalaibleBlockChainData[0]?.keys;let i = index">
+                <label
+                  [ngClass]="selectedWalletAddress === item.address ? 'nft_radioItem w-100 active' : 'nft_radioItem w-100'">
+                  <div class="radioInnerDiv">
+                    <div class="radioInnerDivSub Display_Keys" (click)="selectWallet(item)">
+                      <span class="font14 font400"><b>Name:</b> {{item.accountName}}</span>
+                      <span class="font14 font400"><b>Key:</b> {{item.key}}</span>
+                      <span class="font14 font400"><b>Address:</b> {{item.address}}</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group m-0" *ngIf="selectedWalletAddress && data.type==='view'">
+                <div class="card-body Slide ThirdAnimate">
+                  <div class="row CreateyptoGenerateDiv GenerateDiv">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                          <label class="control-label">Account Name</label>
+                          <span class="copyIcon font18">
+                            <a (click)="copyMnemonicToClipboard(this.selectedWalletObject.accountName)" data-toggle="tooltip"
+                              data-placement="top"><i class="far fa-copy"></i></a>
+                          </span>
+                        </div>
+                        <label class="w-100">{{selectedWalletObject.accountName}}</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                          <label class="control-label">Mnemonic</label>
+                          <span class="copyIcon font18">
+                            <a (click)="copyMnemonicToClipboard(this.selectedWalletObject.mnemonic)" data-toggle="tooltip"
+                              data-placement="top"><i class="far fa-copy"></i></a>
+                          </span>
+                        </div>
+                        <label class="w-100">{{selectedWalletObject.mnemonic}}</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                          <label class="control-label">Private Key </label>
+                          <span class="copyIcon font18">
+                            <a (click)="copyMnemonicToClipboard(this.selectedWalletObject.key)" data-toggle="tooltip"
+                              data-placement="top"><i class="far fa-copy"></i></a>
+                          </span>
+                        </div>
+                        <label class="w-100">{{selectedWalletObject.key}}</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                          <label class="control-label">Wallet Address</label>
+                          <span class="copyIcon font18">
+                            <a (click)="copyMnemonicToClipboard(selectedWalletObject.address)" data-toggle="tooltip"
+                              data-placement="top"><i class="far fa-copy"></i></a>
+                          </span>
+                        </div>
+                        <label class="w-100">{{selectedWalletObject.address}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12 d-flex justify-content-end">
+                <button *ngIf="selectedWalletAddress && data.type==='create'" [disabled]="!selectedWalletAddress"
+                  type="button" class="btn btn-primary submit" (click)="chooseThisWallet()">Choose this Wallet</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Card-Header avalaibleBlockChain_AccountCustom1 mt-20 pb-0 Slide FourthAnimate">
+          <h6 class="card-title font18 font700 m-0">Generate or Import Your Wallet</h6>
+        </div>
+        <div
+          class="row mt-20 avalaibleBlockChain_AccountCustom1 pb-20px justify-content-start NFTListBtnMain Slide FifthAnimate">
+          <div class="col-md">
+            <div class="SingleBigBtnPreviewRow FirstBtn" (click)="createKey()">
+              <div class="d-flex align-items-center justify-content-between h-100 inner">
+                <div class="imgDivBtn">
+                  <img src="assets/images/MultiCrypto_Generate.svg">
+                </div>
+                <div class="RightDivBtn">
+                  <div class="TitlenDes w-100 text-white">
+                    <p class="font14 font700 m-0">Generate</p>
+                  </div>
+                  <div class="w-100 d-flex justify-content-center">
+                    <a class="CustomBTn cursor-pointer">GO <img src="assets/images/RightArrow.svg"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="HelpIcon RightHelpIcon" data-toggle="tooltip" data-placement="top" title="Generate Keys"><i
+                class="far fa-question-circle"></i></span>
+          </div>
+          <div class="col-md d-flex align-items-center">
+            <div class="BtnOrDiv w-100">
+              <p class="seperatorP w-100 m-0 text-center"><span class="OrSpan">OR</span></p>
+            </div>
+          </div>
+          <div class="col-md ">
+            <div class="SingleBigBtnPreviewRow FourthBtn" (click)="importKey()">
+              <div class="d-flex align-items-center justify-content-between h-100 inner">
+                <div class="imgDivBtn">
+                  <img src="assets/images/MultiCrypto_import.svg">
+                </div>
+                <div class="RightDivBtn">
+                  <div class="TitlenDes w-100 text-white">
+                    <p class="font14 font700 m-0">Import</p>
+                  </div>
+                  <div class="w-100 d-flex justify-content-center">
+                    <a class="CustomBTn cursor-pointer">GO <img src="assets/images/RightArrow.svg"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="HelpIcon" data-toggle="tooltip" data-placement="top" title="Import Keys"><i
+                class="far fa-question-circle"></i></span>
+          </div>
+        </div>
+        <!-- <div class="row mt-20 avalaibleBlockChain_AccountCustom1">
+          <div class="col-md-12 d-flex align-items-center justify-content-between">
+            <button type="button" class="btn btn-secondary BackBtnCustom"
+              (click)="showScreen = showScreen-1;back(showScreen)">Back</button>
+          </div>
+        </div> -->
+      </div>
+      <div class="form-group m-0" *ngIf="showScreen === 4">
+        <div class="card-body Slide ThirdAnimate">
+          <div class="row CreateyptoGenerateDiv GenerateDiv">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text" class="form-control" formControlName="accountName" (keyup)="nameValue($event)">
+                <div class="msg-error imgBox"
+                  *ngIf="!walletForm.controls['accountName'].valid && walletForm.controls['accountName'].touched">
+                  Name
+                  is required</div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label">Mnemonic</label>
+                  <span class="copyIcon font18">
+                    <a (click)="copyMnemonicToClipboard(this.mnemonic)" data-toggle="tooltip" data-placement="top"><i
+                        class="far fa-copy"></i></a>
+                  </span>
+                </div>
+                <label class="w-100">{{mnemonic}}</label>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label">Private Key </label>
+                  <span class="copyIcon font18">
+                    <a (click)="copyMnemonicToClipboard(this.newPrivateKey)" data-toggle="tooltip"
+                      data-placement="top"><i class="far fa-copy"></i></a>
+                  </span>
+                </div>
+                <label class="w-100">{{newPrivateKey}}</label>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label">Wallet Address</label>
+                  <span class="copyIcon font18">
+                    <a (click)="copyMnemonicToClipboard(this.address)" data-toggle="tooltip" data-placement="top"><i
+                        class="far fa-copy"></i></a>
+                  </span>
+                </div>
+                <label class="w-100">{{address}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center justify-content-end NFTListBtnMain BtnDiv mt-20">
+            <div class="col-md-12 d-flex align-items-center justify-content-between">
+              <button type="button" class="btn btn-secondary BackBtnCustom"
+                (click)="showScreen = showScreen-2;back(showScreen)">Back</button>
+              <button type="button" [disabled]="!walletForm.valid" class="btn btn-primary submit"
+                (click)="save()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group m-0" *ngIf="showScreen === 3">
+        <div class="card-body Slide ThirdAnimate">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text" class="form-control" formControlName="accountName">
+                <div class="msg-error imgBox"
+                  *ngIf="!walletForm.controls['accountName'].valid && walletForm.controls['accountName'].touched">
+                  Name
+                  is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="row CreateyptoGenerateDiv ImportDiv">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Select Type</label>
+                <select name="Key" id="Key">
+                  <option value="Private Key">Private Key</option>
+                  <!-- <option value="Mnemonic Key">Mnemonic Key</option> -->
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Paste Your Private Key</label>
+                <input type="text" class="form-control" formControlName="privateKey"
+                  (keyup)="keyValue($event,'private')" [value]="key">
+                <div class="msg-error imgBox"
+                  *ngIf="!walletForm.controls['privateKey'].valid && walletForm.controls['privateKey'].touched">
+                  private key needs to be valid</div>
+                <span class="PasteIcon font18"><i class="far fa-clipboard"></i></span>
+                <span class="Qrcode font18" (click)="onPaste('key')"><i class="fas fa-paste"></i></span>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Wallet Address</label>
+                <input type="text" class="form-control" formControlName="address" (keyup)="keyValue($event,'address')"
+                  [value]="address">
+                <div class="msg-error imgBox"
+                  *ngIf="!walletForm.controls['address'].valid && walletForm.controls['address'].touched">
+                  wallet address needs to be valid</div>
+                <span class="PasteIcon font18"><i class="far fa-clipboard"></i></span>
+                <span class="Qrcode font18" (click)="onPaste('address')"><i class="fas fa-paste"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center justify-content-end NFTListBtnMain BtnDiv mt-20">
+            <div class="col-md-12 d-flex align-items-center justify-content-between">
+              <button type="button" class="btn btn-secondary BackBtnCustom"
+                (click)="showScreen = showScreen-1;back(showScreen)">Back</button>
+              <button type="button" [disabled]="!walletForm.valid" class="btn btn-primary submit"
+                (click)="save()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

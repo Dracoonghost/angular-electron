@@ -1,0 +1,233 @@
+<!-- <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin FilterDark">
+    <div>
+        <h4 class="mb-3 mb-md-0 font18 font700 text-uppercase">FIRST DIGITAL</h4>
+        <app-download-keys></app-download-keys>
+    </div>
+</div> -->
+
+<!-- <button class="btn-primary" (click)="downloadME()">Download All Local Storage</button> -->
+
+<div class="row FilterDark CTAMainRow flex-wrap hide">
+    <div class="col-md-12 grid-margin CTAMain">
+        <div class="row h-100">
+            <div class="col-md-3 SingleCTA CTA1 text-center">
+                <div class="card">
+                    <div class="SingleBigBtnPreviewRow">
+                        <div class="d-flex align-items-center justify-content-between h-100 inner">
+                            <div class="imgDivBtn">
+                                <img src="assets/images/CTA1_Dashboard.svg">
+                            </div>
+                            <div class="RightDivBtn">
+                                <div class="TitlenDes w-100 text-white">
+                                    <p class="font14 font700 m-0">Client ID</p>
+                                </div>
+                                <div class="w-100 d-flex justify-content-center">
+                                    <a class="CustomBTn cursor-pointer" [routerLink]="['/ssid/list']">GO <img
+                                            src="assets/images/RightArrow.svg"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 SingleCTA CTA1 align-items-end text-center">
+                <div class="card">
+                    <div class="SingleBigBtnPreviewRow">
+                        <div class="d-flex align-items-center justify-content-between h-100 inner">
+                            <div class="imgDivBtn">
+                                <img src="assets/images/CTA3_Dashboard.svg">
+                            </div>
+                            <div class="RightDivBtn">
+                                <div class="TitlenDes w-100 text-white">
+                                    <p class="font14 font700 m-0">Import NFT</p>
+                                </div>
+                                <div class="w-100 d-flex justify-content-center">
+                                    <a class="CustomBTn cursor-pointer" [routerLink]="['/nft/import']">GO <img
+                                            src="assets/images/RightArrow.svg"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 SingleCTA CTA1 text-center">
+                <div class="card">
+                    <div class="SingleBigBtnPreviewRow">
+                        <div class="d-flex align-items-center justify-content-between h-100 inner">
+                            <div class="imgDivBtn">
+                                <img src="assets/images/CTA2_Dashboard.svg">
+                            </div>
+                            <div class="RightDivBtn">
+                                <div class="TitlenDes w-100 text-white">
+                                    <p class="font14 font700 m-0">Create NFT</p>
+                                </div>
+                                <div class="w-100 d-flex justify-content-center">
+                                    <a class="CustomBTn cursor-pointer" [routerLink]="['/nft/create']">GO <img
+                                            src="assets/images/RightArrow.svg"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 SingleCTA CTA1 align-items-end text-center">
+                <div class="card">
+                    <div class="SingleBigBtnPreviewRow">
+                        <div class="d-flex align-items-center justify-content-between h-100 inner">
+                            <div class="imgDivBtn">
+                                <img src="assets/images/CTA4_Dashboard.svg">
+                            </div>
+                            <div class="RightDivBtn">
+                                <div class="TitlenDes w-100 text-white">
+                                    <p class="font14 font700 m-0">Bulk NFT</p>
+                                </div>
+                                <div class="w-100 d-flex justify-content-center">
+                                    <a class="CustomBTn cursor-pointer" [routerLink]="['/nft/bulk/list']">GO <img
+                                            src="assets/images/RightArrow.svg"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row FilterDark flex-wrap mt-20 mb-20 BlankDashboard_Row">
+    <div class="col-md-12 mb-20">
+        <div class="card">
+            <div class="card-body CreateStaff_DB">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="SSIDDetailsDiv SlideLeft SecondAnimate">
+                        <label class="w-100 bigFont_3Extra font700 mt-10">Add Staff Member</label>
+                        <label class="w-100 font14 font400">
+                            Create a new staff member and assign their access. Also, Invite and authorize activities for your colleagues and much more...
+                        </label>
+                        <div class="w-100 d-flex justify-content-start mt-20 mb-20">
+                            <button [disabled]="!acl.userACL['staff']" [ngClass]="!acl.userACL['staff'] ? 'CustomBTn cursor-pointer switch_disabled' : 'CustomBTn cursor-pointer'" [routerLink]="['/staff']">Create Now <img src="assets/images/RightArrow.svg"></button>
+                        </div>
+                    </div>
+                    <img class="createStaffImg SlideRight SecondAnimate" src="assets/images/dashboard_mainImg.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card SlideLeft ThirdAnimate">
+            <div class="card-body d-flex align-items-center justify-content-between Total_RequestBox">
+                <h6 class="card-title font18 font700 m-0">Total Clients</h6>
+                <p class="font18 font700 mb-0">{{allSsidList?.length || 0}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card SlideRight ThirdAnimate">
+            <div class="card-body d-flex align-items-center justify-content-between Pending_RequestBox">
+                <h6 class="card-title font18 font700 m-0">Pending Clients Verification</h6>
+                <p class="font18 font700 mb-0">{{pendingClientsCount}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mt-20">
+        <div class="card Slide FourthAnimate">
+            <div class="card-body DataTableInfo">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="SSIDDetailsDiv SlideLeft FifthAnimate">
+                        <label class="w-100 font22 font700">Create a Client ID</label>
+                        <label class="w-100 font14 font400">
+                            You can create your Clients' SSDID and manage their digital assets directly
+                        </label>
+                    </div>
+                    <button [disabled]="!acl.userACL['staff']" [ngClass]="!acl.userACL['staff'] ? 'btn btn-primary m-0 SlideRight FifthAnimate switch_disabled' : 'btn btn-primary m-0 SlideRight FifthAnimate'" [routerLink]="['/ssid/list']">Create Client ID </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row FilterDark NFTSliderDashboardMainRow flex-wrap mb-20">
+    <div class="col-md-12 NFTSliderDashboardLeftMain">
+        <div class="card Slide SixthAnimate">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">LATEST NFTS</h6>
+                </div>
+            </div>
+            
+            <div class="card-body DataTableInfo"  *ngIf="!nftList[0]">
+                <div class="row NFTDashboardMain">
+                    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                        <img src="assets/images/NO_NFT.svg">
+                        <h1 class="HeadingBig m-0 font700" *ngIf="!nftLoading && nftList.length === 0">Nothing to see
+                            here, yet.</h1>
+                        <h1 class="HeadingBig m-0 font700" *ngIf="nftLoading">Loading...</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body DataTableInfo NestedCard" *ngIf="nftList[0]">
+                <div class="NFTmainCol dashboard_nftList row">
+                    <owl-carousel-o class="NFTs_OWL_Slider" [options]="customOptions">
+                        <ng-container *ngFor="let singleNft of nftList">
+                            <ng-template class="slide" carouselSlide>
+                                <div class="SliderImgDiv mb-10px cursor-pointer" (click)="goToNFTPreview(singleNft)">
+                                    <img src="{{singleNft.thumbnail}}" />
+                                    <span class="NFTApproved">
+                                        <img src="assets/images/approvedNFT.png" class="Approvedimg" data-toggle="tooltip" data-placement="top" title="Client ID Confirmed">
+                                    </span>
+                                    <span *ngIf="singleNft.isStaked" class="Secure ImportedText text-uppercase font14">Imported</span>
+                                </div>
+                                <div class="SliderbotDiv d-flex justify-content-between">
+                                    <div class="">
+                                        <p class="font14 font700 w-100 m-0 cursor-pointer text-capitalize" (click)="goToNFTPreview(singleNft)">{{singleNft.name}}</p>
+                                        <p class="font14 font400 TextLimit w-100 m-0 cursor-pointer" (click)="goToNFTPreview(singleNft)">{{singleNft.description}}</p>
+                                    </div>
+                                    <p class="font14 font400 m-0 ClientID_Para text-underline cursor-pointer colorBlue" (click)="goToSelectedSSID(singleNft.ssid)"><span class="font700">Client ID:</span> {{singleNft.ssid}}</p>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row FilterDark HistoryDiv">
+    <div class="col-md-12 grid-margin stretch-card" *ngIf="eventHistory[0]">
+        <div class="card Slide SeventhAnimate">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">Your DLT History</h6>
+                    <!-- <button class="btn-primary">View All</button> -->
+                </div>
+            </div>
+            <div class="card-body DataTableInfo">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="font14 font700 text-black">What</th>
+                                <th class="font14 font700 text-black">E2EE Blockchain TRX</th>
+                                <th class="font14 font700 text-black">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of eventHistory; let i = index">
+                                <td class="font14 text-black">{{item.eventName}}</td>
+                                <td class="font14 d-flex align-items-center">
+                                    <a class="TextLimit text-black cursor-pointer" (click)="common.openExplorerLink(item.txid)">{{item.txid}}</a>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                                <td class="font14">{{item.timestamp | date:'medium'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-payments-dashboard class="Slide SeventhAnimate"></app-payments-dashboard>

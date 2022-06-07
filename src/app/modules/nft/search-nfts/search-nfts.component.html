@@ -1,0 +1,81 @@
+<div class="Card-Header">
+    <div class="d-flex align-items-center justify-content-between">
+        <h6 class="card-title font18 font700 m-0">NFT List</h6> 
+        <div class="search-container">
+            <form class="d-flex ClientSearchBox">
+              <input type="text" placeholder="search.." name="search" #search>
+              <button type="button" (click)="searchNfts(search.value)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+               
+                <div class="row NFTListMain mt-4"  *ngIf="searchResults?.length >= 1">
+                    <div class="col-md-6 mb-10px" *ngFor="let item of searchResults">
+                        <div class="SingleNFTDiv mb-20 cursor-pointer NotClickable">
+                            <div class="card">
+                                <div class="card-body d-flex align-items-center justify-content-start bg-Grey">
+                                    
+                                    <div class="SingleNFTTopDiv position-relative">
+                                        <img [src]="item?._source?.thumbnail" class="NFTCarouselImg" alt="nft image">
+                                        <span class="NFTApproved"><img src="assets/images/approvedNFT.png" class="Approvedimg" data-toggle="tooltip" data-placement="top" title="Client ID Confirmed" alt="approved"></span>
+                                    </div>
+                                    <div class="SingleNFTMidDiv">
+                                         <p class="font700 font18 mb-5px text-capitalize">{{item?._source?.name}}</p>
+                                        <p class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">Description:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.description}}</span>
+                                        </p>
+                                        <p *ngIf="item.price" class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">Price:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.price | currency:'USD'}}</span>
+                                        </p>
+                                        <p class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">TXID:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.txid}}</span>
+                                        </p>
+                                        <p class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">Token ID:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.tokenID}}</span>
+                                        </p>
+                                        <p class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">Network:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.blockchain}}</span>
+                                        </p>
+                                        <p class="font14 d-flex align-items-center mb-5px">
+                                            <span class="font700 text-uppercase">Date:</span>
+                                            <span class="TextLimit ml-5px">{{item?._source?.createdAt | date:'medium'}}</span>
+                                        </p>
+                                        <span class="Secure text-uppercase font14">
+                                            Secured in NEST<sup>®</sup>
+                                        </span>
+                                        <span *ngIf="item?._source?.isStaked" class="Secure text-uppercase font14">
+                                            Imported
+                                        </span>                                        
+                                        <!-- <button class="btn-primary" (click)="preview(item)">View</button> -->
+                                        <a (click)="preview(item?._source)" class="ViewMore cursor-pointer"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row NFTListMain"  *ngIf="searchResults?.length === 0" >
+                <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                    <img src="assets/images/NO_NFT.svg">
+                    <h1 class="HeadingBig m-0 font700"> No NFT Found</h1>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

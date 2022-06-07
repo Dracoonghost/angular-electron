@@ -1,0 +1,276 @@
+<nav class="navbar">
+    <a href="" class="sidebar-toggler" (click)="toggleSidebar($event)">
+        <i class="feather icon-menu"></i>
+    </a>
+    <div class="navbar-content">
+        <form class="search-form ">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="feather icon-search"></i>
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
+            </div>
+        </form>
+        <ul class="navbar-nav">
+            <li class="backBtn" (click)="back()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+            </li>
+           <div class="marqueeBox">
+            <marquee>
+                <ul>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/04/ABSTRACTION-IN-PROGRESS-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/man20black203-min.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/04/HANDHEAD-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/blue20car20transparent-min.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/imageedit_1_3365927935.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/04/The-Role-of-Self-Sovereign-IDs-SSDID-ARTICLE-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/The-Other-Fruit-Biosphere_Private-And-Direct-Blockchain-Collaboration-Network_Making-Choice-Personal_image-7.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/cube20headtransparent-min.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/04/x9_Cross-Chain-Bridge-Hacks-Response-to-Axie-51-Attack-ARTICLE-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/03/astronaut20trans-1.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/imageedit_1_3365927935.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/03/TRIP-WITH-NFTS-MAPPING-THE-JOURNEY-ARTICLE-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/The-Other-Fruit-Biosphere_Private-And-Direct-Blockchain-Collaboration-Network_Making-Choice-Personal_flower-head-min.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/02/flower20person203-min.png" /></li>
+                    <li><img src="https://nes.tech/wp-content/uploads/2022/03/NFTs-Are-Cool-But-Overhyped-Without-SSDID-And-NEST-Level-Controls-NEST-Naturally-Encrypted-Secure-Tech-Personal-Blockchain-Web3-Passport.png" /></li>
+                </ul>
+             </marquee>
+           </div>
+            <li class="nav-item hide" ngbDropdown>
+                <a class="nav-link" ngbDropdownToggle id="languageDropdown" role="button">
+                    <i class="flag-icon flag-icon-us mt-1" title="us"></i> <span class="font-weight-medium ml-1 mr-1 d-none d-md-inline-block">English</span>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="languageDropdown">
+                    <a ngbDropdownItem class="py-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> <span class="ml-1"> English </span></a>
+                    <a ngbDropdownItem class="py-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i> <span class="ml-1"> French </span></a>
+                    <a ngbDropdownItem class="py-2"><i class="flag-icon flag-icon-de" title="de" id="de"></i> <span class="ml-1"> German </span></a>
+                    <a ngbDropdownItem class="py-2"><i class="flag-icon flag-icon-pt" title="pt" id="pt"></i> <span class="ml-1"> Portuguese </span></a>
+                    <a ngbDropdownItem class="py-2"><i class="flag-icon flag-icon-es" title="es" id="es"></i> <span class="ml-1"> Spanish </span></a>
+                </div>
+            </li>
+            <li class="nav-item hide nav-apps" ngbDropdown>
+                <a class="nav-link" ngbDropdownToggle id="appsDropdown">
+                    <i class="link-icon feather icon-grid"></i>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="appsDropdown">
+                    <div class="dropdown-header d-flex align-items-center justify-content-between">
+                        <p class="mb-0 font-weight-medium">Web Apps</p>
+                        <a href="" (click)="false" class="text-muted">Edit</a>
+                    </div>
+                    <div class="dropdown-body">
+                        <div class="d-flex align-items-center apps">
+                            <a routerLink="/apps/chat"><i class="feather icon-message-square"></i><p>Chat</p></a>
+                            <a routerLink="/apps/calendar"><i class="feather icon-calendar"></i><p>Calendar</p></a>
+                            <a routerLink="/apps/email/inbox"><i class="feather icon-mail"></i><p>Email</p></a>
+                            <a routerLink="/general/profile"><i class="feather icon-instagram"></i><p>Profile</p></a>
+                        </div>
+                    </div>
+                    <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                        <a href="" (click)="false">View all</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item hide nav-messages" ngbDropdown>
+                <a class="nav-link" ngbDropdownToggle id="messageDropdown">
+                    <i class="link-icon feather icon-mail"></i>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="messageDropdown">
+                    <div class="dropdown-header d-flex align-items-center justify-content-between">
+                        <p class="mb-0 font-weight-medium">9 New Messages</p>
+                        <a href="" (click)="false" class="text-muted">Clear all</a>
+                    </div>
+                    <div class="dropdown-body">
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="figure">
+                                <img src="https://via.placeholder.com/30x30" alt="userr">
+                            </div>
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p>Leonardo Payne</p>
+                                    <p class="sub-text text-muted">2 min ago</p>
+                                </div>
+                                <p class="sub-text text-muted">Project status</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="figure">
+                                <img src="https://via.placeholder.com/30x30" alt="userr">
+                            </div>
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p>Carl Henson</p>
+                                    <p class="sub-text text-muted">30 min ago</p>
+                                </div>
+                                <p class="sub-text text-muted">Client meeting</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="figure">
+                                <img src="https://via.placeholder.com/30x30" alt="userr">
+                            </div>
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p>Jensen Combs</p>
+                                    <p class="sub-text text-muted">1 hrs ago</p>
+                                </div>
+                                <p class="sub-text text-muted">Project updates</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="figure">
+                                <img src="https://via.placeholder.com/30x30" alt="userr">
+                            </div>
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p>Amiah Burton</p>
+                                    <p class="sub-text text-muted">2 hrs ago</p>
+                                </div>
+                                <p class="sub-text text-muted">Project deadline</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="figure">
+                                <img src="https://via.placeholder.com/30x30" alt="userr">
+                            </div>
+                            <div class="content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p>Yaretzi Mayo</p>
+                                    <p class="sub-text text-muted">5 hr ago</p>
+                                </div>
+                                <p class="sub-text text-muted">New record</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                        <a href="" (click)="false">View all</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item hide nav-notifications" ngbDropdown>
+                <a class="nav-link" ngbDropdownToggle id="notificationDropdown">
+                    <i class="link-icon feather icon-bell"></i>
+                    <div class="indicator">
+                        <div class="circle"></div>
+                    </div>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="notificationDropdown">
+                    <div class="dropdown-header d-flex align-items-center justify-content-between">
+                        <p class="mb-0 font-weight-medium">6 New Notifications</p>
+                        <a href="" (click)="false" class="text-muted">Clear all</a>
+                    </div>
+                    <div class="dropdown-body">
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="icon">
+                                <i class="feather icon-user-plus"></i>
+                            </div>
+                            <div class="content">
+                                <p>New customer registered</p>
+                                <p class="sub-text text-muted">2 sec ago</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="icon">
+                                <i class="feather icon-gift"></i>
+                            </div>
+                            <div class="content">
+                                <p>New Order Recieved</p>
+                                <p class="sub-text text-muted">30 min ago</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="icon">
+                                <i class="feather icon-alert-circle"></i>
+                            </div>
+                            <div class="content">
+                                <p>Server Limit Reached!</p>
+                                <p class="sub-text text-muted">1 hrs ago</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="icon">
+                                <i class="feather icon-layers"></i>
+                            </div>
+                            <div class="content">
+                                <p>Apps are ready for update</p>
+                                <p class="sub-text text-muted">5 hrs ago</p>
+                            </div>
+                        </a>
+                        <a href="" (click)="false" class="dropdown-item">
+                            <div class="icon">
+                                <i class="feather icon-download"></i>
+                            </div>
+                            <div class="content">
+                                <p>Download completed</p>
+                                <p class="sub-text text-muted">6 hrs ago</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                        <a href="" (click)="false">View all</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item nav-profile" ngbDropdown>
+                <!-- <a class="nav-link" ngbDropdownToggle id="profileDropdown" (click)="ProfileDropdown()">
+                    <img src="https://standardized.theotherfruit.io/api/datacenter/fetchimage/6dcf258460ce2037cffa5f39cd644821c05e931705781bd2a9d7d729143573bf" alt="profile">
+                </a> -->
+
+                <!-- <label class="--switch">
+                    <input type="checkbox">
+                    <span class="--slider" (click)="Darkmode()">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                    </span>
+                </label> -->
+
+                <a (click)="onLogout($event)" class="nav-link cursor-pointer">
+                    <i class="feather icon-log-out"></i>
+                    <span class="LogoutSpan font14"><i class="fas fa-sign-out-alt"></i></span>
+                </a>
+                <!-- <div ngbDropdownMenu aria-labelledby="profileDropdown" class="dropdown-menu">
+                    <div class="dropdown-header d-flex flex-column align-items-center">
+                        <div class="figure mb-3">
+                            <img src="https://via.placeholder.com/80x80" alt="">
+                        </div>
+                        <div class="info text-center">
+                            <p class="name font-weight-bold mb-0">Amiah Burton</p>
+                            <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="dropdown-body">
+                        <ul class="profile-nav p-0 pt-3">
+                            <li class="nav-item">
+                                <a routerLink="/general/profile" class="nav-link">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" (click)="false" class="nav-link">
+                                    <i class="fas fa-user-edit"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" (click)="false" class="nav-link">
+                                    <i class="fas fa-random"></i>
+                                    <span>Switch User</span>
+                                </a>
+                            </li>
+                            <li class="nav-item LogoutSpan">
+                                <a href="" (click)="onLogout($event)" class="nav-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span class="font14">Log Out</span> 
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+            </li>
+        </ul>
+    </div>
+</nav>

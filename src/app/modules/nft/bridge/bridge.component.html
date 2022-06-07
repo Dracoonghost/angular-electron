@@ -1,0 +1,163 @@
+<div class="modal CreateORganizationModal" id="myModalSsidList">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body" *ngIf="allSsidList.length >= 1">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <label class="font18 font700">Please choose which Client ID you will use to create this NFT</label>
+                    <div class="CardFullWidthRow p-0">
+                        <div class="card-body DataTableInfo">
+                            <div class="table-responsive">
+                                <table class="table font14">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>ID</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr [ngClass]="item.status === 'PENDING' ? 'cursor-pointer-none' : 'cursor-pointer'" (click)="selectSSID(item)" *ngFor="let item of allSsidList; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.ssid}}</td>
+                                            <td><span [ngClass]="item.status === 'APPROVED' ? 'badge badge-success' : item.status === 'PENDING' ? 'badge badge-warning' : 'badge-cancel'">{{item.status}}</span>
+                                            </td>
+                                            <td (click)="selectSSID(item)" [ngClass]="item.status === 'PENDING' ? 'ActionSSID Pending_ActionSSID' : 'ActionSSID'">Select <i class="fas fa-angle-right"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+                </div>
+                <div class="modal-body" *ngIf="allSsidList.length === 0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <p class="font18 font700 mb-20">Select Client ID</p>
+                    <label class="font14">No Client ID Found</label>
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between SelectSSIDCard">
+                            <div class="SSIDDetailsDiv">
+                                <label class="w-100 font22 font700" >Client Name:
+                                    {{common.ssidObject.name || 'Please Select Your Client ID'}}</label>
+                                <label class="w-100 font18 text-grey" >Selected Client ID:
+                                    {{selectedSSID || 'Please Select Your Client ID'}}</label>
+                            </div>
+                            <a class="btn btn-primary m-0" data-toggle="modal" data-target="#myModalSsidList">Select Different Client ID</a>
+                        </div>
+                        <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                            Select Your Client ID</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="Card-Header">
+                <h6 class="card-title font18 font700 m-0">Select your wallet</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 single-radio mb-10" *ngFor="let item of avalaibleBlockChainData;let i = index">
+                        <div class="accordion NftCryptosMainDiv">
+                            <div class="card">
+                                <div class="card-header p-0" id="accordionExample{{i}}">
+                                    <button class="btn btn-link font700 font14 justify-content-start" [ngClass]="{active: item.selected}" (click)="checkForKey(item.value);item.selected = !item.selected" data-toggle="collapse" attr.data-target="#collapse{{i}}">
+                                        <img class="category-img m-0" [src]="item.image">
+                                        <span class="font14 font700 pl-20 d-grid text-left "> {{item.display}} </span>
+                                        <i class="fas fa-angle-down"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse" id="collapse{{i}}">
+                                    <div class="card-body p-0">
+                                        <div class="TagsParent d-grid">
+                                            <div class="w-100 " (click)="selectWallet(key, item.value)" *ngFor="let key of item.keys">
+                                                <span class="font14 font700 SingleRecordCrypto cursor-pointer" [ngClass]="{'selected': selectedWalletPrivateKey === key.key}">
+                                                    {{key.accountName}}
+                                                    <span class="font400">{{key?.key | slice:10:32}}... </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row NFTListMain" *ngIf="avalaibleBlockChainData.length === 0">
+                        <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                            <img src="assets/images/NO_NFT.svg">
+                            <h1 class="HeadingBig m-0 font700" > oops No wallet Keys.</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label *ngIf="selectedWalletPrivateKey" class="font18 font700 mb-10">Selected Key :-
+                            {{selectedWalletPrivateKey}} </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-10">
+                        <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                            Select Your Client ID
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="Card-Header">
+                <h6 class="card-title font18 font700 m-0">Bridge</h6>
+            </div>
+            <div class="card-body">
+                <div class="FirstStepImport">
+                    <h6 class="font14 font700 mb-10">List of available bridge:</h6>
+                    <form class="UserDataForm">
+                        <div class="row MultiCryptoWallet" *ngFor="let bc of bridgeData | keyvalue">
+                            <label *ngFor="let i of bc.value | keyvalue" class="single-radio w-100 col-md-4">
+                                <div class="radioInnerDiv active" *ngIf="i.value === 1 && i.key !== currentBlockchain ">
+                                    <div class="radioInnerDivSub">
+                                        <!-- <img class="category-img" src="assets/images/ava.svg"> -->
+                                        <div class="SelectKey text-left">
+                                            <span class="font14 mr-10">{{bc.key}} || {{i.key}}</span>
+                                            <button type="submit" class="btn btn-primary d-block text-center float-right"
+                                                    (click)="sendWalletDetails(bc.key, i.key)">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

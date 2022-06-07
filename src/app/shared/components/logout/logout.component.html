@@ -1,0 +1,30 @@
+<div class="modal-body p-0">
+  <button type="button" class="close" aria-label="Close" (click)="cancleDialog(0)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="Card-Header">
+    <h6 class="card-title font22 font700 text-uppercase m-0">Logout</h6>
+  </div>
+
+
+  <div class="ModalBodyInner">
+    <p class="font18 font400">Really want to logout?</p>
+    <div class="pl-20">
+      <label class="form-check-label text-left font14 d-flex align-items-center justify-content-start cursor-pointer">
+        <input type="checkbox" class="form-check-input mt-0 mr-10" [(ngModel)]="termOne" name="termsAndCondition" value="false">
+        I am aware a key file containing credentials is stored in the documents folder.
+      </label>
+    </div>
+    <div class="pl-20 mt-10">
+      <label class="form-check-label text-left font14 d-flex align-items-center justify-content-start cursor-pointer">
+        <input type="checkbox" class="form-check-input mt-0" [(ngModel)]="termTwo" name="termsAndCondition" value="false">
+        I have securely backed up my key file.
+        <!-- Please accept our <span class="colorBlue">Terms and conditions</span> -->
+      </label>
+    </div>
+    <div class="group-btn text-center d-table w-100 mt-30 mb-10">
+      <button class="btn btn-primary float-left BackBtnCustom" (click)="cancleDialog(0)">No</button>
+      <button class="btn btn-primary float-right active" (click)="closeDialog(1)">Yes</button>
+    </div>
+  </div>
+</div>

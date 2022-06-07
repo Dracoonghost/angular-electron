@@ -1,0 +1,115 @@
+<div *ngIf='jsonData' class="position-relative p-t-40">
+    <div class="card border-bottom1 border-radius0 pb-20">
+        <div class="Card-Header">
+            <div class="d-flex align-items-center justify-content-between  Slide firstanimate">
+                <h6 class="card-title font18 font700 m-0">ADMIN PANEL</h6>
+                <!-- <a class="btn btn-primary m-0" routerLink="/staff/profile/{{staff.profileID}}" [state]="staff">Edit My Details</a>                      -->
+            </div>
+        </div>
+        <!-- <div class="card-body SingleAdminPanelBG">
+            <div class="row Staff_ListRow">
+                <div class="col-sm-12" *ngFor='let staff of jsonData'>
+                    <div *ngIf="staff?.accessControl.staff" class="form-group m-0">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="SSIDDetailsDiv">
+                                <label class="w-100 font22 font700">My Username: {{staff.username}}</label>
+                                <label class="w-100 font18 text-grey">My Email: {{staff.email}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Multiple admin panel -->
+        <div class="card-body NestedCard Slide SecondAnimate">
+            <div class="row Staff_ListRow">
+                <div *ngFor='let staff of jsonData' class="col-sm-4 mb-30">
+                    <div *ngIf="staff?.role ==='admin'" class="form-group m-0">
+                        <div class="card w-100">
+                            <div class="card-body d-flex justify-content-start w-100 position-relative">
+                                <div class="SingleNFTMidDiv w-100 position-relative">
+                                    <div class="SSIDDetailsDiv mb-10px">
+                                        <label class="w-100 font14 m-0 font400 text-grey">Username:</label>
+                                        <label class="w-100 font18 font400 m-0">{{staff.username}}</label>
+                                    </div>
+                                    <div class="SSIDDetailsDiv mb-10px">
+                                        <label class="w-100 font14 m-0 font400 text-grey">Email:</label>
+                                        <label class="w-100 font18 font400">{{staff.email}}</label>
+                                    </div>
+                                    <a class="btn btn-primary m-0" routerLink="/staff/profile/{{staff.profileID}}" [state]="staff">Edit Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Multiple admin panel -->
+    </div>
+
+    <div class="card mt-20 ">
+        <div class="Card-Header Slide FifthAnimate">
+            <div class="d-flex align-items-center justify-content-between">
+                <h6 class="card-title font18 font700 m-0">Staff</h6>
+                <div class="rightSearch_Email d-flex align-items-center">
+                    <button (click)="addStaff()" type="button" class="btn btn-primary mr-10">+ ADD</button>
+                    <!-- <div class="search-container">
+                        <form class="d-flex position-relative ClientSearchBox">
+                          <input type="text" [formControl]="search" placeholder="search.." name="search">
+                          <div class="SerachSuggestionsMainDiv" *ngIf="searchTags?.length >= 1">
+                            <span *ngFor="let tag of searchTags" class="SuggestionsTag" (click)="assignValueToSearchForm(tag._id)">{{tag._id}}</span>
+                          </div>
+                          <button type="button" (click)="getAllSsids(search.value)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                          </button>
+                        </form>
+                      </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body NestedCard Slide SixthAnimate">
+            <div class="row Staff_ListRow">
+                <div *ngFor='let staff of jsonData' class="col-sm-4 StafflistSingleCol3">
+                    <div *ngIf="staff?.role !=='admin'" class="SingleNFTDiv mb-20 cursor-pointer NotClickable StafflistSingle">
+                        <div class="card w-100">
+                            <div class="card-body d-flex justify-content-start w-100 position-relative">
+                                <div class="SingleNFTMidDiv w-100 position-relative">
+                                    <p class="font700 font18 mb-5px text-capitalize">{{staff.username}}</p>
+                                    <p class="font14 d-flex align-items-center mb-5px">{{staff.email}}</p>
+                                    <div class="TagsParent BulkStatusMain" *ngIf="staff.profileData.ticketStats">
+                                        <p class="card-text m-0 ml-10 mt-20 w-100">
+                                            <span class="font-weight-bold">Total Tickets:</span>
+                                            <span class="SingleTagNft">{{staff.profileData.ticketStats.total}}</span>
+                                        </p>
+                                        <p class="card-text m-0 ml-10 mb-10">
+                                            <span class="font-weight-bold">New Tickets:</span>
+                                            <span class="SingleTagNft">{{staff.profileData.ticketStats.NEW}}</span>
+                                        </p>
+                                        <p class="card-text m-0 ml-10 mb-10">
+                                            <span class="font-weight-bold">Approved Tickets:</span>
+                                            <span class="SingleTagNft">{{staff.profileData.ticketStats.APPROVED}}</span>
+                                        </p>
+                                        <p class="card-text m-0 ml-10  mb-10">
+                                            <span class="font-weight-bold">Rejected Tickets:</span>
+                                            <span class="SingleTagNft">{{staff.profileData.ticketStats.REJECTED}}</span>
+                                        </p>
+                                    </div>
+                                    <button routerLink="/staff/profile/{{staff.profileID}}" [state]="staff" type="button" class="btn btn-primary w-100" [disabled]="!staff.emailConfirmed">{{staff.emailConfirmed ? 'Details':'Staff account not activated'}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row NFTListMain Slide SecondAnimate" *ngIf="jsonData.length === 1 || jsonData.length === 0">
+            <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                <img src="assets/images/NO_NFT.svg">
+                <h1 class="HeadingBig m-0 font700" *ngIf="!fetchingOrganization">No one else is here, yet.</h1>
+                <h1 class="HeadingBig m-0 font700" *ngIf="fetchingOrganization">Loading...</h1>
+            </div>
+        </div>
+    </div>
+</div>

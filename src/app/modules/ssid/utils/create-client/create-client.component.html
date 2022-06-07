@@ -1,0 +1,48 @@
+<div class="modal-body p-0">
+    <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="Card-Header">
+      <h6 class="card-title font18 font700 text-uppercase m-0">CREATE YOUR CLIENT'S ID</h6>
+    </div>
+    <div class="ModalBodyInner">
+      <div class="card-body transparent_Card p-0">
+        <form [formGroup]="ssidForm" autocomplete="new-password">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Your Client's Name</label>
+                <input type="text" class="form-control" formControlName="name" name='name' placeholder="Jane Doe" autocomplete="new-password">
+                <div class="msg-error imgBox" *ngIf="!ssidForm.controls['name'].valid && ssidForm.controls['name'].touched">
+                  Enter Client Name
+                </div>
+              </div>
+              <div class="form-group position-relative">
+                <label class="control-label">This ID's Passcode - please enter eight or more digits</label>
+                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="key" name='key'
+                  placeholder="0123456789" autocomplete="new-password">
+                  <i class="fa field-icon cursor-pointer" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+                <div class="msg-error imgBox"
+                  *ngIf="!ssidForm.controls['key'].valid && ssidForm.controls['key'].touched">
+                  Enter Passcode
+                </div>
+              </div>
+              <div class="form-group position-relative">
+                <label class="control-label">This ID's Password - please enter eight or more characters</label>
+                <input [type]="fieldPswdType ? 'text' : 'password'" class="form-control" formControlName="password" name='password'
+                  placeholder="MyPasswordisSTRONG!" autocomplete="new-password">
+                  <i class="fa field-icon cursor-pointer" [ngClass]="{'fa-eye-slash': !fieldPswdType, 'fa-eye': fieldPswdType}" (click)="toggleFieldPswdType()"></i>
+                <div class="msg-error imgBox"
+                  *ngIf="!ssidForm.controls['password'].valid && ssidForm.controls['password'].touched">
+                  Enter Password
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex w-100 justify-content-end">
+            <button type="button" class="btn btn-primary text-center mb-0" (click)="submit(ssidForm.value)">Create This Client's ID</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

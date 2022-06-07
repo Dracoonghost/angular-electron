@@ -1,0 +1,138 @@
+<div class="modal-body p-0">
+  <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="Card-Header">
+    <h6 class="card-title font18 font700 text-uppercase m-0">Raise a Request</h6>
+  </div>
+  <div *ngIf="dialogData.type === 'import' " class="ModalBodyInner">
+    <div class="card-body NestedCard p-0">
+      <form class="form" [formGroup]="requestForm">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="control-label">Selected NFT Summary</label>
+              <div class="row RequestPopupMain">
+                <div class="col-md-4">
+                  <div class="NFT_ImgBox4">
+                    <img [src]="requestData[0]?.imageUrl" class="requestPoupimg">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body DataTableInfo stytransactionDetailsBox font14 p-0">
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        NFT NAME</li>
+                      <li class="rightLi">
+                        {{requestData[0]?.name}}
+                      </li>
+                    </ul>
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        Symbol</li>
+                      <li class="rightLi">
+                        {{requestData[0]?.symbol}}
+                      </li>
+                    </ul>
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        Token Address</li>
+                      <li class="rightLi">
+                        {{requestData[0]?.token_address}}
+                      </li>
+                    </ul>
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        Token ID</li>
+                      <li class="rightLi">
+                        {{requestData[0]?.token_id}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Description</label>
+              <textarea class="form-control raiseTicketArea" name="remarks" formControlName="remarks"
+                placeholder="please help your Voters understand why you're choosing to proceed"></textarea>
+              <div class="msg-error imgBox font14"
+                *ngIf="!requestForm.controls['remarks'].valid && requestForm.controls['remarks'].touched">
+                please describe it more</div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <button class="btn btn-secondary BackBtnCustom" (click)="closeDialog()">Close</button>
+              <button class="btn btn-primary" [disabled]="!requestForm.valid" (click)="raiseRequest()">Raise
+                Request</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="dialogData.type === 'whiteList' " class="ModalBodyInner">
+    <div class="card-body NestedCard p-0">
+      <form class="form" [formGroup]="requestForm">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="control-label">Updated WhiteList Addresses Summary</label>
+              <div class="row RequestPopupMain">
+                <div class="col-md-12">
+                  <div class="card-body DataTableInfo stytransactionDetailsBox font14 p-0">
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        Client NAME</li>
+                      <li class="rightLi">
+                        {{requestData.name}}
+                      </li>
+                    </ul>
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        SSDID</li>
+                      <li class="rightLi">
+                        {{requestData.ssid}}
+                      </li>
+                    </ul>
+                    <ul class="tableUl">
+                      <li class="font700 leftLi">
+                        Total Staff Appointed</li>
+                      <li class="rightLi">
+                        {{requestData.staff.length}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">List of to be updated
+                    WhiteListed Addresses</label>
+                  <div *ngFor="let address of requestData.whiteListedAddresses"
+                    class="font_medium SingleTag bg-darkGrey client_categoriesTag active">
+                    {{address}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Description</label>
+              <textarea class="form-control raiseTicketArea" name="remarks" formControlName="remarks"
+                placeholder="please help your Voters understand why you're choosing to proceed"></textarea>
+              <div class="msg-error imgBox font14"
+                *ngIf="!requestForm.controls['remarks'].valid && requestForm.controls['remarks'].touched">
+                please describe it more</div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <button class="btn btn-secondary BackBtnCustom" (click)="closeDialog()">Close</button>
+              <button class="btn btn-primary" [disabled]="!requestForm.valid" (click)="raiseRequest()">Raise
+                Request</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

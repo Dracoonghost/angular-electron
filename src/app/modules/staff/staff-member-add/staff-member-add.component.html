@@ -1,0 +1,39 @@
+<div class="position-relative FilterDark p-t-40">
+    <div class="Card-Header">
+        <button type="button" (click)="closeDialog()" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h6 class="card-title font18 font700 m-0">New Staff Member</h6>
+    </div>
+    <div class="card-body transparent_Card email_createWrapper NewMemberWrapper animated pulse">
+        <div class="col-sm-12">
+            <form [formGroup]="staffForm">
+                <div class="new_memberLeftSide">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Staff Member Name</label>
+                                <input formControlName="name" type="text" class="form-control dark-form-control" />
+                                <div class="msg-error"
+                                    *ngIf="!staffForm.controls['name'].valid && staffForm.controls['name'].touched">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Staff Member Email</label>
+                                <input formControlName="email" type="text" class="form-control dark-form-control" />
+                                <div class="msg-error"
+                                    *ngIf="!staffForm.controls['email'].valid && staffForm.controls['email'].touched">
+                                    Please enter staff member's email</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex w-100 justify-content-end">
+                        <button type="button" (click)="_createUser(staffForm)" [disabled]="!staffForm.valid" class="btn btn-primary mt-10 mb-10px">Invite</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

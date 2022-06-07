@@ -1,0 +1,23 @@
+<div class="row FilterDark">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card Slide">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="d-flex align-items-center justify-content-between SelectSSIDCard">
+              <div class="SSIDDetailsDiv">
+                <label class="w-100 font22 font700">Client Name:
+                  {{common.ssidObject.name || 'Please Select Your Client ID'}}</label>
+                <label class="w-100 font18 text-grey">Selected Client ID:
+                  {{common.ssidObject.ssid || 'Please Select Your Client ID'}}</label>
+              </div>
+              <a class="btn btn-primary m-0" (click)="openSSIDDialog()">Select Different Client ID</a>
+            </div>
+            <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+              Select Your Client ID</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

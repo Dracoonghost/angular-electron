@@ -1,0 +1,124 @@
+<div class="position-relative FilterDark p-t-40">
+    <div class="card" *ngIf="jsonData.profileData.ticketStats Slide firstanimate">
+        <div class="card-body NestedCard">
+            <div class="row">
+                <div class="col-sm-12 col_memberDetails">
+                    <div class="staffCard_bottom pt-20px pb-20px">
+                        <ul class="row mb-0">
+                            <li class="font14 font700"><span
+                                    class="label d-flex justify-content-between bg-blue m-0 bg_LinePurple"><span>TOTAL</span>{{jsonData.profileData.ticketStats.total}}</span>
+                            </li>
+                            <li class="font14 font700"><span
+                                    class="label d-flex justify-content-between bg-blue m-0 label-warning"><span>NEW</span>{{jsonData.profileData.ticketStats.NEW}}</span>
+                            </li>
+                            <li class="font14 font700"><span
+                                    class="label d-flex justify-content-between bg-blue m-0 bg-lightviolet"><span>APPROVED</span>{{jsonData.profileData.ticketStats.APPROVED}}</span>
+                            </li>
+                            <li class="font14 font700"><span
+                                    class="label d-flex justify-content-between bg-blue m-0 label-success"><span>REJECTED</span>{{jsonData.profileData.ticketStats.REJECTED}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="Card-Header Slide SecondAnimate">
+            <div class="d-flex align-items-center justify-content-between">
+                <h6 class="card-title font18 font700 m-0">Staff Member</h6>
+                <div class="font14 font700 rightSearch_Email d-flex align-items-center">
+                    Status
+                    <label
+                        [ngClass]="jsonData.role ==='admin' || jsonData.profileID === common.myProfileID  ?'switch switch_disabled':'switch'">
+                        <input (change)="updateActiveStatus(jsonData.active)" [(ngModel)]="jsonData.active"
+                            type="checkbox" class="info">
+                        <span class="slider new-rounded"></span>
+                    </label>
+                </div>
+                <button (click)="resetPassword()" class="btn btn-primary" type="button">Reset Password</button>
+            </div>
+        </div>
+        <div class="card-body Slide ThirdAnimate">
+            <div class="row">
+                <div class="col-sm-5 col_memberDetails">
+                    <div class="staffCard_top animated fadeInDown">
+                        <div class="StaffMemberImg">
+                            <span class="ImageInit_Text">{{jsonData?.profileData?.firstName ||
+                                (jsonData.email.slice(0,5)) }}</span>
+                        </div>
+                        <h4 class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700 text-uppercase">Username:</span>
+                            <span class="TextLimit ml-5px">{{jsonData.username}}</span>
+                        </h4>
+                        <h5 class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700 text-uppercase">Email:</span>
+                            <span class="TextLimit ml-5px">{{jsonData.email}}</span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-sm-7 col_memberDetails">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Controls</th>
+                                    <th class="text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of goodResponse;let index = index;"
+                                    [ngClass]="jsonData.role ==='admin'?'Controls_Text':''">
+                                    <td class="text-capitalize">{{i}}</td>
+                                    <td>
+                                        <label
+                                            [ngClass]="jsonData.role ==='admin' || jsonData.profileID === common.myProfileID || i === 'nft' ?'switch switch_disabled':'switch'">
+                                            <input type="checkbox" class="info" [(ngModel)]="jsonData.accessControl[i]"
+                                                (change)="updateAcl()">
+                                            <span class="slider new-rounded"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="jsonData.address" class="card mt-20 Slide FourthAnimate">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12 col_memberDetails">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Clients</th>
+                                    <th class="text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ssid of allSsidList;let index = index;">
+                                    <td class="text-capitalize">{{ssid.name}}</td>
+                                    <td>
+                                        <label [ngClass]="jsonData.role ==='admin' || jsonData.profileID === common.myProfileID ?'switch switch_disabled':'switch'">
+                                            <input type="checkbox" class="info" [(ngModel)]="ssid.isClient"
+                                                (change)="updateClientList(ssid.ssid)">
+                                            <span class="slider new-rounded"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!jsonData.address" class="card mt-20 Slide FifthAnimate">
+        <div class="card-body">
+            <div>User needs to login before assigning the client list</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="modal-body p-0" *ngIf="dialogData !== true">
+  <button type="button" (click)="closeDialog(0)" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="Card-Header">
+    <h6 class="card-title font18 font700 text-uppercase m-0">YOUR AERIE ACCOUNT DETAILS</h6>
+  </div>
+  <div class="ModalBodyInner">
+    <div class="card-body transparent_Card p-0">
+      <form>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <div class="form-group">
+              <div class="accordion NftTagsMainDiv">
+                <div class="card mt-20">
+                  <div class="card-header border-0">
+                    <button class="btn btn-link font700 font14" data-toggle="collapse" data-target="#dltadd1"
+                      aria-expanded="true"> This Is Your Administrator Level, DLT Address
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                  <div class="in collapse show" id="dltadd1">
+                    <div class="card-body p-0">
+                      <table class="table">
+                        <tbody>
+                          <tr class="Voter_TR">
+                            <td class="text-left">{{newMultiSigKey?.address}} <i class="far fa-copy cursor-pointer"
+                                (click)="copyMnemonicToClipboard(newMultiSigKey?.address)"></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="accordion NftTagsMainDiv">
+                <div class="card mt-20">
+                  <div class="card-header border-0">
+                    <button class="btn btn-link font700 font14" data-toggle="collapse" data-target="#dltadd2"
+                      aria-expanded="true"> This Is Your Private Key - Securely Store This Key & Never Share It
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                  <div class="in collapse show" id="dltadd2">
+                    <div class="card-body p-0">
+                      <table class="table">
+                        <tbody>
+                          <tr class="Voter_TR">
+                            <td class="text-left">{{newMultiSigKey?.key}} <i class="far fa-copy cursor-pointer"
+                                (click)="copyMnemonicToClipboard(newMultiSigKey?.key)"></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex col-sm-12 justify-content-center">
+          <button type="button" (click)="completeSignUp()" class="btn btn-primary text-center mb-0">{{buttonText}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-body p-0" *ngIf="dialogData === true">
+  <!-- <button type="button" (click)="closeDialog(0)" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button> -->
+  <div class="Card-Header">
+    <h6 class="card-title font18 font700 text-uppercase m-0">Select Your Downloded File to import Keys</h6>
+  </div>
+  <div class="card-body transparent_Card">
+    <div class="form-group UploadInput pl-20 pr-20">
+      <label class="control-label">Upload</label>
+      <input (change)="parseFile($event)" type="file" accept=".key" name="img[]" class="file-upload-default hide" id="file-input"
+        required>
+      <div class="d-flex cursor-pointer">
+        <div class="input-group col-xs-12" (click)="chooseFile()">
+          <span class="input-group-append w-100">
+            <div class="UploadTextDiv text-center text-black d-grid">
+              <span class="PlusText">+</span>
+              <!-- <span class="UploadText">Upload Image</span> -->
+            </div>
+          </span>
+        </div>
+        <!-- <div class="PreviewImgDiv" *ngIf="fileSrc">
+          <img class="uploaded_Image" [src]="fileSrc" />
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-12 mb-20" *ngIf="selectedFileName">Selected File : - {{selectedFileName}}</div>
+    <div class="d-flex col-sm-12 justify-content-between">
+      <!-- <button type="button" (click)="closeDialog(0)" class="btn btn-primary float-left BackBtnCustom">Cancel</button> -->
+      <button [disabled]="!selectedFile" type="button" (click)="closeDialog(1)" class="btn btn-primary text-center mb-0">Proceed</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,319 @@
+<div [ngClass]=" showOnly ? 'unclickable' : '' " class="row FilterDark">
+    <div class="col-md-12">
+        <div class="card w-100" *ngIf="showScreen === 1">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">Create Client ID</h6>
+                </div>
+            </div>
+            <div class="card-body Slide SecondAnimate">
+                <form class="UserDataForm" [formGroup]="ssid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group UploadInput">
+                                <label class="control-label">Their Profile Photo</label>
+                                <input (change)="onDocumentSelect($event,1)" type="file" accept="image/*" name="img[]"
+                                    formControlName="documentImage" required class="file-upload-default hide"
+                                    id="file-input">
+                                    <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['documentImage'].valid && ssid.controls['documentImage'].touched">
+                                    Document picture is required</div>
+                                <div class="d-flex cursor-pointer">
+                                    <div class="input-group col-xs-12" (click)="chooseFile(1)">
+                                        <span class="input-group-append w-100">
+                                            <div class="UploadTextDiv text-center text-black d-grid">
+                                                <span class="PlusText">+</span>
+                                                <!-- <span class="UploadText">Upload Image</span> -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="PreviewImgDiv" *ngIf="base64Document">
+                                        <img class="uploaded_Image" [src]="base64Document" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group UploadInput">
+                                <label class="control-label">Their Official Registration or Documentation</label>
+                                <input (change)="onPhotoSelect($event,2)" type="file" accept="image/*" name="img[]"
+                                    formControlName="photo" required class="file-upload-default hide"
+                                    id="cover-image-input">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['photo'].valid && ssid.controls['photo'].touched">
+                                    Document picture is required</div>
+                                <div class="d-flex cursor-pointer">
+                                    <div class="input-group col-xs-12" (click)="chooseFile(2)">
+                                        <span class="input-group-append w-100">
+                                            <div class="UploadTextDiv text-center text-black d-grid">
+                                                <span class="PlusText">+</span>
+                                                <!-- <span class="UploadText">Document upload</span> -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="PreviewImgDiv" *ngIf="base64Photo">
+                                        <img class="uploaded_Image" [src]="base64Photo" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Full Legal Name</label>
+                                <input type="text" class="form-control" formControlName="name" name='name'
+                                    placeholder="Johnathan Herbert Smith" autocomplete="new-password">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['name'].valid && ssid.controls['name'].touched">Enter Your
+                                    Name</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Set Gender</label>
+                                <select formControlName="gender" [(ngModel)]="defaultGender">
+                                    <option selected disabled>Select Gender</option>
+                                    <option value="male">MAN</option>
+                                    <option>WOMAN</option>
+                                    <option>NOT DECLARED</option>
+                                </select>
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['gender'].valid && ssid.controls['gender'].touched">Select
+                                    Gender</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Birthdate</label>
+                                <input type="text" class="form-control" [owlDateTimeTrigger]="dob" [owlDateTime]="dob"
+                                    [max]="minDOB" (ngModelChange)="onChange($event)" formControlName="dob" name='dob'
+                                    placeholder="MM/DD/YYYY">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['dob'].valid && ssid.controls['dob'].touched">
+                                    Select Your Birthday Date
+                                </div>
+                                <owl-date-time [pickerType]="'calendar'" #dob></owl-date-time>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Type of Official Registration or Documentation</label>
+                                <input type="text" class="form-control" formControlName="documentType"
+                                    name='documentType' placeholder="passport, drivers license, government ID...">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['documentType'].valid && ssid.controls['documentType'].touched">
+                                    Enter Your Document Type</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Official Registration or Documentation Number</label>
+                                <input type="text" class="form-control" formControlName="documentId" name='documentId'
+                                    placeholder="ABC1234568">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['documentId'].valid && ssid.controls['documentId'].touched">
+                                    Enter Your Document ID</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <input type="text" class="form-control" formControlName="city" name='city'
+                                    placeholder="Central">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['city'].valid && ssid.controls['city'].touched">Enter Your
+                                    City</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Region or State</label>
+                                <input type="text" class="form-control" formControlName="state" name='state'
+                                    placeholder="Hong Kong">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['state'].valid && ssid.controls['state'].touched">Enter Your
+                                    State</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">Country</label>
+                                <input type="text" class="form-control" formControlName="country" name='country'
+                                    placeholder="Hong Kong, SAR China">
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['country'].valid && ssid.controls['country'].touched">Enter
+                                    Your Country</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <textarea type="text" class="form-control textareaInput" formControlName="address"
+                                    name='Address' autocomplete="off"
+                                    placeholder="Apartment A, Tower Two, 9 Connaught Road"></textarea>
+                                <div class="msg-error imgBox"
+                                    *ngIf="!ssid.controls['address'].valid && ssid.controls['address'].touched">Enter
+                                    Your Address</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-12 d-flex justify-content-end">
+                        <button *ngIf="!showOnly" type="button" class="btn btn-primary submit"
+                            (click)="submitSSID(ssid.value)">Confirm, Save & Encrypt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100" *ngIf="showScreen === 2">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">CLIENTS' ACTIVATION STATUS</h6>
+                </div>
+            </div>
+            <div class="card-body text-center KYCPendingDiv Slide SecondAnimate">
+                <img src="assets/images/LoginSlider_1.svg" class="mb-20">
+                <p class="font18 m-0 font700 ">This client ID is now pending approval - it will be activated following
+                    confirmed authorization.</p>
+            </div>
+        </div>
+        <div class="card w-100" *ngIf="showScreen === 3">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">Encrypt</h6>
+                </div>
+            </div>
+            <div class="card-body Slide SecondAnimate">
+                <!-- <p class="font14 font400 ">Encrypt your Approved KYC data</p> -->
+                <div class="form-group">
+                    <label class="control-label">Please enter the password you will be using to encrypt your
+                        information.</label>
+                    <input type="password" name="password" (keyup)="getPassword($event)"
+                        class="form-control txtBox mb-10" placeholder="Password" autocomplete="new-password" />
+                </div>
+                <button class="btn-primary submit" type="button" (click)=encryptPassword()>Save</button>
+            </div>
+        </div>
+        <div class="card w-100 mb-20" *ngIf="showScreen ===4">
+            <div class="card-body Slide firstanimate">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group text-center m-0">
+                            <label class="w-100 font22 font700">Client Name: {{tempExistingKycData.name}}</label>
+                            <label class="w-100 font18 text-grey">Selected Client ID:
+                                {{tempExistingKycData.ssid}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100 mb-20" *ngIf="showScreen ===4">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">DECRYPT PRIVATE CLIENT ID CONTENT</h6>
+                </div>
+            </div>
+            <div class="card-body Slide SecondAnimate">
+                <div class="form-group">
+                    <p class="font14">Please enter the password you have used to Encrypt your Client ID.</p>
+                    <input [type]="fieldPsdType ? 'text' : 'password'" name="password" (keyup)="getPassword($event)"
+                        class="form-control txtBox" placeholder="Password" autocomplete="new-password" />
+                    <i class="fa field-icon" [ngClass]="{'fa-eye-slash': !fieldPsdType, 'fa-eye': fieldPsdType}"
+                        (click)="toggleFieldPsdType()"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <button type="button" class="btn-primary submit"
+                        (click)=decryptKYC(tempExistingKycData,this.password)>
+                        Decrypt
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100" *ngIf="showScreen ===4 && allNFTList[0]">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">NFT's associated with the {{tempExistingKycData.name}}
+                        Client ID</h6>
+                </div>
+            </div>
+            <div class="card-body DataTableInfo Slide SecondAnimate">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="font14 font700 text-black">Title</th>
+                                <th class="font14 font700 text-black">Description</th>
+                                <th class="font14 font700 text-black">Price</th>
+                                <th class="font14 font700 text-black">Network</th>
+                                <th class="font14 font700 text-black">Imported</th>
+                                <th class="font14 font700 text-black">Date</th>
+                                <th class="font14 font700 text-black">View</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of allNFTList">
+                                <td class="font14">{{item.name}}</td>
+                                <td class="font14 TextLimit pb-0"> {{item.description || "Not Found"}}</td>
+                                <td class="font14">{{(item.price || 1) | currency:'USD'}}</td>
+                                <td class="font14">{{item.blockchain}}</td>
+                                <!-- {{item.isStaked?'Yes':'No'}} -->
+                                <td class="font14">
+                                    <span class="importedtd" *ngIf="item.isStaked">Yes</span>
+                                    <span class="Importedno" *ngIf="!item.isStaked">NO</span>
+                                </td>
+                                <td class="font14">{{item.createdAt | date:'medium'}}</td>
+                                <td class="font14"><span class="cursor-pointer textblue"
+                                        (click)="goToNFTPreview(item)"><i class="far fa-eye"></i></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100" *ngIf="showScreen === 5">
+            <div class="Card-Header Slide firstanimate">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">Decrypt Keys</h6>
+                </div>
+            </div>
+            <div class="card-body Slide SecondAnimate">
+                <form [formGroup]="keysForm" autocomplete="new-password">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Key</label>
+                                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control"
+                                    formControlName="key" name='key' placeholder="Enter Key"
+                                    autocomplete="new-password">
+                                <i class="fa field-icon cursor-pointer"
+                                    [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType}"
+                                    (click)="toggleFieldTextType()"></i>
+                                <div class="msg-error imgBox"
+                                    *ngIf="!keysForm.controls['key'].valid && keysForm.controls['key'].touched">
+                                    Enter Key
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Password</label>
+                                <input [type]="fieldPswdType ? 'text' : 'password'" class="form-control"
+                                    formControlName="password" name='password' placeholder="Enter Password"
+                                    autocomplete="new-password">
+                                <i class="fa field-icon cursor-pointer"
+                                    [ngClass]="{'fa-eye-slash': !fieldPswdType, 'fa-eye': fieldPswdType}"
+                                    (click)="toggleFieldPswdType()"></i>
+                                <div class="msg-error imgBox"
+                                    *ngIf="!keysForm.controls['password'].valid && keysForm.controls['password'].touched">
+                                    Enter Password
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex w-100 justify-content-end">
+                        <button type="button" class="btn btn-primary text-center mb-10"
+                            (click)="submitKeys(keysForm.value)">Decrypt Keys</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

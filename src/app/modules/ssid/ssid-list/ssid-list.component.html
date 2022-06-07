@@ -1,0 +1,287 @@
+<div class="row FilterDark">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="Card-Header">
+        <div class="d-flex align-items-center justify-content-between TabDisplay">
+          <h6 class="card-title font18 font700 m-0 SlideLeft firstanimate">
+            YOUR CLIENT LIST
+          </h6>
+          <div class="rightSearch_Email d-flex align-items-center SlideRight firstanimate">
+            <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" (click)="createSSIDDialog()">
+              + Create
+            </button>
+            <div class="search-container">
+              <form class="d-flex position-relative ClientSearchBox">
+                <input type="text" [formControl]="search" placeholder="search.." name="search" />
+                <div class="SerachSuggestionsMainDiv" *ngIf="searchTags?.length >= 1">
+                  <span *ngFor="let tag of searchTags" class="SuggestionsTag"
+                    (click)="assignValueToSearchForm(tag._id)">
+                    {{ tag._id }}
+                  </span>
+                </div>
+                <button type="button" (click)="getAllSsids(search.value)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-t-20 Client_ListCards">
+        <div class="row">
+          <div *ngFor="let item of allSsidList; let i = index" class="col-sm-6 StafflistSingleCol3">
+            <div class="SingleNFTDiv mb-20 StafflistSingle">
+              <div class="card w-100">
+                <div class="card-body d-flex justify-content-start w-100 position-relative">
+                  <div class="SingleNFTMidDiv w-100">
+                    <div class="TagsParent BulkStatusMain">
+                      <p class="card-text m-0 ml-10 mt-20 w-100">
+                        <span class="font-weight-bold">Name:</span>
+                        <span>{{ item.name }}</span>
+                      </p>
+                      <p class="card-text m-0 ml-10 mt-20 w-100">
+                        <span class="font-weight-bold">SSDID:</span>
+                        <span>{{ item.ssid }}</span>
+                      </p>
+                      <p class="card-text m-0 ml-10 mt-20 w-100">
+                        <span class="font-weight-bold">Status:</span>
+                        <span [ngClass]="
+                            item.status === 'APPROVED'
+                              ? 'badge badge-success'
+                              : item.status === 'PENDING'
+                              ? 'badge badge-warning'
+                              : 'badge-cancel'
+                          ">
+                          {{ item.status }}
+                        </span>
+                      </p>
+                      <p class="card-text m-0 ml-10 mb-5 w-100">
+                        <span class="font-weight-bold">Categories:</span>
+                      </p>
+                      <ul class="tagList p-0 m-0 mr-10 NFTtags" *ngIf="item.labels?.length >= 1">
+                        <li
+                          class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey client_categoriesTag"
+                          *ngFor="let tag of item.labels">
+                          {{ tag }}
+                        </li>
+                      </ul>
+                      <button (click)="
+                          selectedSSIDIndex = i;
+                          selectedLabels = item.labels || []
+                        " data-toggle="modal" data-target="#labels-modal"
+                        class="btn btn-primary addTagsMainBtn addTagBtn font14" type="button">
+                        + Add Tags
+                      </button>
+                      <p class="card-text ml-0 mt-10 w-100">
+                        <span class="font-weight-bold">Wallet:</span>
+                      </p>
+                      <div class="cryptoWallteTable" *ngIf="item.avalaibleBlockChainData?.length >= 1">
+                        <div class="cryptoDivtable" *ngFor="let item of item.avalaibleBlockChainData">
+                          <img [src]="item.image" class="CrypotIconSSID" data-toggle="tooltip" data-placement="left"
+                            title="{{ item.value }}" />
+                        </div>
+                        <!-- <button class="btn btn-primary addMoreWallet" data-toggle="tooltip" data-placement="right"
+                          title="Add Wallet" type="button" (click)="openCrypto(item)">
+                          <i class="fas fa-plus"></i>
+                        </button> -->
+                      </div>
+                      <button class="btn btn-primary addMoreWallet" (click)="walletDialog(item)" data-placement="right"
+                        title="Add Wallet" type="button">
+                        <i class="fas fa-plus"></i>
+                      </button>
+
+                      <p class="card-text ml-0 mt-10 w-100">
+                        <span class="font-weight-bold">Number of White Listed Addresses:</span>
+                      </p>
+                      <div class="cryptoWallteTable">
+                        <div class="font_medium SingleTag bg-darkGrey client_categoriesTag">
+                          {{ item.whiteListedAddresses?.length || 0 }}
+                        </div>
+                      </div>
+                      <button class="btn btn-primary addMoreWallet"
+                        (click)="selectedSSIDIndex = i; testArray =item.whiteListedAddresses?.slice() || [];" type="button"
+                        data-toggle="modal" data-target="#whiteListAddressesModal">
+                        <i class="fas fa-plus"></i>
+                      </button>
+
+                      <div class="w-100 mt-20">
+                        <button (click)="goToSelectedSSID(item.ssid)" type="button"
+                          class="btn btn-primary text-uppercase m-t-20 m-b-20 DetailsBtn_StaffMain"
+                          [disabled]="item.status === 'PENDING'">
+                          Decrypt Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row NoNftAvaliRow" *ngIf="allSsidList?.length === 0">
+          <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+            <img src="assets/images/NO_NFT.svg" />
+            <h1 class="HeadingBig m-0 font700" *ngIf="!featchingClients">
+              No one here, yet.
+            </h1>
+            <h1 class="HeadingBig m-0 font700" *ngIf="featchingClients">
+              Loading...
+            </h1>
+          </div>
+          <div class="col-sm-12 d-flex justify-content-end">
+            <button (click)="resetClient()" type="button" class="btn btn-primary text-uppercase m-t-20 m-b-20">
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal CreateORganizationModal" id="whiteListAddressesModal">
+    <div class="innerModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+              (click)="resetAndHideShowInputBox(false)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="Card-Header">
+              <h6 class="card-title font18 font700 text-uppercase m-0">
+                White Listed Addresses
+              </h6>
+            </div>
+            <div class="ModalBodyInner">
+              <div *ngIf="!showInputBox" class="row mb-20">
+                <div class="col-12">
+                  <label class="control-label">Add Address</label>
+                  <div class="d-flex cursor-pointer">
+                      <div class="input-group col-xs-12" (click)="resetAndHideShowInputBox(true)">
+                          <span class="input-group-append w-100">
+                              <div class="UploadTextDiv text-center text-black d-grid">
+                                  <span class="PlusText">+</span>
+                              </div>
+                          </span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="showInputBox" class="row mb-20">
+                <div class="col-8">
+                    <label class="control-label">Add Address</label>
+                    <input class="form-control" type="text" id="username" name="username" [(ngModel)]="username" />
+                </div>
+                <div class="col-4">
+                  <label class="control-label">&nbsp;</label>
+                  <button (click)="addDataToList()" class="btn btn-primary w-100" type="button">Add</button>
+                </div>
+              </div>
+              <div class="row cryptoModal">
+                <div class="col-12">
+                  <div *ngFor="let item of testArray" class="font_medium SingleTag bg-darkGrey client_categoriesTag">
+                    {{ item }}
+                    <button type="button" class="btn text-white" (click)="removeTestData(item)">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-10">
+                <div class="col-12">
+                  <button *ngIf="allSsidList[selectedSSIDIndex]?.whiteListedAddresses !== testArray " (click)="openRaiseRequestModal()" class="btn btn-primary w-100" type="button" data-dismiss="modal"
+                    aria-label="Close">
+                    Raise Request to update Whitelisted Address
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal CreateORganizationModal" id="labels-modal">
+    <div class="innerModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <button type="button" (click)="closeLabelModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="Card-Header">
+              <h6 class="card-title font18 font700 text-uppercase m-0">
+                Labels List
+              </h6>
+            </div>
+            <div class="ModalBodyInner">
+              <div class="row cryptoModal">
+                <div class="form-group col-md-12 SerachSuggestionsMain1 position-relative">
+                  <label class="control-label">Labels</label>
+                  <input type="text" [formControl]="searchTag" name="searchField" class="form-control"
+                    placeholder="Search labels here" />
+                  <div class="SerachSuggestionsMainDiv" *ngIf="labels?.length >= 1">
+                    <span *ngFor="let tag of labels" class="SuggestionsTag" (click)="selectTag(tag._id)">
+                      {{ tag._id }}
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group grpBox col-md-12 tagsMain-12">
+                  <label class="control-label">Trending Tags</label>
+                  <ul class="tagList p-0 m-0 NFTtags">
+                    <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                      (click)="selectTag('tattoo')">
+                      tattoo
+                      <button class="addTagBtn text-white font14" type="button">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </li>
+                    <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                      (click)="selectTag('art')">
+                      art
+                      <button class="addTagBtn text-white font14" type="button">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </li>
+                    <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                      (click)="selectTag('paintings')">
+                      paintings
+                      <button class="addTagBtn text-white font14" type="button">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="form-group grpBox col-md-12 tagsMain-12 mb-0" *ngIf="selectedLabels?.length >= 1">
+                  <div class="form-group grpBox">
+                    <label class="control-label">Selected Tag</label>
+                    <ul class="tagList p-0 m-0 NFTtags">
+                      <li class="font_medium SingleTag cursor-pointer text-capitalize mb-0 bg-darkGrey"
+                        *ngFor="let tag of selectedLabels">
+                        {{ tag }}
+                        <button class="removeBtn" (click)="removeTag(tag)" class="RemoveIcon text-white font14"
+                          type="button">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="form-group grpBox col-md-12 mb-0 mt-10 d-flex w-100 justify-content-end">
+                  <button type="button" class="btn btn-primary text-center mb-0" (click)="updateLabels()">
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

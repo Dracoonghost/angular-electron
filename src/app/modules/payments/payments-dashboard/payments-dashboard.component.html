@@ -1,0 +1,267 @@
+<div class="row FilterDark mb-20 PaymentDashboardMainRow" *ngIf="currentMonthExpenses[0]">
+    <div class="col-md-12">
+        <div class="card Slide firstanimate">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">This Month's expenses</h6>
+                </div>
+            </div>
+            <div class="card-body SingleAdminPanelBG">
+                <div class="col-md-12 grid-margin stretch-card m-0" *ngFor="let month of currentMonthExpenses">
+                    <h1 class="m-0">{{month?.total | currency}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row FilterDark mb-20 PaymentDashboardMainRow">
+    <div class="col-md-12">
+        <div class="card Slide FourthAnimate">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">LATEST TRANSACTIONS</h6>
+                </div>
+            </div>
+            <div class="col-md-12 p-0 mb-20">
+                <div class="row justify-content-between">
+                    <div class="col-md-4 col50">
+                        From : <input type="date" type="date" (change)="startFrom($event)" placeholder="From" class="form-control">
+                        <p class="text-danger mt-2 ml-2" *ngIf="endDate < startDate">Start date should be less than end date</p>
+                    </div>
+                    <div class="col-md-4 col50">
+                        To : <input type="date" (change)="endTo($event)" class="form-control" placeholder="To">
+                        <p class="text-danger mt-2 ml-2" *ngIf="startDate > endDate">End date should be bigger than start date</p>
+                    </div>
+                    <div class="col-md-4 col100">
+                        <!-- Filter : <input type="text" name="filter" id="filter" placeholder="Filter" (keyup)='search($event.target.value)' class="form-control"> -->
+                        <button (click)="filterWithDates(startDate, endDate, filterPageCount=1)" [disabled]="startDate === null || endDate === null || startDate > endDate || startDate === endDate" class="mt-4 btn-primary w-100">Apply Date Filter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12 p-0">
+                    <!-- <div *ngIf="!(noPayments || noPaymentData)" class="row align-items-center justify-content-between">
+                        <div class="col-md-4">
+                            From : <input type="date" type="date" (change)="startFrom($event)" placeholder="From" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            To : <input type="date" (change)="endTo($event)" class="form-control" placeholder="To">
+                        </div>
+                        <div class="col-md-4"> -->
+                            <!-- Filter : <input type="text" name="filter" id="filter" placeholder="Filter" (keyup)='search($event.target.value)' class="form-control"> -->
+                            <!-- <button (click)="filterWithDates(startDate, endDate, filterPageCount=1)" [disabled]="startDate === null || endDate === null" class="mt-4 btn-primary w-100">Apply Date Filter</button>
+                        </div>
+                    </div> -->
+                    <div class="table-responsive mt-20">
+                        <table class="table" datatable="ng" [hidden]="noPayments || noPaymentData">
+                            <thead>
+                                <tr>
+                                    <th>Payment ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <!-- <th>Outstanding</th> -->
+                                    <th>Transaction</th>
+                                    <th>Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody [hidden]="showFilterdData === true" *ngFor="let payment of paymentHistory">
+                                <tr class="cursor-pointer" data-toggle="modal" data-target="#PaymentDetails" (click)="getSinglePaymentHistory(payment.ID)">
+                                    <td>{{payment.ID | slice:0:10}}...</td>
+                                    <td>{{payment.createdAt | date:'shortDate'}}</td>
+                                    <td>{{payment.amount | number : '1.2-2'}}</td>
+                                    <!-- <td>{{payment.amount | number : '1.2-2'}}</td> -->
+                                    <td>{{payment.actualFees.transactionHash | slice:0:10 }}...</td>
+                                    <td>
+                                        <span class="badge badge-cancel" *ngIf="payment.isPaid === false">Not Paid</span>
+                                        <span class="badge badge-success text-white" *ngIf="payment.isPaid">Paid</span>
+                                    </td>
+                                    <td>
+                                        <span class="cursor-pointer textblue pl-10px"><i class="far fa-eye"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody [hidden]="showFilterdData === false" *ngFor="let payment of filteredData">
+                                <tr class="cursor-pointer" data-toggle="modal" data-target="#PaymentDetails" (click)="getSinglePaymentHistory(payment.ID)">
+                                    <td>{{payment.ID | slice:0:10}}...</td>
+                                    <td>{{payment.createdAt | date:'shortDate'}}</td>
+                                    <td>{{payment.amount | number : '1.2-2'}}</td>
+                                    <!-- <td>{{payment.amount | number : '1.2-2'}}</td> -->
+                                    <td>{{payment.actualFees.transactionHash | slice:0:10 }}...</td>
+                                    <td>
+                                        <span class="badge badge-cancel" *ngIf="payment.isPaid === false">Not Paid</span>
+                                        <span class="badge badge-success text-white" *ngIf="payment.isPaid">Paid</span>
+                                    </td>
+                                    <td>
+                                        <span class="cursor-pointer textblue pl-10px"><i class="far fa-eye"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-right mt-20" [hidden]="noPayments || noPaymentData">
+                    <button class="btn btn-primary" (click)="getPaymentHistory(pageCount+1)" [hidden]="showFilterdData || buttonDisabled">Load More</button>
+                    <button class="btn btn-primary" (click)="filterWithDates(startDate, endDate, filterPageCount+1)" [hidden]="showPaymentData || filterButtonDisabled">Load More</button>
+                </div>
+                <div class="row NFTListMain" *ngIf="noPayments || noPaymentData">
+                    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                        <img src="assets/images/NO_NFT.svg">
+                        <h1 class="HeadingBig m-0 font700"> Nothing to see here, yet.</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal" id="PaymentDetails">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                            aria-hidden="true">×</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Transaction</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <div class="accordion NftTagsMainDiv">
+                                    <div class="card w-100 mb-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font18 text-uppercase" data-toggle="collapse" data-target="#collapseResult" aria-expanded="true">Details <i class="fas fa-chevron-down"></i></button>
+                                        </div>
+                                        <div class="in collapse show" id="collapseResult">
+                                            <div class="card-body d-flex p-0">
+                                                <div class="DetailsBox w-100">
+                                                    <div class="transactionDetailsBox font14">
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Charged For:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.chargeFor}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">ID:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.ID}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Profile ID:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.profileID}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">BlockHash:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.actualFees.blockHash}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Transaction ID:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.actualFees.transactionHash}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Date:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.createdAt | date:'mediumDate'}}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion NftTagsMainDiv">    
+                                    <div class="card w-100 mb-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font18 text-uppercase" data-toggle="collapse" data-target="#collapseResult1" aria-expanded="true">Payment <i class="fas fa-chevron-down"></i></button>
+                                        </div>
+                                        <div class="in collapse show" id="collapseResult1">
+                                            <div class="card-body d-flex p-0">
+                                                <div class="DetailsBox w-100">
+                                                    <div class="transactionDetailsBox font14">
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">NEST<sup>®</sup> Fees:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.aerieCharges | currency}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Charges:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.assetCharges | currency}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Total Amount:</li>
+                                                            <li class="rightLi">{{singlePaymentData?.amount | currency}}</li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Current Charge:</li>
+                                                            <li class="rightLi">
+                                                                {{singlePaymentData?.estimatedFees.estimate.charges.USD.currentCharge}}
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Crypto Balance at time of Transaction:
+                                                            </li>
+                                                            <li class="rightLi">
+                                                                {{singlePaymentData?.estimatedFees.balance.balance}}
+                                                            </li>
+                                                        </ul>
+                                                        <!-- <ul class="tableUl">
+                                                        <li class="font700 leftLi">Balance:</li>
+                                                        <li class="rightLi">{{singlePaymentData?.estimatedFees.balance.balance}}</li>
+                                                    </ul>     -->
+                                                        <ul class="tableUl">
+                                                            <li class="font700 leftLi">Funding Required at time of Transaction?: </li>
+                                                            <li class="rightLi"><span class="font400 SingleTagNft badge badge-success" *ngIf="singlePaymentData?.estimatedFees.needFunding === true">YES</span>
+                                                                <span class="font400 SingleTagNft badge badge-cancel text-white" *ngIf="singlePaymentData?.estimatedFees.needFunding === false">NO</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-start NFTListBtnMain mt-20">
+                                    <div class="col-md-6 offset-md-3 mb-20">
+                                        <div class="BottomBtnPreviewRow" (click)="PDF()">
+                                            <a class="CustomBTn cursor-pointer"> <img src="assets/images/download.png" class="iconImg hide"> Download <img src="assets/images/RightArrow.svg"></a>
+                                            <!-- <div class="d-flex align-items-center justify-content-between h-100 inner">
+                                                <div class="imgDivBtn">
+                                                    <img src="assets/images/NFT_PreviewBtn_3.svg">
+                                                </div>
+                                                <div class="RightDivBtn">
+                                                    <div class="TitlenDes w-100 text-white">
+                                                        <p class="font14 font700 m-0">Download</p>
+                                                    </div>
+                                                    <div class="w-100 d-flex justify-content-center">
+                                                        <a class="CustomBTn cursor-pointer" data-toggle="modal" data-target="#BridgeModal"> GO <img src="assets/images/RightArrow.svg"></a>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="QR hide">
+                                        <div class="qrBox">
+                                            <div id="canvasTWhite"></div>
+                                            <img src="{{QR1}}" />
+                                            <a target="_blank">
+                                                <span>RWSC<sup> <img src="../../../assets/images/Nest-Logo.png" class="r_logo_round mrg-L5" /></sup></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="QR hide">
+                                            <div class="qrBox">
+                                                <div id="canvasTWhite"></div>
+                                                <img src="{{QR1}}" />
+                                                <a target="_blank">
+                                                    <span>RWSC<sup> <img src="../../../assets/images/Nest-Logo.png" class="r_logo_round mrg-L5" /></sup></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

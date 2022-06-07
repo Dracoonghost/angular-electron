@@ -1,0 +1,175 @@
+<!-- <nav>
+  <button class="btn btn-primary" style="float: right;" (click)="showCreate()">Create NFT</button>
+</nav>
+
+<div>
+  <div class="BulkNFTListDiv">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Batch ID</th>
+            <th>Last Update</th>
+            <th>Status</th>
+            <th>Total NFT Count</th>
+            <th>Valid NFT Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of bulkNftData">
+            <td><a (click)="goToViewBulkNFTPage(item.batchID)" class="TextLimit">{{item.batchID}}</a></td>
+            <td><span>{{item.updatedAt | date:'M/d/yy, h:mm a'}}</span></td>
+            <td><span class="badge badge-warning">{{item.status}}</span></td>
+            <td><span>{{item.totalNFTCount}}</span></td>
+            <td><span>{{item.preparedNFTCount}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+ -->
+
+<!-- <div class="row FilterDark" *ngIf="common.ssidObject.name">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <label class="w-100 control-label font22" *ngIf="common.ssidObject.name"><span class="font700 font22">SSID
+              Name:</span> {{common.ssidObject.name}}</label>
+                        <label class="w-100 font18 text-grey" *ngIf="common.selectedSSID">Selected SSID: {{common.selectedSSID}}</label>
+                        <a class="a-Tag font700 cursor-pointer" data-toggle="modal" data-target="#myModalSsidList">Select other SSID</a>
+                        <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                            Select Your SSID</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="card-title font18 font700 m-0">BULK-MINTED NFTs</h6>
+                    <button class="btn btn-primary" style="float: right;" (click)="showCreate()">Create Project</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="BulkNFTListDiv" *ngIf="bulkNftData[0]">
+                    <div class="table-responsive">
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <th>Batch ID</th>
+                                    <th>Last Edited</th>
+                                    <th>Status</th>
+                                    <th>Total NFT Count</th>
+                                    <th>Valid NFT Count</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of bulkNftData">
+                                    <td><a (click)="goToViewBulkNFTPage(item.batchID)" class="TextLimit cursor-pointer text-black">{{item.batchID}}</a></td>
+                                    <td><span>{{item.updatedAt | date:'M/d/yy, h:mm a'}}</span></td>
+                                    <td><span [ngClass]="{'badge-success badge' :( item.status === 'MINTED' || item.status === 'PREPARED' ) ,
+                          'badge-warning badge' :
+                          (item.status === 'INPROGRESS' || item.status === 'DEPLOYING') , 'badge-cancel badge' : (item.status === 'ERROR')  }">{{item.status}}</span></td>
+                                    <td><span>{{item.totalNFTCount}}</span></td>
+                                    <td><span>{{item.preparedNFTCount}}</span></td>
+                                    <td><a (click)="goToViewBulkNFTPage(item.batchID)" class="TextLimit cursor-pointer text-black"><i class="far fa-eye"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div *ngIf="!bulkNftData[0]" class="row NFTListMain">
+                    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                        <img src="assets/images/NO_NFT.svg">
+                        <h1 class="HeadingBig m-0 font700" *ngIf="!loadingBulkNFTS"> No projects here, yet.</h1>
+                        <h1 class="HeadingBig m-0 font700" *ngIf="loadingBulkNFTS"> Loading...</h1>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal CreateORganizationModal" id="myModalSsidList">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body p-0" *ngIf="allSsidList.length >= 1">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Select Client ID</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <label class="font14 font400">Please choose which Client ID you will use to importing NFT</label>
+                        <div class="CardFullWidthRow p-0">
+                            <div class="card-body DataTableInfo">
+                                <div class="table-responsive">
+                                    <table class="table font14">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>ID</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr [ngClass]="item.status === 'PENDING' ? 'cursor-pointer-none' : 'cursor-pointer'" (click)="selectSSID(item)" *ngFor="let item of allSsidList; let i = index">
+                                                <th>{{i+1}}</th>
+                                                <th>{{item.name}}</th>
+                                                <td>{{item.ssid}}</td>
+                                                <td><span [ngClass]="item.status === 'APPROVED' ? 'badge badge-success' : item.status === 'PENDING' ? 'badge badge-warning' : 'badge-cancel'">{{item.status}}</span>
+                                                </td>
+                                                <td (click)="selectSSID(item)" [ngClass]="item.status === 'PENDING' ? 'ActionSSID Pending_ActionSSID' : 'ActionSSID'">Select <i class="fas fa-angle-right"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+        <div class="col-md mt-20 text-right" *ngIf="feeDetails">
+            <button type="button" class="btn btn-primary ">{{feeDetails.result.status.result}}</button>
+        </div>
+    </div> -->
+
+                <div class="modal-body p-0" *ngIf="allSsidList.length === 0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Select Client ID</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <label class="font14">No Client ID Found</label>
+                    </div>
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

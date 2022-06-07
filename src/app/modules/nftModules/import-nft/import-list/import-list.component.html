@@ -1,0 +1,210 @@
+<div class="row FilterDark">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body NestedCard">
+        <div class="row NFTListMain mb-20  Slide firstanimate">
+          <div class="col-md-12 d-flex align-items-center justify-content-center">
+            <span class="tabsSpan d-flex justify-content-center">
+              <button class="btn-primary unsecurednftbtn1 active" (click)="unsecuredNft();isUnsecuredSelected=true;">Unencrypted NFTs</button>
+              <button class="btn-primary securednftbtn1" (click)="securedNft();isUnsecuredSelected=false;">Encrypted NFTs</button>
+            </span>
+          </div>
+        </div>
+        <div class="row FilterDark ImportNFTMainDiv mt-4 Slide SecondAnimate">
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+              <div class="Card-Header" *ngIf="importNftList.length !== 0 ">
+                <h6 class="card-title font18 font700 m-0">Fetched NFT's available in the Selected Wallet</h6>
+              </div>
+              <div class="card-body NestedCard">
+                <div class="SecondStepImport">
+                  <div class="row">
+                    <div *ngFor="let nft of importNftList; let i = index" class="col-md-4 SingleRequestList">
+                      <div (click)="getSelectedNFT(i)" [ngClass]="{'selected': nft.selected === true}" class="">
+
+
+
+                        <!-- <div class="card">
+                          <div class="card-body cursor-pointer">                                
+                              <div class="ReqestTopDiv mb-10">
+                                  <div class="row mb-10">
+                                      <div class="col-md-12">                                                
+                                          <div>
+                                              <p class="font14 m-0 d-grid">
+                                              <span class="font700 textblue">NAME:</span> 
+                                              <span>{{nft.name}}</span>
+                                              </p>
+                                          </div>                                              
+                                          <div *ngIf="nft.collection">
+                                              <p class="font14 m-0 d-grid">
+                                              <span class="font700 textblue">Description:</span> 
+                                              <span>{{nft.collection.description}}</span>
+                                              </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="RequestImageDiv position-relative">
+                                      <div class="fullHeightImg">
+                                        <img *ngIf="nft.imageUrl" [src]="nft.imageUrl" class="NFTCarouselImg">
+                                        <img *ngIf="!nft.imageUrl" src="assets/images/placeholder.jpg" class="NFTCarouselImg">
+                                        
+                                      </div>
+                                      <span *ngIf="nft.symbol === 'RWSCT'" class="NFTApproved"><img
+                                        src="assets/images/approvedNFT.png" class="Approvedimg" data-toggle="tooltip"
+                                        data-placement="top" title="Client ID Confirmed"></span>
+                                  </div>
+                              </div>
+                              <div class="col-md-12">
+                              <div class="RequestMiddle">
+                                  <div>
+                                      <p class="font14 m-0">
+                                      <span class="font700 textblue">Created On:</span> 
+                                      <span class="ml-5px">{{nft.collection.createdDate | date:'medium'}}</span>
+                                      </p>
+                                  </div>
+                                  <div *ngIf="nft.collection">
+                                      <p class="font14 m-0">
+                                      <span class="font700 textblue">Created On:</span> 
+                                      <span class="ml-5px">{{item.price | currency:'USD'}}</span>
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p class="font14 m-0 d-flex align-items-center">
+                                      <span class="font700 textblue">Token Address:</span> 
+                                      <span class="TextLimit ml-5px" data-toggle="tooltip" data-placement="top" title="{{nft.token_address}}">{{nft.token_address}}</span>
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p class="font14 m-0">
+                                      <span class="font700 textblue">Contract Type:</span> 
+                                      <span class="ml-5px">{{nft.contract_type}}</span>
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p class="font14 m-0 d-flex align-items-center">
+                                      <span class="font700 textblue">Meta ID:</span> 
+                                      <span class="TextLimit ml-5px" data-toggle="tooltip" data-placement="top" title="{{nft.token_id}}">{{nft.token_id}}</span>
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p class="font14 m-0">
+                                      <span class="font700 textblue">Date:</span> 
+                                      <span class="ml-5px">{{item.createdAt | date:'medium'}}</span>
+                                      </p>
+                                  </div>
+                                  <div>
+                                      <p class="font14 m-0">
+                                      <span class="font700 textblue">SOURCE:</span> 
+                                      <span class="ml-5px">{{nft.symbol}}</span>
+                                      </p>
+                                  </div>
+                              </div>
+                              </div>                            
+                                <div class="col-md-12 font14">
+                                  <span *ngIf="nft.symbol === 'RWSCT'" class="Secure text-uppercase">
+                                    Secured in NEST<sup>®</sup>
+                                  </span>
+                                  <span *ngIf="nft.symbol !== 'RWSCT'" class="NotSecure font14 text-uppercase">
+                                    Unsecured
+                                  </span>
+                                 
+                                  <button *ngIf="nft.symbol !== 'RWSCT'" type="button" class="btn btn-primary mt-20" (click)="checkForApproval(nft)">Import</button>
+                                </div>
+                          </div>
+                      </div> -->
+
+
+
+                        <div class="card mb-20">
+                          <div class="card-body row d-flex align-items-center justify-content-start m-0">
+
+                            <div class="ReqestTopDiv mb-10 w-100">
+                              <div class="row mb-10">
+                                <div class="col-md-12">
+                                  <div>
+                                    <p class="font14 m-0 d-grid">
+                                      <span class="font700 text-blueGray">NAME:</span>
+                                      <span>{{nft.name}}</span>
+                                    </p>
+                                  </div>
+                                  <div *ngIf="nft.collection">
+                                    <p class="font14 m-0 d-grid">
+                                      <span class="font700 text-blueGray">Description:</span>
+                                      <span>{{nft.collection.description}}</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="RequestImageDiv position-relative">
+                                <div class="fullHeightImg">
+                                  <img *ngIf="nft.imageUrl" [src]="nft.imageUrl" class="NFTCarouselImg">
+                                  <img *ngIf="!nft.imageUrl" src="assets/images/placeholder.jpg" class="NFTCarouselImg">
+
+                                </div>
+                                <span *ngIf="nft.symbol === 'RWSCT'" class="NFTApproved"><img
+                                    src="assets/images/approvedNFT.png" class="Approvedimg" data-toggle="tooltip"
+                                    data-placement="top" title="Client ID Confirmed"></span>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="RequestMiddle">
+                                <p *ngIf="nft.collection" class="font14 d-grid">
+                                  <span class="font700 text-blueGray">Created On:</span>
+                                  <span>{{nft.collection.createdDate | date:'medium'}}</span>
+                                </p>
+                                <p class="font14 d-grid">
+                                  <span class="font700 text-blueGray">Contract Address:</span>
+                                  <span class="word-all-break">{{nft.token_address}}</span>
+                                </p>
+                                <p class="font14 d-grid">
+                                  <span class="font700 text-blueGray">ContractType:</span>
+                                  <span>{{nft.contract_type}}</span>
+                                </p>
+                                <p class="font14 d-grid">
+                                  <span class="font700 text-blueGray">Meta ID:</span>
+                                  <span class="word-all-break">{{nft.token_id}}</span>
+                                </p>
+                                <p class="font14 d-grid">
+                                  <span class="font700 text-blueGray">SOURCE:</span>
+                                  <span>{{nft.symbol}}</span>
+                                </p>
+                              </div>
+                              <div class="row SecureMainDiv mt-10">
+                                <div class="col-md-12 text-left font14 d-flex">
+                                  <span *ngIf="nft.symbol === 'RWSCT'" class="Secure text-uppercase">
+                                    Secured in NEST<sup>®</sup>
+                                  </span>
+                                  <span *ngIf="nft.symbol !== 'RWSCT'" class="NotSecure font14 text-uppercase">
+                                    Unencrypted
+                                  </span>
+                                </div>
+                                <button type="button" class="btn btn-primary mt-20 w-100" [disabled]="nft.existsInDB"
+                                  (click)="quickImport(nft,i)">{{!nft.existsInDB ?'Secure to Wallet':'Already Secured in Wallet'}}</button>
+
+
+                                <button type="button" *ngIf="nft.symbol !== 'RWSCT'" class="btn btn-primary mt-20 w-100"
+                                  (click)="checkForApproval(nft)">Encrypt And Lock</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="importNftList.length === 0 " class="row NFTListMain">
+                    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                      <img src="assets/images/NO_NFT.svg">
+                      <h1 class="HeadingBig m-0 font700"> 0 Nfts found.</h1>
+                      <!-- <h1 class="HeadingBig m-0 font700" *ngIf="loadingNFTS"> Loading...</h1> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

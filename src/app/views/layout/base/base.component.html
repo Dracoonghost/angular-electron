@@ -1,0 +1,39 @@
+<div class="main-wrapper">
+
+  <!-- partial:sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- partial -->
+
+  <div class="page-wrapper">
+
+    <!-- partial:navbar -->
+    <app-navbar></app-navbar>
+    <!-- partial -->
+
+    <div class="page-content">
+
+      <!-- Spinner for lazyload modules -->
+      <div  class="spinner-wrapper" *ngIf="spinner.visibility | async">
+        <div class="spinner hide">Loading...</div>
+      </div>
+      <div class="LoaderMain " *ngIf="spinner.visibility | async">
+        <div class="text-center">
+          <img src="assets/images/Loader.gif" class="Loaderimg">
+          <div class="spinner font30 text-black font700 w-100">{{common.loaderText}}</div>
+        </div>
+      </div> 
+
+      <div contentAnimate *ngIf="!isLoading">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+    <!-- partial:footer -->
+    <app-footer></app-footer>
+    <!-- partial -->
+
+  </div>
+
+
+</div>

@@ -1,0 +1,28 @@
+.row.w-100.mx-0.auth-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#yourMultiSigKey .rightLi{
+    text-overflow: inherit !important;
+    overflow: inherit !important;
+    white-space: inherit !important;
+    max-width: 100% !important;
+    width: 100%;
+    word-break: break-word;
+    text-align: center;
+}
+
+#yourMultiSigKey .tableUl .leftLi {
+    min-width: inherit !important;
+}
+
+#yourMultiSigKey ul.tableUl {
+    padding: 10px 60px !important;
+    border-bottom: 0 none !important;
+    background: #eee;
+    border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+}

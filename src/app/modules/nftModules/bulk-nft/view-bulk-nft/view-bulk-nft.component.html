@@ -1,0 +1,339 @@
+<div *ngIf="bulkNFTData">
+
+    <div *ngIf="!bulkNFTData.ssid">
+        <div class="row FilterDark mb-20" *ngIf="common.selectedSSID">
+            <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group m-0" >
+                                    <!-- <label class="w-100 font22 font700" *ngIf="common.ssidObject.name">SSID Name:
+                    {{common.ssidObject.name}}</label>
+                                    <label class="w-100 font18 text-grey" *ngIf="common.selectedSSID">Selected SSID:
+                    {{common.selectedSSID}}</label>
+                                    <a class="btn btn-primary selectSSIDBtn"  data-toggle="modal" data-target="#myModalSsidList">Select
+                    other
+                    SSID</a> -->
+                    <div class="d-flex align-items-center justify-content-between SelectSSIDCard">
+                        <div class="SSIDDetailsDiv">
+                            <label class="w-100 font22 font700" *ngIf="common.ssidObject.name">Client Name: {{common.ssidObject.name}}</label>
+                            <label class="w-100 font18 text-grey" *ngIf="common.selectedSSID">Selected Client ID: {{common.selectedSSID}}</label>
+                        </div>
+                        <a class="btn btn-primary m-0">Select Different Client ID</a>
+                    </div>
+                                    <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                                        Select Your Client ID</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="bulkNFTData.status ==='PREPARED'" class="card border-light mb-4 hide">
+        <div class="card-body">
+            <div>
+                <button class="btn btn-primary mt-2 mr-2 mb-4" data-toggle="modal" data-target="#myModal">SELECT WALLET TO USE</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal CreateORganizationModal ModalBig" id="myModal">
+        <div class="innerModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 m-0">Select your wallet to Deploy NFT with</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row MultiCryptoWalletCreate">
+                            <div class="col-md-4 single-radio mb-10" *ngFor="let item of avalaibleBlockChainData; let i = index">
+                                <div class="accordion NftCryptosMainDiv">
+                                    <div class="card">
+                                        <div class="card-header p-0" id="accordionExample{{ i }}">
+                                            <button class="btn btn-link font700 font14 justify-content-start" [ngClass]="{ active: item.selected }" (click)="
+                            checkForKey(item.value); item.selected = !item.selected
+                          " data-toggle="collapse" attr.data-target="#collapse{{ i }}">
+                        <img class="category-img m-0" [src]="item.image" />
+                        <span class="font14 font700 pl-20 d-grid text-left">
+                          {{ item.display }}
+                          </span>
+                        <i class="fas fa-angle-down"></i>
+                      </button>
+                                        </div>
+                                        <div class="collapse" id="collapse{{ i }}">
+                                            <div class="card-body p-0">
+                                                <div class="TagsParent d-grid">
+                                                    <div class="w-100" (click)="selectWallet(key, item.value)" *ngFor="let key of item.keys">
+                                                        <span class="font14 font700 SingleRecordCrypto cursor-pointer" [ngClass]="{
+                                  selected: selectedWalletPrivateKey === key.key
+                                }">
+                              {{ key.accountName }}
+                              <span class="font400">{{ key?.key | slice: 10:32 }}...
+                              </span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 single-radio mb-20">
+                                <div class="CreatedWalletBlock cursor-pointer" data-toggle="modal" data-target="#multiWallet">
+                                    <div class="InnerBlock d-flex align-items-center">
+                                        <img class="category-img m-0" src="assets/images/Add_new_wallet.svg" />
+                                        <div class="createText d-grid">
+                                            <span class="font14 font700 pl-20">Add a new wallet </span>
+                                            <span class="font14 font400 pl-20">Click here to add a new wallet
+                      </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-20">
+                                <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                                    Select Your Client ID
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12 text-right">
+                          <button type="button" class="btn btn-primary " (click)="saveMe(NFTForm.value,1)">Preview
+                                  NFT</button>
+                      </div> -->
+                        </div>
+                        <div class="col-md-12 mb-20">
+                            <label *ngIf="selectedWalletPrivateKey" class="font18 font700">Selected Wallet Address :- {{selectedWalletAddress}}</label>
+                            <div class="msg-error imgBox" *ngIf="showSelectMultiKeyError">
+                                select Your Key
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="card-title font18 font700 text-uppercase m-0">Fee Details</h6>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <button type="submit" [disabled]=" !selectedWalletAddress || feeEstimateTimerCount >0" (click)="getEstimateFee()" class="btn btn-primary text-center w-100">Fetch Estimate Fees Again</button>
+                                    <h6 class="card-title font18 font700 text-uppercase m-0 Timer">{{feeEstimateTimerCount}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="feeDetails" class="InnerBlock mt-10">
+                            <p class="font18 font700 mb-10 d-flex align-items-center justify-content-between ">Your Current Wallet Balance ({{selectedChain}}): <span class="font400">{{feeDetails.balance.balance}}</span></p>
+                            <p class="font14 font700">Charge fee: <span class="font400">{{feeDetails.estimate.charges.fee}}</span></p>
+                            <p class="font14 font700">Gas Price: <span class="font400">{{feeDetails.estimate.charges.gasPriceInNumber}} </span></p>
+                            <p class="font14 font700">1 {{selectedChain}} Price: <span class="font400">{{feeDetails.estimate.charges.USD.price | currency:'USD'}} </span></p>
+                            <p class="font18 font700 mt-10">IMPORT [in USD]</p>
+                            <p class="font14 font700">Current Charge: <span class="font400">{{feeDetails.estimate.charges.USD.currentCharge | currency:'USD'}} </span></p>
+                        </div>
+
+                        <button (click)="deployNFT()" class="btn btn-primary" [disabled]="!selectedWalletAddress && bulkNFTData.status !== 'DEPLOYING' || feeEstimateTimerCount <=0  ">Deploy NFTs</button>
+                        <!-- <div class="row"> -->
+                        <!-- <div class="col-md text-left">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#multiWallet"> Add Multi wallet
+                                  Keys</button>
+                          
+                      </div> -->
+                        <!-- <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+                      Select Your SSID</div> -->
+                        <!-- </div>
+                      </div>
+                      
+              <div class="card"  *ngIf="!showWalletBtn">
+                  <div class="card-body"> -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row FilterDark mb-20">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="Card-Header">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="card-title font18 font700 m-0">Batch Status</h6>
+                        <div class="d-flex TagsParent BulkStatusMain">
+                            <p class="card-text m-0 ml-10" *ngIf="bulkNFTData.totalNFTCount"><span class="font-weight-bold">Total NFTs:</span><span  class="SingleTagNft SingleTagNft_noneFlex">{{bulkNFTData.totalNFTCount}}</span></p>
+                            <p class="card-text m-0 ml-10" *ngIf="bulkNFTData.preparedNFTCount"><span class="font-weight-bold">Prepared NFTs:</span><span class="SingleTagNft SingleTagNft_noneFlex">{{bulkNFTData.preparedNFTCount}}</span></p>
+                            <p class="m-0 ml-10"><a href="https://ipfs.io/ipfs/{{bulkNFTData.ipfsFolderName}}" class="ml-3 badge badge-success" target="_blank" rel="noopener noreferrer">IPFS Folder</a></p>
+                        </div>
+                        <button class="btn btn-primary m-0" *ngIf="bulkNFTData.status ==='PREPARED'" data-toggle="modal" data-target="#myModal">SELECT WALLET TO USE</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="StepperMain d-flex justify-content-between align-items-center">
+                        <div class="SingleStepper text-center active">
+                            <div class="InnerStepper">
+                                <div class="StepperCirlce">
+                                    <p class="font14 text-center w-100">1</p>
+                                </div>
+                                <p class="font14 font700 w-100 m-0 text-uppercase">Upload</p>
+                            </div>
+                        </div>
+                        <div class="SingleStepper text-center " [ngClass]="{  active : (bulkNFTData.status ==='MINTED' || bulkNFTData.status ==='DEPLOYING' || bulkNFTData.status ==='PREPARED' )  }">
+                            <div class="InnerStepper">
+                                <div class="StepperCirlce">
+                                    <p class="font14 text-center w-100">2</p>
+                                </div>
+                                <p class="font14 font700 w-100 m-0 text-uppercase">Metadata Prepared</p>
+                            </div>
+                        </div>
+                        <div class="SingleStepper text-center " [ngClass]="{ active : (bulkNFTData.status ==='MINTED' || bulkNFTData.status === 'DEPLOYING'  )
+               && ( bulkNFTData.preparedNFTCount)   }">
+                            <div class="InnerStepper">
+                                <div class="StepperCirlce">
+                                    <p class="font14 text-center w-100">3</p>
+                                </div>
+                                <p class="font14 font700 w-100 m-0">Deploying</p>
+                            </div>
+                        </div>
+                        <div class="SingleStepper text-center " [ngClass]="{  active : bulkNFTData.status ==='MINTED'   }">
+                            <div class="InnerStepper">
+                                <div class="StepperCirlce">
+                                    <p class="font14 text-center w-100">4</p>
+                                </div>
+                                <p class="font14 font700 w-100 m-0 text-uppercase">Minted</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row FilterDark mb-20">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="Card-Header">
+                    <div class="d-flex align-items-center justify-content-between TagsParent">
+                        <p class="card-text m-0 ml-10"><span class="font-weight-bold">STATUS - </span><span class="SingleTagNft SingleTagNft_noneFlex">{{bulkNFTData.status}}</span></p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="BulkNFTListDiv">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>NFT Index No.</th>
+                                        <th>NFT ID</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Error Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let item of bulkNFTData.statuses">
+                                    <tr>
+                                        <td><span class="TextLimit">{{item.index}}</span></td>
+                                        <td><span class="TextLimit">{{item.NFTID}}</span></td>
+                                        <td>{{item.name}}</td>
+                                        <td>
+                                            <span [ngClass]="{'badge-success badge' :( item.status === 'MINTED' || item.status === 'PREPARED' ) ,
+                      'badge-warning badge' :
+                      (item.status === 'INPROGRESS' || item.status === 'DEPLOYING') , 'badge-cancel badge' : (item.status === 'ERROR')  }">{{item.status}}</span>
+                                        </td>
+                                        <td>{{item.errorMessage}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal CreateORganizationModal" id="myModalSsidList">
+        <div class="innerModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal body -->
+                    <div class="modal-body" *ngIf="allSsidList.length >= 1">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                        <label class="font18 font700">Please choose which Client ID you will use to create Bulk NFT</label>
+                        <div class="CardFullWidthRow p-0">
+                            <div class="card-body DataTableInfo">
+                                <div class="table-responsive">
+                                    <table class="table font14">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>ID</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr [ngClass]="
+                          item.status === 'PENDING'
+                            ? 'cursor-pointer-none'
+                            : 'cursor-pointer'
+                        "  *ngFor="let item of allSsidList; let i = index">
+                                                <th>{{ i + 1 }}</th>
+                                                <th>{{ item.name }}</th>
+                                                <td>{{ item.ssid }}</td>
+                                                <td>
+                                                    <span [ngClass]="
+                              item.status === 'APPROVED'
+                                ? 'badge badge-success'
+                                : item.status === 'PENDING'
+                                ? 'badge badge-warning'
+                                : 'badge-cancel'
+                            ">{{ item.status }}</span>
+                                                </td>
+                                                <td [ngClass]="item.status === 'PENDING' ? 'ActionSSID Pending_ActionSSID' : 'ActionSSID'">
+                                                    Select <i class="fas fa-angle-right"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+                    </div>
+                    <div class="modal-body" *ngIf="allSsidList.length === 0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                        <p class="font18 font700 mb-20">Select Client ID</p>
+                        <label class="font14">No Client ID Found</label>
+                    </div>
+                    <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal CreateORganizationModal" id="multiWallet">
+        <div class="innerModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                        <label class="font18 font700">Select Wallet</label>
+                        <div class="CardFullWidthRow cryptoModal p-0">
+                            <!-- <app-crypto-wallet></app-crypto-wallet> -->
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+                    </div>
+                    <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

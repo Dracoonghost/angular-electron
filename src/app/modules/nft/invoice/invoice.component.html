@@ -1,0 +1,123 @@
+<div class="row FilterDark InvoicePreview">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body DataTableInfo">
+                <h6 class="card-title font18 font700">Preview Invoice</h6>
+                <div class="InvoiceMainDiv">
+                    <div class="row TopInvoiceDiv mb-10">
+                        <div class="col-md-5 TopInvoiceDivLeft">
+                            <img src="assets/images/Nest-Logo.png" class="InvoiceLogo">
+                        </div>
+                        <div class="col-md-7 TopInvoiceDivRight d-flex align-items-center justify-content-end">
+                            <h2 class="font18 d-grid text-right mr-10">
+                                <span class="font700">Invoice</span>
+                                <span class="font400 font14">{{NFT.createdAt | date :'longDate'}} </span>
+                            </h2>
+                            <div class="QR">
+                                <div class="qrBox">
+                                    <div id="canvasC">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row CardFullWidthRow InvoiceBlueBand bg-blue">
+                        <div class="DetailsBox firstDetailedBox w-100">
+                            <table class="UserInfoTable w-100">
+                                <tbody>
+                                    <tr class="d-flex align-items-center justify-content-between w-100">
+                                        <td class="font14"> Initiated by <a class="boldTxtPDF text-white font700" href="#"> {{myProfile.firstName}} {{myProfile.lastName}}</a>
+                                        </td>
+                                        <td class="font14"> Charge - <span class="boldTxtPDF font700">$ 0.99</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+                    <div class="row MiddleInvoiceDiv mb-20 mt-20">
+                            <div class="col-md-6">                                
+                            <h6 class="card-title font18 font700">Transaction Details </h6>
+                            <div class="DetailsBox">
+                                <div class="transactionDetailsBox font14">                                
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td class="font700">Private Identification</td>
+                                            <td><a href="#" class="d-flex align-items-center justify-content-end"><span class="textblue TextLimit">{{NFT.SPORTALID ||'xxxx'}}</span><i class="fas fa-external-link-alt textblue"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font700">IVBRP<sup>®</sup></td>
+                                            <td><a href="#" class="d-flex align-items-center justify-content-end"><span class="textblue TextLimit">{{NFT.IPFSHash|| 'kyvrbuttY7RVB67ryn97TVF56Uolinr'}}</span><i class="fas fa-external-link-alt textblue"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font700">SPORTAL<sup>®</sup> Explorer ID</td>
+                                            <td><span class="">{{NFT.txid}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font700">Blockchain</td>
+                                            <td><span class="">{{NFT.blockchain}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font700">Client ID</td>
+                                            <td><span class="">{{NFT.ssid}}</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                                <div class="col-md-6">                                    
+                                    <h6 class="card-title font18 font700">Payment</h6>
+                                    <div class="DetailsBox">
+                                        <div class="transactionDetailsBox">                                
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td class="font700">NFT Minting Price</td>
+                                                    <td><span class="TextLimit">{{NFT.price | currency:'USD' }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font700">network Charges</td>
+                                                    <td><span class="TextLimit">{{'0' | currency:'USD' }}</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="DetailsBox mt-10">
+                                        <div class="transactionDetailsBox">                                
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td class="font700">Total Charged ( xxxxxxxxxxxx) </td>
+                                                    <td><span class="TextLimit">{{NFT.price | currency:'USD'}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font700">Payment Processing Status</td>
+                                                    <td><span class="TextLimit">Success</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                    </div>
+                    <div class="row BottomInvoiceDiv text-center mt-20">
+                        <div class="col-md-12">
+                            <div class="thnx_txt">
+                                <p class="font18 font700">Thank You</p>
+                            </div>
+                            <p class="font14">Need help? Visit 
+                                <a href="https://nes.tech/" class="textblue" target="_blank">Sportal<sup>®</sup> </a> or email us at <a href="mailto:iam@nes.tech" class="textblue">iam@nes.tech</a>
+                            </p>
+                            <!-- <p class="font18">TRX ID: </p> -->
+                            <p class="textblue font14">Made for you with <i class="fas fa-heart"></i> by Sportal<sup>®</sup>
+                            </p>
+                            <div class="d-flex align-items-center justify-content-between mt-20">
+                                <button type="button" class="btn btn-secondary BackBtnCustom" (click)="backToList()">Back</button>
+                                <button type="button" class="btn btn-primary">Download PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

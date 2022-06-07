@@ -1,0 +1,151 @@
+<div class="Card-Header">
+    <div class="d-flex align-items-center justify-content-between">
+        <h6 class="card-title font18 font700 m-0 SlideLeft firstanimate">Non-Fungible Tokens (NFTs)</h6>
+        <div class="row NFTListMain m-0 no-tab firstanimate Slide hide">
+            <div class="col-md-12">
+                <span class="tabsSpan d-flex justify-content-center">
+                    <button class="btn-primary active" (click)="getSingleNft()">Single NFTs</button>
+                    <button class="btn-primary" (click)="getBulkNft()">Bulk NFTs</button>
+                </span>
+            </div>
+        </div>
+        <div class="search-container firstanimate SlideRight">
+            <form class="d-flex position-relative ClientSearchBox">
+                <input type="text" placeholder="search.." name="search" #search>
+                <button type="button" (click)="searchNfts(search.value)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="row FilterDark NFTListMainRowFull">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body NestedCard">
+                <div class="row NFTListMain m-0 no-pc justify-content-center Slide SecondAnimate">
+                    <span class="tabsSpan d-flex justify-content-center">
+                        <button class="btn-primary active" (click)="getSingleNft()">Single NFTs</button>
+                        <button class="btn-primary" (click)="getBulkNft()">Bulk NFTs</button>
+                    </span>
+                </div>
+                <div class="row NFTListMain mt-4 Slide ThirdAnimate" *ngIf="nftList.length >= 1">
+                    <div class="col-md-4 mb-10px SingleRequestList" *ngFor="let item of nftList">
+                        <div class="card">
+                            <div class="card-body cursor-pointer" (click)="preview(item)">
+                                <div class="ReqestTopDiv mb-10">
+                                    <div class="row mb-10">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <p class="font700 font18 mb-5px text-capitalize textblue">{{item.name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div>
+                                                <p class="font14 m-0 d-grid">
+                                                    <span class="font700 text-blueGray">Description:</span>
+                                                    <span> {{item.description}}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="RequestImageDiv position-relative">
+                                        <div class="fullHeightImg">
+                                            <img [src]="item.thumbnail" class="NFTCarouselImg">
+                                        </div>
+                                        <span class="NFTApproved"><img src="assets/images/approvedNFT.png"
+                                                class="Approvedimg" data-toggle="tooltip" data-placement="top"
+                                                title="Client ID Confirmed"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="RequestMiddle">
+                                        <div>
+                                            <p class="font14 m-0">
+                                                <span class="font700 text-blueGray">Price:</span>
+                                                <span class="ml-5px">{{item.price | currency:'USD'}}</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="font14 m-0 d-flex align-items-center">
+                                                <span class="font700 text-blueGray">TXID:</span>
+                                                <span class="TextLimit ml-5px" data-toggle="tooltip"
+                                                    data-placement="top" title="{{item.txid}}">{{item.txid}}</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="font14 m-0">
+                                                <span class="font700 text-blueGray">Network:</span>
+                                                <span class="ml-5px">{{item.blockchain}}</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="font14 m-0">
+                                                <span class="font700 text-blueGray">Date:</span>
+                                                <span class="ml-5px">{{item.createdAt | date:'medium'}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="item.quickImported" class="col-md-12 mt-10">
+                                    <span class="NotSecure text-uppercase font14">
+                                        Unencrypted
+                                    </span>
+                                </div>
+                                <div *ngIf="!item.quickImported" class="col-md-12 mt-10">
+                                    <span class="Secure text-uppercase font14">
+                                        Secured in NEST<sup>®</sup>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 mt-20" *ngIf="item.isStaked">
+                                    <span class="Secure text-uppercase font14">
+                                        Imported
+                                    </span>
+                                    <!-- <button class="btn-primary" (click)="preview(item)">View</button> -->
+                                    <!-- <a (click)="preview(item)" class="ViewMore cursor-pointer"></a> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12 d-flex align-items-center justify-content-end">
+                        <button class="btn btn-primary" (click)="getallNFTS(pageCount+1)" [hidden]="buttonDisabled"
+                            *ngIf="allNftsButton === true">Load More</button>
+                    </div>
+                </div>
+                <div class="row NFTListMain Slide SecondAnimate NoNftAvaliRow h-100" *ngIf="nftList.length === 0">
+                    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                        <img src="assets/images/NO_NFT.svg">
+                        <h1 class="HeadingBig m-0 font700" *ngIf="!nftLoading && nftList.length === 0"> Nothing here,
+                            just yet.</h1>
+                        <h1 class="HeadingBig m-0 font700" *ngIf="nftLoading"> Loading...</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row FilterDark" *ngIf="nftList.length === 0">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body"> -->
+<!-- <div class="d-flex align-items-center justify-content-between mb-20">
+                    <label class="font18 font700 m-0">NFT</label>
+                    <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0" data-toggle="modal"
+                data-target="#myModalSSID">Create New SSID</button>
+                </div> -->
+<!-- <label class="font14 font400"> No NFT Found</label> -->
+
+<!-- </div>
+        </div>
+    </div>
+</div> -->

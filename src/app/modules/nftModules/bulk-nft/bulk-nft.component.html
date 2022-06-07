@@ -1,0 +1,387 @@
+<!-- <div class="row FilterDark">
+  <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+          <div class="card-body DataTableInfo">
+              <div class="d-flex align-items-center justify-content-between mb-20">
+                  <h6 class="card-title font18 font700 mb-20">Bulk NFT List</h6>
+                  <button _ngcontent-hib-c78="" data-toggle="modal" data-target="#BulkNFTModal" class="btn btn-primary">Add Bulk NFT</button>
+              </div> -->
+<!-- Commented -->
+<!-- <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th class="font14 font700 text-black">Title</th>
+                              <th class="font14 font700 text-black">Description</th>
+                              <th class="font14 font700 text-black">Price</th>
+                              <th class="font14 font700 text-black">Network</th>
+                              <th class="font14 font700 text-black">Date</th>
+                              <th class="font14 font700 text-black">View</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of nftList">
+                              <td class="font14">{{item.name}}</td>
+                              <td class="font14"> {{item.description}}</td>
+                              <td class="font14">{{item.price | currency:'USD'}}</td>
+                              <td class="font14">{{item.blockchain}}</td>
+                              <td class="font14">{{item.createdAt  | date:'medium'}}</td>
+                              <td class="font14"><span class="cursor-pointer textblue " (click)="preview(item)"><i
+                                          class="far fa-eye"></i></span></td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div> -->
+
+<!-- Commented -->
+
+<!-- <div class="row NFTListMain" data-toggle="modal" data-target="#CdkModal">
+                  <div class="col-md-6 mb-10px">
+                      <div class="SingleNFTDiv mb-20 cursor-pointer NotClickable">
+                          <div class="card">
+                              <div class="card-body d-flex align-items-center justify-content-start bg-Grey">
+
+                                  <div class="SingleNFTTopDiv position-relative"> -->
+<!-- Commented -->
+<!-- <img [src]="item.thumbnail" class="NFTCarouselImg"> -->
+<!-- Commented -->
+<!-- <span class="NFTApproved"><img src="../../../../assets/images/Approved NFT.png" class="Approvedimg" data-toggle="tooltip" data-placement="top" title="SSID Confirmed"></span>
+                                  </div>
+                                  <div class="SingleNFTMidDiv">
+                                      <p class="font700 font18 mb-5px text-capitalize">Raj Trivedi</p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">Description:</span>
+                                          <span class="TextLimit ml-5px">My Testing Bulk Nfts</span>
+                                      </p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">Price:</span>
+                                          <span class="TextLimit ml-5px">$500</span>
+                                      </p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">TXID:</span>
+                                          <span class="TextLimit ml-5px">TXTID1234</span>
+                                      </p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">Token ID:</span>
+                                          <span class="TextLimit ml-5px">ABDC2344</span>
+                                      </p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">Network:</span>
+                                          <span class="TextLimit ml-5px">testing</span>
+                                      </p>
+                                      <p class="font14 d-flex align-items-center mb-5px">
+                                          <span class="font700 text-uppercase">Date:</span>
+                                          <span class="TextLimit ml-5px">18-02-2022</span>
+                                      </p>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+<!-- <div class="modal CreateORganizationModal ModalBig" id="BulkNFTModal">
+  <div class="innerModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span  aria-hidden="true">×</span></button>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h6 class="card-title font18 font700 mb-20 text-center">Bulk NFT</h6>
+                      </div>
+                  </div>
+                  <div class="BulkMainDiv">
+                      <form class="UserDataForm">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="form-group UploadInput">
+                                      <label class="control-label">Upload NFT</label> -->
+<!-- <input type="file" class="file-upload hide" id="bulk-nft-upload" onchange="console.log(event.target.files)"> -->
+
+<!--Commented-->
+<!-- <input (change)="onFileChange($event)" type="file" name="img[]" class="file-upload-default hide" id="file-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel " multiple="false"> -->
+<!--Commented-->
+
+<!-- <div class="d-flex">
+                                          <div class="input-group col-xs-12" (click)="bulkUpload()">
+                                              <span class="input-group-append w-100">
+                                                      <div class="UploadTextDiv text-center text-black d-grid">
+                                                          <span class="PlusText">+</span>
+                                              <span class="UploadText">Upload .CSV</span>
+                                          </div>
+                                          </span>
+                                      </div>
+                                      <div class="PreviewImgDiv" *ngIf="fileSrc">
+                                          <img class="uploaded_Image" [src]="fileSrc" />
+                                      </div>
+                                  </div>
+                                  <label class="font12 text-black">{{fileNameIndex}}</label>
+
+                              </div>
+                              <div class="d-flex align-items-center justify-content-between mt-20">
+                                  <button class="btn btn-secondary">Close</button>
+                                  <button class="btn btn-primary">Upload</button>
+                              </div>
+                          </div>
+                  </div>
+                  </form>
+              </div>
+              <div class="BulkMainSecondDiv">
+                  <label for="file" class="control-label mb-10px w-100">File Uploading</label>
+                  <progress id="file" max="100" value="70" class="w-100"> 70% </progress>
+              </div> -->
+
+<!--Commented-->
+<!-- <div class="SucessMainDiv">
+                  <div class="LastStepImport w-100">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="text-center">
+                                  <img src="assets/images/LoginSlider 1.svg" class="mb-20">
+                                  <span class="font18 font700 w-100 d-block mb-10">All the NFT's are Imported successfully</span>
+                              </div>
+                          </div>
+                          <div class="col-md-12 d-flex align-items-center justify-content-center">
+                              <button type="submit" class="btn btn-primary d-block text-center">OK</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="SucessMainDiv UnsuccessfulMainDiv">
+                  <div class="LastStepImport w-100">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="d-block text-center mb-10">
+                                  <img src="assets/images/Unsuccessful Bridge.svg">
+                                  <div class="pl-5px">
+                                      <span class="font18 font400 w-100 d-block">Oops! We encountered an error while uploading, make sure you are uploading .csv file</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-12 d-flex align-items-center justify-content-center">
+                              <button type="submit" class="btn btn-primary d-block text-center">OK</button>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+
+<!--Commented-->
+<!-- </div>
+      </div>
+  </div>
+</div>
+</div> -->
+
+<!-- CDK Modal -->
+
+<!-- <div class="modal CreateORganizationModal ModalBig" id="CdkModal">
+  <div class="innerModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span  aria-hidden="true">×</span></button>
+
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+
+                          <div class="table-responsive bulknftlist SSIDMainTable">
+                              <table id="users">
+                                  <tr>
+                                      <th *ngFor="let column of headers">
+                                          {{column}}
+                                      </th>
+                                  </tr>
+
+                                  <tr *ngFor="let row of rows">
+                                      <td *ngFor="let column of headers">
+                                          {{row[column]}}
+                                      </td>
+                                  </tr>
+
+                              </table>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> -->
+<!-- End CDK Modal -->
+
+
+<div class="row FilterDark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="Card-Header">
+            <div class="d-flex align-items-center justify-content-between">
+                <h6 class="card-title font18 font700 m-0">Upload Bulk NFT's</h6>  
+            </div>
+          </div>
+            <div class="card-body">                                
+                <div class="BulkMainDiv">
+                    <div class="UserDataForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="control-label">Please Follow The Below Excel Format</label> 
+                                <img src="assets/images/excelScreenshot.png">
+                            </div>
+                            <div class="col-sm-12 mt-20">
+                                <div class="form-group UploadInput m-0">
+                                    <label class="control-label">Upload Excel File</label> 
+                <!-- <input type="file" class="file-upload hide" id="bulk-nft-upload" onchange="console.log(event.target.files)"> -->
+                <input type="file" multiple="false" (change)="onFileChange($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+                enctype="multipart/form-data" class="form-control form-control-lg file-upload hide" id="formFileLg">
+
+                <!--Commented-->
+                <!-- <input (change)="onFileChange($event)" type="file" name="img[]" class="file-upload-default hide" id="file-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel " multiple="false"> -->
+                <!--Commented-->
+
+                <div class="d-flex cursor-pointer">
+                                        <div class="input-group col-xs-12" (click)="bulkUpload()">
+                                            <span class="input-group-append w-100">
+                                                    <div class="UploadTextDiv text-center text-black d-grid">
+                                                        <span class="PlusText">+</span>
+                                            <span class="UploadText">Upload .CSV</span>
+                                        </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <label *ngIf="this.file" class="font14 text-black">{{this.file.name}}</label>
+
+                            </div>
+                        </div>
+                </div>
+                </div>
+                </div>
+                    <div *ngIf="file" class="BottomDivCreateBulk">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <button *ngIf="fileFormData && !validFile " type="button" class="btn btn-primary mb-20" (click)="fileValidate()">Validate</button>
+                          
+                        </div>
+                        <div *ngIf="!validFile && file && isChecked" class="table-responsive mytable"> 
+                            <h3 class="font18 font700 mb-10">Please Fix the following rows</h3>
+                            <table class="table" id="users">
+                                <thead>
+                                    <tr>
+                                        <th class="font14 font700">Issue Type</th>
+                                        <th class="font14 font700">Row Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let error of validationErrors">
+                                        <td class="font14">{{ error.image }}</td>
+                                        <td class="font14">{{ error.rowNum }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="validFile && file && isChecked" class="alert alert-success" role="alert">
+                            File is valid and can be uploaded
+                        </div>
+
+                        <button *ngIf="fileFormData && validFile" type="button" class="btn btn-primary mb-20" (click)="uploadSheet()">Upload File</button>
+
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+
+    
+
+<div class="row FilterDark hide">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="Card-Header">
+            <div class="d-flex align-items-center justify-content-between">
+                <h6 class="card-title font18 font700 m-0">Upload NFT ticketing</h6>  
+            </div>
+          </div>
+            <div class="card-body">                                
+                <div class="BulkMainDiv">
+                    <div class="UserDataForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="control-label">Please Follow The Below Excel Format</label> 
+                                <img src="assets/images/excel_screenshot.PNG">
+                            </div>
+                            
+                            <div class="col-sm-12 mt-20">
+                                <div class="form-group UploadInput m-0">
+                                    <label class="control-label">Upload Excel File</label> 
+                <!-- <input type="file" class="file-upload hide" id="bulk-nft-upload" onchange="console.log(event.target.files)"> -->
+                <input type="file" multiple="false" (change)="onFileChange($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+                enctype="multipart/form-data" class="form-control form-control-lg file-upload hide" id="formFileLg">
+
+                <!--Commented-->
+                <!-- <input (change)="onFileChange($event)" type="file" name="img[]" class="file-upload-default hide" id="file-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel " multiple="false"> -->
+                <!--Commented-->
+
+                <div class="d-flex cursor-pointer">
+                                        <div class="input-group col-xs-12" (click)="bulkUpload()">
+                                            <span class="input-group-append w-100">
+                                                    <div class="UploadTextDiv text-center text-black d-grid">
+                                                        <span class="PlusText">+</span>
+                                            <span class="UploadText">Upload .CSV</span>
+                                        </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <label *ngIf="this.file" class="font14 text-black">{{this.file.name}}</label>
+
+                            </div>
+                        </div>
+                </div>
+                </div>
+                </div>
+                    <div *ngIf="file" class="BottomDivCreateBulk">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <button *ngIf="fileFormData && !validFile " type="button" class="btn btn-primary mb-20" (click)="fileValidate()">Validate</button>
+                          
+                        </div>
+                        <div *ngIf="!validFile && file && isChecked" class="table-responsive mytable"> 
+                            <h3 class="font18 font700 mb-10">Please Fix the following rows</h3>
+                            <table class="table" id="users">
+                                <thead>
+                                    <tr>
+                                        <th class="font14 font700">Issue Type</th>
+                                        <th class="font14 font700">Row Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let error of validationErrors">
+                                        <td class="font14">{{ error.image }}</td>
+                                        <td class="font14">{{ error.rowNum }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="validFile && file && isChecked" class="alert alert-success" role="alert">
+                            File is valid and can be uploaded
+                        </div>
+
+                        <button *ngIf="fileFormData && validFile" type="button" class="btn btn-primary mb-20" (click)="uploadSheet()">Upload File</button>
+
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>

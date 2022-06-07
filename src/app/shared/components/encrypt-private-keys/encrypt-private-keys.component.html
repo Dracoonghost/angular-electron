@@ -1,0 +1,25 @@
+<div class="card w-100">
+    <div class="card-body">
+        <form [formGroup]="keysForm" autocomplete="new-password">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Key</label>
+                        <input [type]="fieldPswdType ? 'text' : 'password'" class="form-control" formControlName="key" name='key' placeholder="Enter Key" autocomplete="new-password">
+                        <i class="fa field-icon cursor-pointer" [ngClass]="{'fa-eye-slash': !fieldPswdType, 'fa-eye': fieldPswdType}" (click)="toggleFieldPswdType()"></i>
+                        <div class="msg-error imgBox" *ngIf="!keysForm.controls['key'].valid && keysForm.controls['key'].touched">Enter Key</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="password" name='password' placeholder="Enter Password" autocomplete="new-password">
+                        <i class="fa field-icon cursor-pointer" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+                        <div class="msg-error imgBox" *ngIf="!keysForm.controls['password'].valid && keysForm.controls['password'].touched">Enter Password</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex w-100 justify-content-end">
+                <button type="button" class="btn btn-primary text-center mb-10" (click)="submitKeys(keysForm.value)">Decrypt Keys</button>
+            </div>
+        </form>
+    </div>
+</div>

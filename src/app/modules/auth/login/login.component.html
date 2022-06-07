@@ -1,0 +1,169 @@
+<div class="row w-100 mx-0 auth-page">
+    <div class="col-md-10 col-xl-10 mx-auto LoginMainDiv">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-6 pr-md-0 height80vh leftColumnLogin fadeInLeft">
+            <div class="auth-left-wrapper">
+              <div id="LoginLeft" class="carousel slide loginSlider" data-ride="carousel">
+  
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                  <li data-target="#LoginLeft" data-slide-to="0" class="active"></li>
+                  <li data-target="#LoginLeft" data-slide-to="1"></li>
+                  <li data-target="#LoginLeft" data-slide-to="2"></li>
+                  <li data-target="#LoginLeft" data-slide-to="3"></li>
+                </ul>
+                
+                <!-- The slideshow -->
+                <div class="carousel-inner text-center">
+                  <div class="carousel-item  text-center active">
+                    <div class="innerSlider loginFirstSlide">
+                      <img src="assets/images/LoginLeft.svg" class="SlideImg">
+                      <h2 class="TextBig text-white"><span class="bg-black monumentFont">ASSEMBLE</span><span class="bg-black">YOUR</span><span class="bg-black">TEAM</span></h2>
+                      <p class="font14 text-uppercase text-white LowerSliderText">
+                        <span class="bg-Light-Blue monumentFont">Create and own your personally encrypted Web3.</span>
+                        <span class="bg-Light-Blue monumentFont">Your data, your rules. Welcome!</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item text-center">
+                    <div class="innerSlider loginSecondSlide m-0">
+                      <img src="assets/images/Social - LoginSlider.svg" class="SlideImg">
+                      <!-- <h2 class="TextBig text-white"><span class="bg-black monumentFont">SOCIAL</span></h2> -->
+                      <p class="font18 font700 text-uppercase text-white LowerSliderText">
+                        <span class="bg-Light-Blue monumentFont"><b>Your</b> personally <b>encrypted</b></span>
+                        <span class="bg-Light-Blue monumentFont">multi-blockchain <b>solution</b></span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item text-center">
+                    <div class="innerSlider loginThirdSlide m-0">
+                      <img src="assets/images/Create - LoginSlider.svg" class="SlideImg">
+                      <h2 class="TextBig text-white"><span class="bg-black font14 monumentFont">Social v3.0. </span></h2>
+                      <p class="font18 font700 text-uppercase text-white LowerSliderText">
+                        <span class="bg-Light-Blue FirstBottom monumentFont">Own your <b>data</b> and <b>assets</b></span>
+                        <span class="bg-Light-Blue SecondBottom monumentFont"><b>MONETIZE</b> & CENSORSHIP FREE</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel-item text-center">
+                    <div class="innerSlider loginFourthSlide m-0">
+                      <img src="assets/images/Certify - LoginSlider.svg" class="SlideImg">
+                      <!-- <h2 class="TextBig text-white"><span class="bg-black monumentFont">CERTIFY</span></h2> -->
+                      <p class="font18 font700 text-uppercase text-white LowerSliderText">
+                        <span class="bg-Light-Blue monumentFont"><b>Omni-network</b>. True authentication.
+                          Mint, play, gift, own and <b>earn</b>. Directly.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#LoginLeft" data-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#LoginLeft" data-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </a>
+              </div>
+  
+  
+            </div>
+          </div>
+          <div class="col-md-6 pl-md-0 rightColumnLogin d-flex align-items-center height80vh fadeInRight">
+            <div class="auth-form-wrapper w-100 px-4 py-5">
+              <h3 class="font18 font700 mb-10">Please fill with your details to sign-in</h3>
+              <p class="font14">Your personally encrypted, multi-blockchain solution</p>
+              <form class="forms-sample" [formGroup]="loginForm" (keydown)="keyDownFunction($event)">
+                <div class="row" >
+                  <div class="form-group col-md-12">
+                  <label for="exampleInputEmail1" class="control-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1"  formControlName="Email" name='Email' placeholder="Email" >
+                  <div class="msg-error imgBox"
+                  *ngIf="!loginForm.controls['Email'].valid && loginForm.controls['Email'].touched">
+                  Enter your email ID</div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <label for="exampleInputUsername1" class="control-label">Password</label>
+                    <input [type]="fieldPswdType ? 'text' : 'password'" class="form-control" type="password" id="exampleInputOTP" formControlName="password" name="password" autocomplete="OTP" placeholder="Password">
+                    <i class="fa field-icon cursor-pointer" [ngClass]="{'fa-eye-slash': !fieldPswdType, 'fa-eye': fieldPswdType}" (click)="toggleFieldPswdType()"></i>
+                    <div class="msg-error imgBox"
+                  *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+                  Enter your password</div>
+                  </div>
+                </div>
+              
+
+
+                <div class="mt-3" >
+                  <button type="button" class="btn btn-primary mr-2 mb-2 mb-md-0 w-100" *ngIf="!pleaseWait" (click)="onLoggedin(loginForm.value)">Login</button>
+                  <button type="button" class="btn btn-primary mr-2 mb-2 mb-md-0 w-100" *ngIf="pleaseWait">Please Wait...</button>
+                </div>
+                <!-- <a routerLink="/signup" class="d-block text-center text-black AlreadyUser font14 AlreadyUser2">Not a registered user yet? <span class="colorBlue font700">Please sign up.</span></a> -->
+                 <label class="form-check-label text-center AlreadyUser font14">
+                         <a href="#" class="colorBlue font700"  data-toggle="modal" data-target="#myModal">Need help?</a>
+                      </label>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal CreateORganizationModal" id="myModal">
+    <div class="innerModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+      <!-- Modal body -->
+          <div class="modal-body p-0">
+            <div class="Card-Header pb-0">
+                <h6 class="card-title font18 font700 text-uppercase m-0">Create Your Support Ticket</h6>
+            </div>
+            <div class="ModalBodyInner">
+          <form class="UserDataForm">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="control-label">Name</label>
+                  <input type="text" class="form-control" placeholder="John">
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input type="email" class="form-control" placeholder="johnsmith@email.com">
+                </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="control-label">Message</label>
+                  <textarea type="text" class="form-control textareaInput"
+                      placeholder="How can we help?"></textarea>
+              </div>
+            </div>
+            
+          </div>
+          </form>
+          <div class="d-flex align-items-center justify-content-between">
+            <button type="submit" class="btn btn-secondary text-center BackBtnCustom" data-dismiss="modal" aria-label="Close">Close</button>
+            <button type="submit" class="btn btn-primary text-center">Send</button>
+          </div>
+      </div>
+      </div>
+        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->        
+    </div>
+  </div>
+  </div>
+</div>

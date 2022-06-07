@@ -1,0 +1,284 @@
+<app-select-client-id></app-select-client-id>
+
+<app-avaliable-block-chain *ngIf="common.ssidObject.name" [isModal]="false" [title]="'Select Your Wallet'">
+</app-avaliable-block-chain>
+
+<div class="row Slide ThirdAnimate">
+  <div class="col-md-12 mb-10">
+    <div *ngIf="common.selectedChain === 'KLAYTN'" class="card-body">
+      <form class="form" [formGroup]="contractAddressForm">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="control-label">Enter Contract Address to Fetch NFTs from</label>
+              <input class="form-control" name="contractAddress" formControlName="contractAddress"
+                placeholder="please enter the Contract Address to fetch NFTs from">
+              <div class="msg-error imgBox font14"
+                *ngIf="!contractAddressForm.controls['contractAddress'].valid && contractAddressForm.controls['contractAddress'].touched">
+                please enter a valid Address</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex align-items-center justify-content-between m-0">
+  <div class="BtnDiv w-100 Slide FourthAnimate">
+    <div class="BtnDiv d-flex w-100 justify-content-end">
+      <button
+        [disabled]="!common.selectedWalletPrivateKey || (common.selectedChain === 'KLAYTN' && !contractAddressForm.controls['contractAddress'].valid)"
+        type="button" class="btn btn-primary mt-20"
+        [ngClass]="!common.selectedWalletPrivateKey || (common.selectedChain === 'KLAYTN' && !contractAddressForm.controls['contractAddress'].valid) ? 'hide' : ''"
+        (click)="fetchNFT()">Fetch NFTs
+      </button>
+    </div>
+  </div>
+  <div class="row  Slide FourthAnimate">
+    <div class="col-md-12 mb-10">
+      <div class="msg-error imgBox" *ngIf="showSelectSSIDError">
+        Select Your Client ID</div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger ml-3 mt-4  Slide FourthAnimate" role="alert" *ngIf="allNFTList.length !== 0 && emptyNftsArray">
+  Looks like no nfts are associated with this wallet
+</div>
+
+<div *ngIf="emptyNftsArray" class="row FilterDark ImportNFTMainDiv mt-4 ">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+
+      <div class="Card-Header Slide FifthAnimate" *ngIf="allNFTList.length !== 0 && emptyNftsArray">
+        <h6 class="card-title font18 font700 m-0">Fetched NFT's available in the Selected Wallet</h6>
+      </div>
+      <div class="card-body Slide SixthAnimate">
+        <div class="SecondStepImport">
+          <div class="row OverflowScrollImport">
+            <div *ngFor="let nft of allNFTList; let i = index" class="col-md-12">
+              <div (click)="getSelectedNFT(i)" [ngClass]="{'selected': nft.selected === true}"
+                class="SingleNFTDiv ImportNFT position-relative mb-20 cursor-pointer">
+                <div class="card">
+                  <div class="card-body row d-flex align-items-center justify-content-start bg-Grey m-0">
+                    <div class="SingleNFTTopDiv  position-relative col-md-2">
+                      <!--  <img [src]="nft.imageUrl" class="NFTCarouselImg"> -->
+                      <img *ngIf="nft.imageUrl" [src]="nft.imageUrl" class="NFTCarouselImg">
+                      <img *ngIf="!nft.imageUrl" src="assets/images/placeholder.jpg" class="NFTCarouselImg">
+                      <span *ngIf="nft.symbol === 'RWSCT'" class="NFTApproved"><img src="assets/images/approvedNFT.png"
+                          class="Approvedimg" data-toggle="tooltip" data-placement="top"
+                          title="Client ID Confirmed"></span>
+                      <!-- <img src="../../../../assets/images/Approved NFT.png" class="Approvedimg" data-toggle="tooltip" data-placement="top" title="SSID Confirmed"> -->
+                    </div>
+                    <div class="SingleNFTMidDiv col-md-10">
+                      <div class="row SingleNFTMidDetailsDiv">
+                        <div class="SingleNFTMidinnerDiv col-md-6">
+                          <p class="font14 d-flex align-items-center mb-5px text-capitalize text-grey5">
+                            <span class="font700 text-uppercase text-grey3">Name:</span>
+                            <span class="TextLimit ml-5px text-grey5">{{nft.name}}</span>
+                          </p>
+                          <p *ngIf="nft.collection" class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700  text-uppercase text-grey3">Description</span>
+                            <span class="TextLimit ml-5px text-grey5">{{nft.collection.description}}</span>
+                          </p>
+                          <p *ngIf="nft.collection" class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700  text-uppercase text-grey3">Created
+                              On:</span>
+                            <span class="TextLimit ml-5px text-grey5">{{nft.collection.createdDate
+                                                            |
+                                                            date:'medium'}}</span>
+                          </p>
+                          <p class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700  text-uppercase text-grey3">Contract
+                              Address:</span>
+                            <span class="TextLimit ml-5px text-grey5">{{nft.token_address}}</span>
+                          </p>
+                          <p class="font14 d-flex align-items-center mb-5px">
+                            <span class="font700 text-uppercase text-grey3">Contract
+                              Type:</span>
+                            <span class="TextLimit ml-5px text-grey5">{{nft.contract_type}}</span>
+                          </p>
+                          <p class="font700 font14 mb-5px d-flex text-uppercase text-grey3">
+                            SOURCE: <span class="font400 pl-5px text-grey5">{{nft.symbol}}</span></p>
+                        </div>
+                        <div class="metaIDdiv font24 font700 col-md-6">
+                          <p class="m-0 d-grid text-greyc"><span>Meta ID:</span>
+                            <span class="MetaIdSpan">{{nft.token_id}}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row SecureMainDiv mt-10">
+                        <div class="col-md-12 text-right font14">
+                          <span *ngIf="nft.symbol === 'RWSCT'" class="Secure text-uppercase">
+                            Secured in NEST<sup>®</sup>
+                          </span>
+                          <span *ngIf="nft.symbol !== 'RWSCT'" class="NotSecure font14 text-uppercase">
+                            Unsecured
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="allNFTList.length === 0 && emptyNftsArray" class="row NFTListMain">
+            <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+              <img src="assets/images/NO_NFT.svg">
+              <h1 class="HeadingBig m-0 font700" > 0 Nfts found.</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="modal CreateORganizationModal ModalBig" id="showNetwork">
+  <div class="innerModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body p-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+
+          <div class="ModalBodyInner">
+            <div class="row FilterDark" *ngIf="!showWalletBtn">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="Card-Header">
+                    <h6 class="card-title font18 font700 text-uppercase m-0">Select Wallet</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="row m-0">
+                      <div class="col-md-12">
+                        <p class="font18 font700 mb-20">Swap to selected network and wallet</p>
+                      </div>
+                    </div>
+                    <div class="row m-0">
+                      <div class="col-md-6 single-radio mb-20"
+                        *ngFor="let item of avalaibleBlockChainData;let i = index">
+                        <div class="accordion NftCryptosMainDiv">
+
+                          <div class="card-header p-0" id="accordionExample1{{i}}">
+                            <button class="btn btn-link font700 font14 justify-content-start"
+                              [ngClass]="{active: item.selected}"
+                              (click)="modalCheckForKey(item.value);item.selected = !item.selected"
+                              data-toggle="collapse" attr.data-target="#collapse1{{i}}">
+                              <img class="category-img m-0" [src]="item.image">
+                              <span class="font14 font700 pl-20 d-grid text-left ">
+                                {{item.display}} </span>
+                              <i class="fas fa-angle-down"></i>
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapse1{{i}}">
+                            <div class="card-body p-0">
+                              <div class="TagsParent d-grid">
+                                <div class="w-100 " (click)="modalSelectWallets(key, item.value)"
+                                  *ngFor="let key of item.keys">
+                                  <span class="font14 font700 SingleRecordCrypto cursor-pointer"
+                                    [ngClass]="{'selected': importToWalletAddress === key.address}">{{key.accountName}}<span
+                                      class="font400">{{key.address}}</span></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row m-0">
+                      <div class="col-md-12 mb-10">
+                        <label *ngIf="selectedWalletPrivateKey" class="font18 font700">Wallet
+                          Address to Import To :-
+                          {{importToWalletAddress}} </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="importToWalletAddress" class="">
+
+                  <div class="card mb-20 mt-20">
+                    <div class="Card-Header">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Fee Details
+                        </h6>
+                        <div class="d-flex align-items-center justify-content-end">
+                          <button type="submit" [disabled]=" !importToWalletAddress || feeEstimateTimerCount >0"
+                            (click)="getEstimateFee()"
+                            [ngClass]="!importToWalletAddress || feeEstimateTimerCount >0 ? 'btn btn-primary d-block text-center w-100 pulseAnimation' : 'btn btn-primary d-block text-center w-100 pulseAnimation2'">Fetch
+                            Estimated Fees Again</button>
+                          <h6 class="card-title font18 font700 text-uppercase m-0 Timer">
+                            {{feeEstimateTimerCount}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="col-md-12 mb-20">
+                        <div *ngIf="feeDetails" class="InnerBlock mt-10">
+                          <p class="font18 font700 mb-10 d-flex align-items-center justify-content-between ">
+                            Your Current Wallet Balance ({{selectedChain}}): <span
+                              class="font400">{{feeDetails.balance.balance}}</span></p>
+
+                          <p class="font18 font700 mb-10 d-flex align-items-center justify-content-between ">
+                            Suffient Balance for this Transaction : <span class="font400">{{feeDetails.needFunding !== true ? 'Yes' :
+                                                            'No'}}</span></p>
+
+                          <p class="font18 font700 mt-10">IMPORT [in USD]:</p>
+                          <p class="font14 font700">Current Charge: <span class="font400">{{feeDetails.estimate.stakeCharges.USD.currentCharge
+                                                            | currency:'USD'}} </span></p>
+
+                          <p class="font18 font700 mt-10"> SECURE [in USD]:</p>
+                          <p class="font14 font700">Current Charge: <span class="font400">{{feeDetails.estimate.issueCharges.USD.currentCharge
+                                                            | currency:'USD'}} </span></p>
+
+                          <p class="font18 font700 mt-10">Total Estimated Price in USD:</p>
+                          <p class="font14 font700">Total Estimated Charge: <span class="font400">{{(feeDetails.estimate.stakeCharges.USD.currentCharge
+                                                            + feeDetails.estimate.issueCharges.USD.currentCharge ) |
+                                                            currency:'USD'}} </span></p>
+
+                          <div *ngIf="feeDetails.needFunding">
+                            <p class="font18 font700 mt-10"> Estimated Fees Fund :</p>
+                            <p class="font14 font700">Gas fees for Staking: <span
+                                class="font400">{{feeDetails.differenceInCrypto}}
+                              </span></p>
+                            <p class="font14 font700">fees for Funding: <span class="font400">{{(feeDetails.differenceInUSD ) |
+                                                                currency:'USD'}} </span></p>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-12 d-flex align-items-center justify-content-between">
+                    <!-- <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                            aria-hidden="true">Back</button> -->
+                    <button class="btn btn-secondary BackBtnCustom" type="button" data-dismiss="modal"
+                      aria-label="Close">Back</button>
+                    <button *ngIf="feeDetails?.needFunding" class="btn btn-primary" (click)="fundWallet()">Fund the
+                      Wallet</button>
+                    <button [disabled]="feeEstimateTimerCount <=0 || feeDetails.needFunding" class="btn btn-primary"
+                      (click)="importNFT()">Import Selected NFT</button>
+                  </div>
+                </div>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+            </div>
+          </div>
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1103 @@
+<app-select-client-id *ngIf="nftData.profileID === myProfileID"></app-select-client-id>
+
+
+<div class="row FilterDark NFTPreviewRow ">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card Slide">
+
+            <div class="Card-Header">
+                <h6 class="card-title font18 font700 m-0 SlideLeft ThirdAnimate" *ngIf="!nftData?.history">NFT Preview
+                </h6>
+
+                <div class="d-flex justify-content-between align-items-center " *ngIf="nftData?.history">
+                    <h6 class="card-title font18 font700 m-0 SlideLeft ThirdAnimate">NFT</h6>
+                    <div class="TopHeaderDiv p-0 CreatedTopbar SlideRight ThirdAnimate">
+                        <span class="d-flex justify-content-start align-items-center">
+                            <span class="font14"><i class="far fa-clock"></i> <b>Created on </b></span>
+                            <span class="font14 pl-5px">{{nftData.createdAt || myDate | date:
+                                'shortDate'}}</span>
+                        </span>
+                    </div>
+                    <!-- <button type="button" class="btn btn-primary m-0"
+                        *ngIf="nftData.history && nftData.profileID === myProfileID">
+                        Edit</button> -->
+                </div>
+
+            </div>
+            <div class="card-body DataTableInfo">
+                <!-- <h6 class="card-title font18 font700" *ngIf="!nftData.history">NFT Preview</h6>
+                <div class="d-flex justify-content-between align-items-center mb-20" *ngIf="nftData.history">
+                    <h6 class="card-title font18 font700 m-0">NFT</h6>
+
+                    <button type="button" class="btn btn-primary m-0" *ngIf="nftData.history && nftData.profileID === myProfileID">
+                        Edit</button>
+                </div> -->
+                <div class="row mt-20 mb-20">
+                    <div class="col-md-12 mb-20 Slide FourthAnimate">
+
+
+                        <div class="d-flex align-items-center justify-content-between">
+
+                            <div class="NFTTitle w-100">
+                                <p class="font18 font700 mb-5px w-100">{{nftData.name}}</p>
+                                <p class="font14 m-0">{{nftData.description}}</p>
+                            </div>
+
+                            <!-- <div class="WishlistDiv">
+                                <span class="WishlistIcon cursor-pointer"><i class="far fa-heart"></i></span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 PreviewLeftCol">
+                        <div class="NFTImageInner p-0 SlideLeft FifthAnimate">
+                            <div class="NFTImage">
+                                <img [src]="nftData.coverImageURL || nftData.thumbnail" class="w-100">
+                                <span class="PreviewImg cursor-pointer" data-toggle="modal" data-target="#ViewImg"><i
+                                        class="far fa-eye"></i></span>
+                                <span class="NFTApproved"><img src="assets/images/approvedNFT.png" class="Approvedimg"
+                                        data-toggle="tooltip" data-placement="top" title="Client ID Confirmed"></span>
+                            </div>
+
+
+
+                        </div>
+                        <div class="position-relative SlideLeft EightAnimate">
+                            <div id="mapPreview" class="map_Image"></div>
+                            <div *ngIf="nftData.city" class="LocationDetailsBox">{{nftData.city}}, {{nftData.state}},
+                                {{nftData.country}}</div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <div class="accordion NftTagsMainDiv SlideRight SixthAnimate" id="accordionExample">
+
+                            <div class="card" *ngIf="nftData.tags ? nftData.tags.length >= 1 : false">
+                                <div class="card-header border-0">
+                                    <button class="btn btn-link font700 font18 text-uppercase" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true"> Tags
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                </div>
+                                <div class="in collapse show" id="collapseOne" data-parent="#accordionExample">
+                                    <div class="card-body d-flex">
+                                        <div class="TagsParent" *ngFor="let item of nftData.tags">
+                                            <span class="SingleTagNft">{{item}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="accordion NftTagsMainDiv mt-20 SlideRight SeventhAnimate" id="accordionResult">
+
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <button class="btn btn-link font700 font18 text-uppercase cursor-text"> NFT Details
+                                        <span class="CopySpan cursor-pointer"> <i class="fas fa-chevron-down mr-10"
+                                                data-toggle="collapse" data-target="#collapseResult"
+                                                aria-expanded="true"></i>
+                                            <i class="far fa-copy" (click)="copyNFTDetails()"></i></span>
+                                    </button>
+                                </div>
+                                <div class="in collapse show" id="collapseResult" data-parent="#accordionResult">
+                                    <div class="card-body d-flex p-0">
+                                        <div class="DetailsBox w-100">
+                                            <div class="transactionDetailsBox font14">
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Result Page</li>
+                                                    <li class="rightLi">
+                                                        <a (click)="openLinkInBrowser(resultPageURL + nftData?.txid)"
+                                                            class="textblue cursor-pointer">
+                                                            <span>
+                                                                {{nftData.personalizedEndpoint}}<i
+                                                                    class="fas fa-external-link-alt textblue"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">TXID</li>
+                                                    <li class="rightLi"><span
+                                                            class="textblue cursor-pointer customlimit"><span
+                                                                class="Textlimit2" (click)="txID(nftData.txid)"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="{{nftData.txid}}">{{nftData.txid ||
+                                                                'xxxxxx'}}</span><i
+                                                                class="fas fa-external-link-alt textblue"></i></span>
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Token ID</li>
+                                                    <li class="rightLi">{{nftData.tokenID || 'xxxxxxx'}}
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Blockchain</li>
+                                                    <li class="rightLi"
+                                                        (click)="openSeaLink(nftData.tokenID,common.selectedChain || nftData.blockchain)">
+                                                        {{nftData.blockchain }}
+                                                    </li>
+                                                </ul>
+                                                <ul *ngIf="nftData.fileSize || common.fileSize" class="tableUl">
+                                                    <li class="font700 leftLi">File Size</li>
+                                                    <li class="rightLi">{{ nftData.fileSize || common.fileSize }} </li>
+                                                </ul>
+
+
+                                                <!-- <tr>
+                                                        <td class="font700">City</td>
+                                                        <td><span class="">{{nftData.city || 'xxxxxxx'}}</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font700">State</td>
+                                                        <td><span class="">{{nftData.state || 'xxxxxxx' }}</span></td>
+                                                    </tr> -->
+
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Country</li>
+                                                    <li class="rightLi">{{nftData.country || 'xxxxxxx'}}
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl"
+                                                    *ngIf="nftData?.history && nftData.profileID === myProfileID">
+                                                    <li class="font700 leftLi">Certificate</li>
+                                                    <li class="rightLi"><span class="textblue cursor-pointer"
+                                                            (click)="certificate()">Link
+                                                            <i class="fas fa-external-link-alt textblue"></i></span>
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl"
+                                                    *ngIf="nftData?.history && nftData.profileID === myProfileID">
+                                                    <li class="font700 leftLi">Owner Address</li>
+                                                    <li class="rightLi"><span class="textblue cursor-pointer"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="{{nftData.ownerAddress}}">{{nftData.ownerAddress}}
+                                                            <i class="fas fa-external-link-alt textblue"></i></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="accordion NftTagsMainDiv mt-20 SlideRight NinthAnimate" id="accordionAdvance">
+
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <button class="btn btn-link font700 font18 text-uppercase cursor-text"> Advanced NFT
+                                        Details
+                                        <span class="CopySpan cursor-pointer"> <i class="fas fa-chevron-down mr-10"
+                                                data-toggle="collapse" data-target="#collapseAdvance"
+                                                aria-expanded="true"></i>
+                                            <i class="far fa-copy" (click)="copyAdvanceNFTDetails()"></i></span>
+                                    </button>
+
+                                </div>
+                                <div class="in collapse show" id="collapseAdvance" data-parent="#accordionAdvance">
+                                    <div class="card-body d-flex p-0">
+                                        <div class="DetailsBox w-100">
+                                            <div class="transactionDetailsBox font14">
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Key</li>
+                                                    <li class="rightLi"><span><a href="#" (click)="redirecttostorejk()"
+                                                                class="textblue">{{nftData.storjKey ||
+                                                                'xxxxxxx'}}</a></span>
+                                                    </li>
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">AERIE<sup>®</sup> ID</li>
+                                                    <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                        title="{{nftData.SPORTALID}}"><span>{{nftData.SPORTALID ||
+                                                            'xxxxxx'|slice:0:50}}...</span>
+                                                    </li>
+
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">IPFS</li>
+                                                    <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                        title="{{nftData.IPFSHash}}"><span>{{nftData.IPFSHash ||
+                                                            'xxxxxxx'}}</span>
+                                                    </li>
+
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Profile ID</li>
+                                                    <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                        title="{{nftData.profileID}}"><span>{{nftData.profileID
+                                                            ||myProfileID
+                                                            }}</span></li>
+
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Client ID</li>
+                                                    <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                        title="{{nftData.ssid}}"><span
+                                                            (click)="goToSelectedSSID(nftData.ssid)"
+                                                            class="colorBlue cursor-pointer text-underline">{{nftData.ssid
+                                                            ||'xxxxxxx' }}</span></li>
+
+                                                </ul>
+                                                <ul class="tableUl">
+                                                    <li class="font700 leftLi">Client Name</li>
+                                                    <li class="rightLi"><span>{{nftData.ssidName ||'xxxxxxx' }}</span>
+                                                    </li>
+                                                </ul>
+                                                <!-- <ul class="tableUl"
+                                                    *ngIf="nftData.history && nftData.profileID === myProfileID">
+                                                    <li class="font700 leftLi">Invoice</li>
+                                                    <li class="rightLi"><span class="textblue cursor-pointer"
+                                                            (click)="invoice()">Link <i
+                                                                class="fas fa-external-link-alt textblue"></i></span>
+                                                    </li>
+                                                </ul> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-20">
+                    <div class="col-md-12 Slide TenthAnimate">
+                        <div class="NftTopRightDetailDiv">
+                            <div class="TopHeaderDiv">
+                                <span class="d-flex justify-content-start align-items-center">
+                                    <span class="font14"><b>Metadata</b></span>
+                                </span>
+                            </div>
+                            <div class="MiddleDiv">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center ProvenanceSingle">
+                                        <span class="text-black font14 pl-5px">
+                                            {{nftData.txid || 'xxxxxxx'}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-20">
+                    <div class="col-md-12">
+
+                        <div class="w-100" *ngIf="nftData?.history && nftData.profileID === myProfileID">
+                            <!-- <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#BridgeModal">Bridge</button> -->
+                            <!-- <button type="button" class="btn btn-primary w-100 mt-20"><a class="text-white" href="https://tob.theotherfruit.io/sportal/{{nftData.personalizedEndpoint}}" target="_blank">Explore</a></button> -->
+
+                            <!-- <div class="NftTopRightDetailDiv mt-20 BridgeMainDiv">
+                                <div class="TopHeaderDiv">
+                                    <span class="d-flex justify-content-between align-items-center">
+                                        <span class="font18 font700">Your Current Blockchain - {{nftData.blockchain}}</span>
+                                        <span class="font18 font700">Move To</span>
+                                    </span>
+                                </div>
+                                <div class="MiddleDiv"> -->
+                            <!-- <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="assets/images/ava.svg" class="IconCrypto">
+                                                        <span class="text-black font14">AVA</span>
+                                                    </div>
+                                                    <img src="assets/images/BridgeArrow.svg" class="BridgeArrow">
+                                                    <span class="text-black font14 pl-5px">  
+                                                        <select name="SelectCrypto" class="SelectCrypto" id="SelectCrypto">
+                                                            <option hidden>Select</option>
+                                                            <option value="BNB">
+                                                                <img src="assets/images/ava.svg" class="IconCrypto"> BNB</option>
+                                                            <option value="ETH">
+                                                                <img src="assets/images/ava.svg" class="IconCrypto"> ETH</option>
+                                                            <option value="XLM">
+                                                                <img src="assets/images/ava.svg" class="IconCrypto"> XLM</option>
+                                                            <option value="SOLANA">
+                                                                <img src="assets/images/ava.svg" class="IconCrypto"> SOLANA</option>  
+                                                    </select>
+                                                    </span>
+                                                </div> -->
+
+
+                            <!-- 
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-20">
+                        <div *ngIf="nftData?.history" class="NftTopRightDetailDiv Slide EleventhAnimate">
+                            <div class="TopHeaderDiv">
+                                <span class="d-flex justify-content-start align-items-center">
+                                    <span class="font14">
+                                        <i class="far fa-clock"></i>
+                                        <b>Provenance Tracking</b>&nbsp;
+                                        <a href="https://tob.theotherfruit.io/sportal/{{nftData.personalizedEndpoint}}"
+                                            class="textblue cursor-pointer">
+                                            <i class="fas fa-external-link-alt textblue"></i>
+                                        </a>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="MiddleDiv">
+                                <div *ngFor="let history of nftData?.history"
+                                    class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center ProvenanceSingle">
+                                        <span class="text-black font14"><a (click)="openExplorer(history)"
+                                                class="textblue cursor-pointer"><b>{{history.event}}</b></a></span>
+                                        <span class="text-black font14 pl-5px">{{history.timestamp | date:'medium'}}
+                                            <!-- <b>Solana</b> to <b>Volary</b> -->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-20 d-flex justify-content-between  Slide TwelthAnimate">
+                        <button type="button" class="btn btn-primary BackBtnCustom" *ngIf="nftData.edit"
+                            (click)="editNF()">Edit NFT</button>
+                        <button type="button" class="btn btn-primary" *ngIf="!nftData?.history"
+                            (click)="checkCurrentFees()">Show Summary and Create NFT</button>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-md mt-20 text-right" *ngIf="feeDetails">
+                        <button type="button" class="btn btn-primary ">{{feeDetails.result.status.result}}</button>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">   
+                    <div class="col-md mt-20 text-right" >
+                        <button type="button" class="btn btn-primary " (click)="goToBridgeNFT()">Bridge NFT</button>
+                    </div>
+                </div> -->
+
+                <div class="row justify-content-start NFTListBtnMain  Slide ThirteenththAnimate">
+                    <!-- <div class="col-md mt-20" *ngIf="!nftData.history">
+                        <button type="button" class="btn btn-primary " (click)="getHashes(null)">Save</button>
+                    </div> -->
+                    <!-- <div class="col-md-6 mb-20 " *ngIf="nftData.history && nftData.profileID === myProfileID">
+                        <button type="button" class="btn btn-primary Btn-Big w-100"><i class="far fa-edit"></i>
+                            Edit</button>
+                    </div> -->
+
+                    <!-- <div class="col-md mb-20">
+                        <div class="SingleBigBtnPreviewRow FirstBtn">
+                            <div class="d-flex align-items-center justify-content-between h-100 inner">
+                                <div class="imgDivBtn">
+                                    <img src="assets/images/NFT PreviewBtn 1.svg">
+                                </div>
+                                <div class="RightDivBtn">
+                                    <div class="TitlenDes w-100 text-white">
+                                        <p class="font14 font700 m-0">Bridge</p>
+                                        <p class="font12 TextLimit2lines m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-start">
+                                        <a class="CustomBTn cursor-pointer" data-toggle="modal" data-target="#BridgeModal">GO <img src="../../../assets/images/RightArrow.svg"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md mb-20">
+                        <div class="SingleBigBtnPreviewRow SecondBtn">
+                            <div class="d-flex align-items-center justify-content-between h-100 inner">
+                                <div class="imgDivBtn">
+                                    <img src="assets/images/NFT PreviewBtn 1.svg">
+                                </div>
+                                <div class="RightDivBtn">
+                                    <div class="TitlenDes w-100 text-white">
+                                        <p class="font14 font700 m-0">Explore</p>
+                                        <p class="font12 TextLimit2lines m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-start">
+                                        <a href="http://localhost:4300/sportal/{{nftData.txid}}" class="CustomBTn cursor-pointer">GO <img src="../../../assets/images/RightArrow.svg"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <div *ngIf="nftData?.history && nftData.profileID === myProfileID" class="col-md mb-20">
+                        <div class="BottomBtnPreviewRow">
+                            <a class="CustomBTn cursor-pointer" (click)="openTransferDialog()"> <img
+                                    src="assets/images/download.png" class="iconImg hide"> Transfer <img
+                                    src="assets/images/RightArrow.svg"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md mb-20" *ngIf="nftData?.history && nftData.profileID === myProfileID">
+                        <div class="BottomBtnPreviewRow switch_disabled">
+                            <a class="CustomBTn cursor-pointer" (click)="openInBrowser(nftData.tokenID,false)"> <img
+                                    src="assets/images/push.png" class="iconImg hide"> Push On Marketplace <img
+                                    src="assets/images/RightArrow.svg"></a>
+                        </div>
+                    </div>
+                    <div class="col-md mb-20" *ngIf="nftData.storjKey">
+                        <div class="BottomBtnPreviewRow">
+                            <a class="CustomBTn cursor-pointer" (click)="downloadStorj(nftData.storjKey)"> <img
+                                    src="assets/images/download.png" class="iconImg hide"> Download Master Asset <img
+                                    src="assets/images/RightArrow.svg"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md mb-20" *ngIf="nftData?.history && nftData.profileID === myProfileID">
+                        <div class="BottomBtnPreviewRow">
+                            <a class="CustomBTn cursor-pointer" data-toggle="modal" data-target="#BridgeModal"> <img
+                                    src="assets/images/swap.png" class="iconImg hide"> Swap Networks <img
+                                    src="assets/images/RightArrow.svg"></a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="nftData?.history && nftData.profileID === myProfileID" class="col-md mb-20">
+                        <div class="BottomBtnPreviewRow">
+                            <a class="CustomBTn cursor-pointer" (click)="refreshMetaData()"> Refresh Metadata<img
+                                    src="assets/images/RightArrow.svg"></a>
+                        </div>
+                    </div>
+                    <!-- <div class="mt-20 " *ngIf="nftData.history && nftData.profileID === myProfileID">
+                            <button type="button" class="btn btn-primary " (click)="invoice()">Invoice</button>
+                        </div> -->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="FixedPreviewTable">
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="close" (click)="closeTable()"><span aria-hidden="true">×</span></button>
+            <p class="font14 m-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="modal CreateORganizationModal ViewImg" id="ViewImg">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close ClosePrevieImg"><span
+                        aria-hidden="true">×</span></button>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <img [src]="nftData.coverImageURL || nftData.thumbnail" class="w-100">
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal" id="encryptPrivateKeys">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Decrypt Your Keys For
+                            {{this.nftData.ssidName}}</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <div class="CardFullWidthRow cryptoModal p-0">
+                            <app-encrypt-private-keys></app-encrypt-private-keys>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-primary d-block text-center w-100">Next</button> -->
+                    </div>
+                </div>
+                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal" id="estimateFeesModal">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body p-0 feesDetailsBox">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <div class="d-flex align-items-center justify-content-between feesDetailsBoxInner">
+                            <h6 class="card-title font18 font700 text-uppercase m-0">Fee Details</h6>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <h6 class="card-title font18 font700 text-uppercase m-0 Timer">{{feeEstimateTimerCount}}
+                                </h6>
+                                <button type="submit" [disabled]="feeEstimateTimerCount >0" (click)="getEstimateFee()"
+                                    [ngClass]="feeEstimateTimerCount >0 ? 'btn btn-primary text-center w-100 pulseAnimation' : 'btn btn-primary text-center w-100 pulseAnimation2'">Fetch
+                                    Estimate Fees Again</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="ModalBodyInner">
+
+                        <div class="InnerBlock">
+                            <p class="font14 font700">Your Current Wallet Balance ({{nftData?.blockchain}}): <span
+                                    class="font400">{{feeDetails?.balance.balance}}</span></p>
+                            <p class="font14 font700">Charge fee: <span
+                                    class="font400">{{feeDetails?.estimate.charges.fee}}</span></p>
+                            <p class="font14 font700">Gas Price: <span
+                                    class="font400">{{feeDetails?.estimate.charges.gasPriceInNumber}} </span></p>
+                            <p class="font14 font700">Gas Limit : <span
+                                    class="font400">{{feeDetails?.estimate.charges.gasLimit}}</span></p>
+                            <p class="font14 font700">1 {{nftData.blockchain}} Price: <span
+                                    class="font400">{{feeDetails?.estimate.charges.USD.price | currency:'USD'}} </span>
+                            </p>
+                            <p class="font18 font700 mt-30">Price in USD:</p>
+                            <p class="font14 font700">Current Charge: <span
+                                    class="font400">{{feeDetails?.estimate.charges.USD.currentCharge | currency:'USD'}}
+                                </span></p>
+                        </div>
+                        <button type="submit" [disabled]="feeEstimateTimerCount <=0" (click)="processNFTAndCreate()"
+                            class="btn btn-primary text-center w-100">Create NFT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal" id="estimateFeesModalTransfer">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body p-0 feesDetailsBox">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <div class="d-flex align-items-center justify-content-between feesDetailsBoxInner">
+                            <h6 class="card-title font18 font700 text-uppercase m-0">Fee Details</h6>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <h6 class="card-title font18 font700 text-uppercase m-0 Timer">{{feeEstimateTimerCount}}
+                                </h6>
+                                <button type="submit" [disabled]="feeEstimateTimerCount >0"
+                                    (click)="getEstimateFeeForTransfer()"
+                                    [ngClass]="feeEstimateTimerCount >0 ? 'btn btn-primary text-center w-100 pulseAnimation' : 'btn btn-primary text-center w-100 pulseAnimation2'">Fetch
+                                    Estimate Fees Again</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="ModalBodyInner">
+
+                        <div class="InnerBlock">
+                            <p class="font14 font700">Your Current Wallet Balance ({{nftData?.blockchain}}): <span
+                                    class="font400">{{feeDetails?.balance.balance}}</span></p>
+                            <p class="font14 font700 mb-10 d-flex align-items-center justify-content-between ">
+                                Suffient Balance for this Transaction : <span class="font400">{{feeDetails?.needFunding
+                                    !== true ?
+                                    'Yes' :
+                                    'No'}}</span></p>
+
+                            <div *ngIf="feeDetails?.needFunding" class="accordion NftTagsMainDiv">
+                                <div class="card mt-20">
+                                    <div class="card-header border-0">
+                                        <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                            data-target="#eff_box" aria-expanded="true"> Estimated Fees Fund:
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="in collapse show" id="eff_box">
+                                        <div class="card-body p-0">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr class="Voter_TR">
+                                                        <td class="text-left font700">Estimated Required difference for
+                                                            Transaction:</td>
+                                                        <td class="text-right">{{feeDetails?.differenceInCrypto}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="Voter_TR">
+                                                        <td class="text-left font700">Fees for Funding:</td>
+                                                        <td class="text-right">{{(feeDetails?.differenceInUSD ) |
+                                                            currency:'USD'}} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="font14 font700">Charge fee: <span
+                                    class="font400">{{feeDetails?.estimate.charges.fee}}</span></p>
+                            <p class="font14 font700">Gas Price: <span
+                                    class="font400">{{feeDetails?.estimate.charges.gasPriceInNumber}} </span></p>
+                            <p class="font14 font700">Gas Limit : <span
+                                    class="font400">{{feeDetails?.estimate.charges.gasLimit}}</span></p>
+                            <p class="font14 font700">1 {{nftData.blockchain}} Price: <span
+                                    class="font400">{{feeDetails?.estimate.charges.USD.price | currency:'USD'}} </span>
+                            </p>
+                            <p class="font18 font700 mt-30">Price in USD:</p>
+                            <p class="font14 font700">Maximum Charge: <span
+                                    class="font400">{{feeDetails?.estimate.charges.USD.currentCharge | currency:'USD'}}
+                                </span></p>
+                        </div>
+                        <button type="submit" [disabled]="feeEstimateTimerCount <=0 || feeDetails?.needFunding "
+                            (click)="transferNFT()" class="btn btn-primary text-center w-100">Transfer NFT</button>
+                        <button *ngIf="feeDetails?.needFunding" class="btn btn-primary text-center w-100"
+                            (click)="fundWallet()">Fund the Wallet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal BridgeModal" id="BridgeModal">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Select bridge
+                        </h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <h4 class="font18 font700 mb-20">Please select the bridge process you want to execute:
+                        </h4>
+                        <div class="row m-0 MultiCryptoWallet" *ngFor="let bridge of bridgeData | keyvalue">
+                            <div class="row MultiCryptoWallet">
+                                <label *ngFor="let i of bridge.value | keyvalue" class="single-radio w-100 col-md-6">
+                                    <div [ngClass]="i.value === 0 ? 'ComingSoonBox' : '' ">
+                                        <div
+                                            [ngClass]="i.key === selectedChain  ? 'radioInnerDiv active' : 'radioInnerDiv'">
+                                            <div class="radioInnerDivSub justify-content-between">
+                                                <div class="leftDiv text-center">
+                                                    <img class="category-img mb-5px"
+                                                        src="assets/images/ethereum_coloured.svg">
+                                                    <span class="font14">{{bridge.key}}</span>
+                                                </div>
+                                                <img class="BridgeArrow" src="assets/images/BridgeArrow.svg">
+                                                <div class="leftDiv text-center">
+                                                    <img class="category-img mb-5px"
+                                                        src="assets/images/ava_colored.svg">
+                                                    <span class="font14">{{i.key}}</span>
+                                                </div>
+                                                <span class="WholeDivClickable cursor-pointer"
+                                                    [ngClass]="{ 'selected' : i.key === this.selectedChain }"
+                                                    (click)="getAvailableWallets(bridge.key, i.key)"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngIf="avalaibleSelectedChainWallets[0] && avalaibleSelectedChainWallets[0].keys[0]"
+                            class="row BridgeFetchedDiv mt-10">
+                            <!-- Dynamic one -->
+                            <div class="col-md-12 single-radio mb-20"
+                                *ngFor="let item of avalaibleSelectedChainWallets;let i = index">
+                                <h4 class="font14">Please select your account:
+                                </h4>
+                                <div class="accordion NftCryptosMainDiv">
+                                    <div class="card">
+                                        <div class="card-header p-0" id="accordionExample{{i}}">
+                                            <button data-toggle="collapse" [ngClass]="{active: item.selected}"
+                                                (click)="checkForKey(item.value);item.selected = !item.selected"
+                                                class="btn btn-link font700 font14 justify-content-start"
+                                                [attr.data-target]="'#collapse' + i">
+                                                <img class="category-img m-0" src="assets/images/ava.svg">
+                                                <span class="font14 font700 pl-20 d-grid text-left">
+                                                    {{item.display}}
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="in collapse show" id="collapse{{i}}">
+                                            <div class="card-body p-0">
+                                                <div class="TagsParent d-grid">
+                                                    <div class="w-100" (click)="selectWallet(key, item.value)"
+                                                        *ngFor="let key of item.keys; let index=index">
+                                                        <span class="font14 font700 SingleRecordCrypto cursor-pointer"
+                                                            [ngClass]="{'selected': selectedWalletObject?.key === key.key , 'ComingSoonBox': (item.value === nftData.blockchain && key.address.toLowerCase() === nftData.ownerAddress.toLowerCase()) } ">
+                                                            {{key.accountName}}
+                                                            <span class="font400">{{key?.key
+                                                                |
+                                                                slice:10:32}}...
+
+                                                            </span>
+                                                            <b *ngIf="key.address.toLowerCase() === nftData.ownerAddress.toLowerCase()"
+                                                                class="CO_tag font400">Current
+                                                                Owner</b>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Dynamic one -->
+                        </div>
+
+                        <div class="row MultiCryptoWallet">
+
+                            <div *ngIf="avalaibleSelectedChainWallets[0] && !avalaibleSelectedChainWallets[0].keys[0]"
+                                class="MultiCryptoWallet NoRecordsFound col-md-12">
+                                <div class="text-left">
+                                    <p class="font14 m-0">Sorry no record found, try creating a new multicrypto wallet
+                                        for the chain
+                                        <b>{{selectedChain}}</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row MultiCryptoWallet">
+                            <div class="col-md text-left bridgeBtns">
+                                <!-- <button  class="btn btn-primary" data-toggle="modal" data-target="#multiWallet"> Add
+                                    Wallet
+                                    Keys</button> -->
+
+                                <button class="btn btn-primary BackBtnCustom" data-dismiss="modal">Close</button>
+
+                                <button class="btn btn-primary"
+                                    [ngClass]="selectedChain && selectedWalletObject ? '': 'ComingSoonBox'"
+                                    (click)="openBridgeSummary()">
+                                    Check Estimates and Bridge to
+                                    {{selectedChain}}</button>
+
+
+                                <!-- <div class="msg-error imgBox" *ngIf="showSelectMultiKeyError">
+                                        select Your Key</div> -->
+                            </div>
+                        </div>
+
+                        <!-- code by Shivam -->
+                        <!-- <div class="col-md-4 single-radio mb-10"
+                                *ngFor="let item of avalaibleSelectedChainWallets;let i = index">
+                                <div class="accordion NftCryptosMainDiv">
+                                    <div class="card">
+                                        <div class="card-body p-0">
+                                            <div class="TagsParent d-grid">
+                                                <div class="w-100 " (click)="selectWallet(key, item.value)"
+                                                    *ngFor="let key of item.keys">
+                                                    <span
+                                                        class="font14 font700 SingleRecordCrypto cursor-pointer"
+                                                        [ngClass]="{'selected': selectedWalletObject?.key === key.key}">
+                                                        {{key.accountName}}
+                                                        <span class="font400">{{key?.key | slice:10:32}}...
+                                                        </span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                        <!-- <div class="SelectAccountMain">
+                                    <p class="font14 font700 text-grey mb-10 pt-20px">Please select your account
+                                    </p>
+                                    <div
+                                        class="d-flex align-items-center justify-content-between singleAccount mb-10">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <img src="assets/images/photo_with_otp.png">
+                                            <div class="">
+                                                <p class="font14 font700 mb-5px">Neeraj Trivedi</p>
+                                                <p class="font14 font700 TextLimit m-0">
+                                                    JTVfbunYUHminhOYUByng75urtj
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button class="btm btn-primary">Move to</button>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center justify-content-between singleAccount mb-10">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <img src="assets/images/photo_with_otp.png">
+                                            <div class="">
+                                                <p class="font14 font700 mb-5px">Neeraj Trivedi</p>
+                                                <p class="font14 font700 TextLimit m-0">
+                                                    JTVfbunYUHminhOYUByng75urtj
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button class="btm btn-primary">Move to</button>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center justify-content-between singleAccount mb-10">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <img src="assets/images/photo_with_otp.png">
+                                            <div class="">
+                                                <p class="font14 font700 mb-5px">Neeraj Trivedi</p>
+                                                <p class="font14 font700 TextLimit m-0">
+                                                    JTVfbunYUHminhOYUByng75urtj
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button class="btm btn-primary">Move to</button>
+                                    </div>
+                                </div> -->
+                        <!-- </div>  -->
+                        <!-- code by Shivam -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal BridgeModal" id="BridgeSummaryModal">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                        aria-hidden="true">×</span></button>
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Swapping Network Summary</h6>
+                        <div class="mt-20 d-flex align-items-center justify-content-end">
+                            <button type="submit" [disabled]="feeEstimateTimerCount >0"
+                                (click)="getEstimateFeeForBridge()" class="btn btn-primary text-center w-100">Fetch
+                                Estimate Fees Again</button>
+                            <h6 class="card-title font18 font700 text-uppercase m-0 Timer">
+                                {{feeEstimateTimerCount}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="ModalBodyInner">
+
+                        <div class="col-md-12 mb-20">
+                            <div *ngIf="feeDetails" class="InnerBlock mt-10">
+                                <p class="font14 font700 mb-10 d-flex align-items-center justify-content-between ">
+                                    Your Current Wallet Balance ({{nftData.blockchain}}): <span
+                                        class="font400">{{feeDetails?.balance.balance}}</span>
+                                </p>
+
+                                <p class="font14 font700 mb-10 d-flex align-items-center justify-content-between ">
+                                    Suffient Balance for this Transaction : <span
+                                        class="font400">{{feeDetails?.needFunding !== true ?
+                                        'Yes' :
+                                        'No'}}</span></p>
+
+                                <div class="accordion NftTagsMainDiv">
+                                    <div class="card mt-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                data-target="#snc_box" aria-expanded="true"> Swapping Network Charges
+                                                [in USD]:
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="in collapse show" id="snc_box">
+                                            <div class="card-body p-0">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="Voter_TR">
+                                                            <td class="text-left font700">Current Charge:</td>
+                                                            <td class="text-right">
+                                                                {{feeDetails?.estimate?.stakeCharges?.USD?.currentCharge
+                                                                | currency:'USD'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion NftTagsMainDiv">
+                                    <div class="card mt-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                data-target="#secureNFT_box" aria-expanded="true"> SECURE [in USD]:
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="in collapse show" id="secureNFT_box">
+                                            <div class="card-body p-0">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="Voter_TR">
+                                                            <td class="text-left font700">Current Charge:</td>
+                                                            <td class="text-right">
+                                                                {{feeDetails?.estimate?.issueCharges?.USD?.currentCharge
+                                                                | currency:'USD'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion NftTagsMainDiv">
+                                    <div class="card mt-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                data-target="#tep_box" aria-expanded="true"> Total Estimated Price [in
+                                                USD]:
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="in collapse show" id="tep_box">
+                                            <div class="card-body p-0">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="Voter_TR">
+                                                            <td class="text-left font700">Total Estimated Charge:</td>
+                                                            <td class="text-right">
+                                                                {{(feeDetails?.estimate?.stakeCharges?.USD?.currentCharge
+                                                                +
+                                                                feeDetails?.estimate?.issueCharges?.USD?.currentCharge)
+                                                                | currency:'USD'}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="feeDetails.needFunding" class="accordion NftTagsMainDiv">
+                                    <div class="card mt-20">
+                                        <div class="card-header border-0">
+                                            <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                data-target="#eff_box" aria-expanded="true"> Estimated Fees Fund:
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div class="in collapse show" id="eff_box">
+                                            <div class="card-body p-0">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="Voter_TR">
+                                                            <td class="text-left font700">Gas fees for Staking:</td>
+                                                            <td class="text-right">{{feeDetails?.differenceInCrypto}}
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="Voter_TR">
+                                                            <td class="text-left font700">Fees for Funding:</td>
+                                                            <td class="text-right">{{(feeDetails?.differenceInUSD ) |
+                                                                currency:'USD'}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-20">
+                            <!-- <p class="font18 font700 mb-20">Swapping Network Summary</p> -->
+                            <div class="card-body DetailsBox pl-0 pr-0">
+                                <div class="transactionDetailsBox font14">
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">TXID</li>
+                                        <li class="rightLi"><span class="textblue cursor-pointer customlimit"><span
+                                                    class="Textlimit2" (click)="txID(nftData.txid)">{{nftData.txid
+                                                    || 'xxxxxx'}}</span><i
+                                                    class="fas fa-external-link-alt textblue"></i></span>
+                                        </li>
+                                    </ul>
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">Token ID</li>
+                                        <li class="rightLi">{{nftData.tokenID || 'xxxxxxx'}}
+                                        </li>
+                                    </ul>
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">Blockchain</li>
+                                        <li class="rightLi"
+                                            (click)="openSeaLink(nftData.tokenID,common.selectedChain || nftData.blockchain)">
+                                            {{nftData.blockchain }}</li>
+                                    </ul>
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">Current Owner Address
+                                        </li>
+                                        <li class="rightLi">{{ nftData.ownerAddress }}</li>
+                                    </ul>
+                                    <!-- <ul class="tableUl">
+                                    <li class="font700 leftLi">Storj key</li>
+                                    <li class="rightLi"><a href="#"
+                                            (click)="redirecttostorejk()"
+                                            class="textblue">{{nftData.storjKey ||
+                                            'xxxxxxx'}}</a></li>
+                                </ul> -->
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">IPFS</li>
+                                        <li class="rightLi"><span>{{nftData.IPFSHash ||
+                                                'xxxxxxx'}}</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="DetailsBox mt-20 mb-20 text-center">
+                                <p class="font700 font18 m-0">TO</p>
+                            </div>
+
+                            <div class="card-body DetailsBox pl-0 pr-0">
+                                <div class="transactionDetailsBox font14">
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">TXID</li>
+                                        <li class="rightLi">
+                                            xxxxxx
+                                        </li>
+                                    </ul>
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">Token ID</li>
+                                        <li class="rightLi">xxxxxxx</li>
+                                    </ul>
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">Blockchain</li>
+                                        <li class="rightLi">{{selectedChain}}</li>
+                                    </ul>
+                                    <ul *ngIf="selectedWalletObject" class="tableUl">
+                                        <li class="font700 leftLi">Transferring To Address
+                                        </li>
+                                        <li class="rightLi">{{ selectedWalletObject.address }}
+                                        </li>
+                                    </ul>
+                                    <!-- <ul class="tableUl">
+                                    <li class="font700 leftLi">Storj key</li>
+                                    <li class="rightLi">{{nftData.storjKey ||
+                                        'xxxxxxx'}}</li>
+                                </ul> -->
+                                    <ul class="tableUl">
+                                        <li class="font700 leftLi">IPFS</li>
+                                        <li class="rightLi">
+                                            xxxxxxx
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="DetailsBox mt-20 d-flex align-items-center justify-content-center w-100">
+                                <button *ngIf="feeDetails?.needFunding" class="btn btn-primary mr-10"
+                                    (click)="fundWallet()">Fund the Wallet</button>
+                                <button class="btn btn-primary"
+                                    [disabled]="feeEstimateTimerCount === 0 || feeDetails?.needFunding "
+                                    (click)="bridgeNFT()"> Confirm - Bridge to {{selectedChain}}</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

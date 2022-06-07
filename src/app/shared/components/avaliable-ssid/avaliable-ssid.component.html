@@ -1,0 +1,58 @@
+<!-- Modal body -->
+<div class="modal-body" *ngIf="allSsidList.length >= 1">
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()"><span
+      aria-hidden="true">&times;</span></button>
+  <div class="Card-Header">
+    <h6 class="card-title font18 font700 text-uppercase m-0">Select Client ID</h6>
+  </div>
+  <div class="ModalBodyInner">
+    <label class="font14 font400">Please choose which Client ID you will use to create this NFT</label>
+    <div class="CardFullWidthRow p-0">
+      <div class="card-body transparent_Card DataTableInfo">
+        <div class="table-responsive">
+          <table class="table font14">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr [ngClass]="item.status === 'PENDING' ? 'cursor-pointer-none' : 'cursor-pointer'"
+                (click)="selectSSID(item)" *ngFor="let item of allSsidList; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.ssid}}</td>
+                <td><span
+                    [ngClass]="item.status === 'APPROVED' ? 'badge badge-success' : item.status === 'PENDING' ? 'badge badge-warning' : 'badge-cancel'">{{item.status}}</span>
+                </td>
+                <td (click)="selectSSID(item)"
+                  [ngClass]="item.status === 'PENDING' ? 'ActionSSID Pending_ActionSSID' : 'ActionSSID'">Select <i
+                    class="fas fa-angle-right"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-body p-0" *ngIf="allSsidList.length === 0">
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()"><span
+      aria-hidden="true">&times;</span></button>
+  <div class="Card-Header">
+    <h6 class="card-title font18 font700 text-uppercase m-0">Select Client ID</h6>
+  </div>
+  <div *ngIf="allSsidList.length === 0" class="row NFTListMain">
+    <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+      <div class="card-body transparent_Card d-flex justify-content-center align-items-center">
+        <img src="assets/images/NO_NFT.svg">
+        <h1 class="HeadingBig m-0 font700" *ngIf="!loadingSSID && !allSsidList[0] "> 0 Clients Found.</h1>
+        <h1 class="HeadingBig m-0 font700" *ngIf="loadingSSID"> Loading...</h1>
+      </div>
+    </div>
+  </div>
+</div>

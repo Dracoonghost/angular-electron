@@ -1,0 +1,98 @@
+<div class="row FilterDark CertificateDiv">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="Card-Header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="card-text m-0 ml-10 font700 font18 text-uppercase">CERTIFICATE OF AUTHENTICITY</p>                    
+                    <!-- <a (click)="backToList()" class="close cursor-pointer"><i class="far fa-times"></i></a> -->
+                    <button type="button" data-dismiss="modal" (click)="backToList()"  aria-label="Close" class="close"><span>×</span></button>
+                </div>
+            </div>
+            <div class="card-body DataTableInfo">
+                <div class="row" #pdf>
+                    <div class="col-md-5">
+                        <div class="CertificateImageInner p-0">
+                            <div class="CertificateImage">
+                                <img [src]="NFT.thumbnail" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="table-responsive">
+                            <table class="table m-0 CertificateRightSideBox">
+                                <tbody>
+                                    <tr>
+                                        <th class="font14 font700 text-black border-0">Client ID</th>
+                                        <td class="font14 border-0">{{NFT.ssid}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black ">Title</th>
+                                        <td class="font14">{{NFT.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">Personal End Point</th>
+                                        <td class="font14">{{NFT.personalizedEndpoint}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">HASH</th>
+                                        <td class="font14">
+                                            <a (click)="openLinkInBrowser(explorerURL+ NFT.IPFSHash)" class="TextLimit colorBlue cursor-pointer" target="_blank">{{NFT.IPFSHash}}</a>
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">TRANSACTION ID</th>
+                                        <td class="font14">
+                                            <a (click)="openLinkInBrowser(explorerURL+ NFT.txid)" class="TextLimit colorBlue cursor-pointer" target="_blank">{{NFT.txid}}</a>
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">EPOCH</th>
+                                        <td class="font14">1641878277</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">TIMESTAMP</th>
+                                        <td class="font14">{{NFT.createdAt | date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="font14 font700 text-black">BLOCKHASH</th>
+                                        <td class="font14"><a (click)="openLinkInBrowser(explorerURL+ NFT.IPFSHash)" class="TextLimit colorBlue cursor-pointer" target="_blank">{{NFT.IPFSHash}}</a>
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12">
+                        <div class="CertificateTopRightDetailDiv h-100">
+                            <div class="TOFweb_Img">
+                                
+                                <div class="AddressBox">
+                                    <h4>{{NFT.txid}}</h4>
+                                    <div class="SignBox">
+                                        <img src="https://user-images.githubusercontent.com/79897363/155500889-ac8d158b-2ecf-4a53-9b87-1a9e9594ebff.png">
+                                    </div>
+                                 <div class="TOFLogoCertificate">
+                                        <h5>The <span>other</span> fruit</h5>
+                                        <img class="TOFLogoCertificateImg" src="https://porter.theotherfruit.io/assets/images/listing/footer_logo.png"> 
+                                        <img class="TOFLogoCertificateImgMain" src="https://porter.theotherfruit.io/assets/images/listing/tof_logo.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row BottomInvoiceDiv text-center mt-20">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between mt-20">
+                            <button type="button" class="btn btn-secondary BackBtnCustom" (click)="backToList()">Back</button>
+                            <button type="button" class="btn btn-primary" (click)="PDF()">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

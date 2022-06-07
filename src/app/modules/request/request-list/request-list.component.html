@@ -1,0 +1,522 @@
+<div class="position-relative FilterDark h-100">
+    <div class="row Filter_RequestNFTs pt-20px pb-20px Slide firstanimate">
+        <div class="col-md-3 label font14 font700 text-white">
+            <label (click)="getNftRequestByProfileID(1)" class="bg-blue bg_LinePurple cursor-pointer m-0">TOTAL<span
+                    class="label">{{totalCount}}</span></label>
+        </div>
+        <div class="col-md-3 font14 font700 text-white">
+            <label class="bg-warning cursor-pointer m-0" (click)="filterNew()">NEW<span
+                    class="label">{{newCount}}</span></label>
+        </div>
+        <div class="col-md-3 font14 font700 text-white" (click)="filterApproved()">
+            <label class="bg-success cursor-pointer m-0">APPROVED<span class="label">{{approvedCount}}</span></label>
+        </div>
+        <div class="col-md-3 font14 font700 text-white">
+            <label class="bg-rejected cursor-pointer m-0" (click)="filterRejected()">REJECTED<span
+                    class="label">{{rejectCount}}</span></label>
+        </div>
+    </div>
+    <div class="card RqeuestCard">
+        <div class="Card-Header Slide SecondAnimate">
+            <div class="d-flex align-items-center justify-content-between">
+                <h6 class="card-title font18 font700 m-0">TRANSACTION REQUESTS & AUTHORIZATIONS</h6>
+            </div>
+        </div>
+        <div class="card-body NestedCard Slide ThirdAnimate">
+            <div *ngIf="requestList" [hidden]="newArray?.length === 0">
+                <div class="row">
+                    <div *ngFor="let req of newArray;let index=index"
+                        class="col-sm-4 cursor-pointer mb-20 SingleRequestList">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="ReqestTopDiv mb-10">
+                                    <div class="row mb-10">
+                                        <div class="col-md-6">
+                                            <div (click)="selectRequest(req)">
+                                                <p class="font14 m-0 d-grid">
+                                                    <span class="font700 text-blueGray">Request For:</span>
+                                                    <span>{{req.requestType}}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div (click)="selectRequest(req)">
+                                                <p class="font14 m-0 d-grid">
+                                                    <span class="font700 text-blueGray">Request By:</span>
+                                                    <span>{{req.requestedByName}}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="RequestImageDiv" (click)="selectRequest(req)">
+                                        <div class="fullHeightImg">
+                                            <img
+                                                [src]="req.assetDetails?.imageUrl ? req.assetDetails.imageUrl : 'assets/images/placeholder.jpg'" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="RequestMiddle">
+                                        <div (click)="selectRequest(req)">
+                                            <p class="font14 d-grid">
+                                                <span class="font700 text-blueGray">Client Name:</span>
+                                                <span>{{req.ssidName}}</span>
+                                            </p>
+                                        </div>
+                                        <div (click)="selectRequest(req)">
+                                            <p class="font14 d-grid">
+                                                <span class="font700 text-blueGray">Status:</span>
+                                                <span>{{req.requestType === 'whiteList' && req.status === 'IMPORTED' ?
+                                                    'Adresses WhiteListed' : req.status}}</span>
+                                            </p>
+                                        </div>
+                                        <div (click)="selectRequest(req)">
+                                            <p class="font14 d-grid">
+                                                <span class="font700 text-blueGray">Date:</span>
+                                                <span>{{req.createdAt | date:'medium'}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span class="font14 font700 text-blueGray">Voting Status</span>
+                                    <div class="progress mt-10 mb-10">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                            [style.width]="((req.voteStats.approvedCount/req.voteStats.totalVoters) * 100) + '%'"
+                                            [attr.aria-valuenow]="req.voteStats.approvedCount" data-toggle="tooltip"
+                                            data-placement="top"
+                                            [title]="'Approved Votes - ' + req.voteStats.approvedCount"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-rejected" role="progressbar"
+                                            [style.width]="((req.voteStats.rejectedCount/req.voteStats.totalVoters) * 100) + '%'"
+                                            [attr.aria-valuenow]="req.voteStats.rejectedCount" data-toggle="tooltip"
+                                            data-placement="top"
+                                            [title]="'Rejected Votes - ' + req.voteStats.rejectedCount"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="Totalvotes_Shows font14 font400 text-grey5">
+                                        Casted Votes - {{req.voteStats.voteCasted}} / Total Votes -
+                                        {{req.voteStats.totalVoters}}
+                                    </span>
+                                </div>
+                                <div *ngIf="req.requestType === 'import' " class="RequestBottomDiv mt-10">
+                                    <span class="text-uppercase"
+                                        *ngIf="myProfileID === req.requestedBy && req.status ==='APPROVED'">Ready to
+                                        Import</span>
+                                    <span class="text-uppercase"
+                                        *ngIf="myProfileID === req.requestedBy && req.status !=='IMPORTED' && req.status !=='APPROVED' && req.status !=='REJECTED'  ">wait
+                                        for
+                                        voting to finish</span>
+                                    <div *ngIf="!checkIfVoted(req.voteDetails) && myProfileID !== req.requestedBy">
+                                        <button (click)="peformAction(req.requestID,'APPROVED',index)" type="button"
+                                            class="btn btn-success common_btn_circle btn-circle">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <span class="slashbetn">OR</span>
+                                        <button (click)="peformAction(req.requestID,'REJECTED',index)" type="button"
+                                            class="btn btn-danger common_btn_circle btn-circle">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <span class="text-uppercase" *ngIf="checkIfVoted(req.voteDetails)">You Already
+                                        Voted</span>
+                                    <!-- <i (click)="deleteRequest(req.requestID,index)" *ngIf="myProfileID === req.requestedBy" class="fas fa-trash DeleteBtnRequest"></i> -->
+                                    <!-- <span *ngIf="myProfileID !== req.requestedBy">You Cannot Delete</span> -->
+                                </div>
+                                <div *ngIf="req.requestType === 'whiteList' " class="RequestBottomDiv mt-10">
+                                    <span class="text-uppercase"
+                                        *ngIf="myProfileID === req.requestedBy && req.status ==='APPROVED'">Ready to
+                                        Sign</span>
+                                    <span class="text-uppercase"
+                                        *ngIf="myProfileID === req.requestedBy && req.status !=='IMPORTED' && req.status !=='APPROVED' && req.status !=='REJECTED'  ">wait
+                                        for
+                                        voting to finish</span>
+                                    <div *ngIf="!checkIfVoted(req.voteDetails) && myProfileID !== req.requestedBy">
+                                        <button (click)="peformAction(req.requestID,'APPROVED',index)" type="button"
+                                            class="btn btn-success common_btn_circle btn-circle">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <span class="slashbetn">OR</span>
+                                        <button (click)="peformAction(req.requestID,'REJECTED',index)" type="button"
+                                            class="btn btn-danger common_btn_circle btn-circle">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <span class="text-uppercase" *ngIf="checkIfVoted(req.voteDetails)">You Already
+                                        Voted</span>
+                                    <!-- <i (click)="deleteRequest(req.requestID,index)" *ngIf="myProfileID === req.requestedBy" class="fas fa-trash DeleteBtnRequest"></i> -->
+                                    <!-- <span *ngIf="myProfileID !== req.requestedBy">You Cannot Delete</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="newArray?.length === 0" class="row NFTListMain NoNftAvaliRow">
+                <div class="col-md-12 d-flex align-items-center NoNftAvali justify-content-between">
+                    <img src="assets/images/NO_NFT.svg">
+                    <h1 class="HeadingBig m-0 font700" *ngIf="!featchingRequests">Nothing here, for the moment.</h1>
+                    <h1 class="HeadingBig m-0 font700" *ngIf="featchingRequests">Loading...</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal CreateORganizationModal" id="myModalRequestDetail">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div *ngIf="selectedRequestData?.requestType === 'import' " class="modal-body p-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Request Details</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <div class="CardFullWidthRow">
+                            <div class="row RequestPopupMain">
+                                <div class="col-md-4">
+                                    <div class="requestPoupimgBox">
+                                        <img [src]="selectedRequestData?.assetDetails.imageUrl" class="requestPoupimg">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div
+                                        class="card-body DataTableInfo stytransactionDetailsBox transparent_Card font14 p-0">
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">NFT Name</li>
+                                            <li class="rightLi">{{selectedRequestData?.assetDetails.name}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Symbol</li>
+                                            <li class="rightLi">{{selectedRequestData?.assetDetails.symbol}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Contract Type</li>
+                                            <li class="rightLi">{{selectedRequestData?.assetDetails.contract_type}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Created Date</li>
+                                            <li class="rightLi">{{selectedRequestData?.createdAt | date :'medium'}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Contract Address</li>
+                                            <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                title="{{selectedRequestData?.assetDetails.token_address.slice(selectedRequestData?.assetDetails.token_address.length - 40)}}">
+                                                {{selectedRequestData?.assetDetails.token_address.slice(selectedRequestData?.assetDetails.token_address.length
+                                                - 40)}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Token ID</li>
+                                            <li class="rightLi" data-toggle="tooltip" data-placement="top"
+                                                title="{{selectedRequestData?.assetDetails.token_id.slice(selectedRequestData?.assetDetails.token_id.length - 45)}}">
+                                                {{selectedRequestData?.assetDetails.token_id.slice(selectedRequestData?.assetDetails.token_id.length
+                                                - 45)}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" *ngIf="selectedRequestData?.voteDetails?.length >= 1">
+                                    <div class="accordion NftTagsMainDiv">
+                                        <div class="card mt-20">
+                                            <div class="card-header border-0">
+                                                <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                    data-target="#VotersDetails" aria-expanded="true"> Voters
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="in collapse show" id="VotersDetails">
+                                                <div class="card-body p-0">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr class="Voter_TR"
+                                                                *ngFor="let item of selectedRequestData?.voteDetails">
+                                                                <td class="text-left"><span
+                                                                        [ngClass]="item.vote === 'APPROVED' ? 'badge badge-success' : 'badge badge-cancel'">{{item.vote}}</span>
+                                                                    by {{item.firstName || item.profileID}}
+                                                                    {{item.lastName}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <button
+                                                *ngIf="selectedRequestData?.status ==='APPROVED' && selectedRequestData.requestedBy === myProfileID"
+                                                class="btn btn-primary mt-20"
+                                                (click)="common.selectedSSID =selectedRequestData.ssid;common.updateBlockChainList.next(selectedRequestData.blockchain); "
+                                                data-toggle="modal" data-target="#showNetwork"> select network
+                                                and wallet to swap to
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="selectedRequestData?.requestType === 'whiteList' " class="modal-body p-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="Card-Header">
+                        <h6 class="card-title font18 font700 text-uppercase m-0">Request Details</h6>
+                    </div>
+                    <div class="ModalBodyInner">
+                        <div class="CardFullWidthRow">
+                            <div class="row RequestPopupMain">
+                                <div class="col-md-12">
+                                    <div
+                                        class="card-body DataTableInfo stytransactionDetailsBox transparent_Card font14 p-0">
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Client Name</li>
+                                            <li class="rightLi">{{selectedRequestData?.ssidName}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">SSDID</li>
+                                            <li class="rightLi">{{selectedRequestData?.ssid}}</li>
+                                        </ul>
+                                        <ul class="tableUl">
+                                            <li class="font700 leftLi">Created Date</li>
+                                            <li class="rightLi">{{selectedRequestData?.createdAt | date :'medium'}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                    <div class="col-sm-12 mt-20">
+                                        <div class="form-group">
+                                            <label class="control-label">List of to be updated
+                                                WhiteListed Addresses</label>
+                                            <div *ngFor="let address of selectedRequestData?.assetDetails"
+                                                class="font_medium SingleTag bg-darkGrey client_categoriesTag active">
+                                                {{address}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-12" *ngIf="selectedRequestData?.voteDetails?.length >= 1">
+                                    <div class="accordion NftTagsMainDiv">
+                                        <div class="card mt-20">
+                                            <div class="card-header border-0">
+                                                <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                    data-target="#VotersDetails" aria-expanded="true"> Voters
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="in collapse show" id="VotersDetails">
+                                                <div class="card-body p-0">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr class="Voter_TR"
+                                                                *ngFor="let item of selectedRequestData?.voteDetails">
+                                                                <td class="text-left"><span
+                                                                        [ngClass]="item.vote === 'APPROVED' ? 'badge badge-success' : 'badge badge-cancel'">{{item.vote}}</span>
+                                                                    by {{item.firstName || item.profileID}}
+                                                                    {{item.lastName}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <button
+                                                *ngIf="selectedRequestData?.status ==='APPROVED' && selectedRequestData.requestedBy === myProfileID"
+                                                class="btn btn-primary mt-20"
+                                                (click)="updateWhiteList(selectedRequestData)"> Confirm And update White
+                                                List
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal CreateORganizationModal ModalBig" id="showNetwork">
+    <div class="innerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="card">
+                        <app-avaliable-block-chain></app-avaliable-block-chain>
+                        <!-- <div class="row m-0">
+                            <div class="col-md-12 mb-10">
+                                <label *ngIf="common.selectedWalletPrivateKey" class="font18 font700">Wallet
+                                    Address to Import To :-
+                                    {{common.selectedWalletAddress}} </label>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div *ngIf="common.selectedWalletAddress">
+                        <div class="card mb-20 mt-20">
+                            <div class="Card-Header">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="card-title font18 font700 text-uppercase m-0">Fee Details
+                                    </h6>
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <button type="submit"
+                                            [disabled]=" !common.selectedWalletAddress || feeEstimateTimerCount >0"
+                                            (click)="getEstimateFee()"
+                                            [ngClass]="!common.selectedWalletAddress || feeEstimateTimerCount >0 ? 'btn btn-primary text-center w-100 pulseAnimation' : 'btn btn-primary text-center w-100 pulseAnimation2'">Fetch
+                                            Estimated Fees Again</button>
+                                        <h6 class="card-title font18 font700 text-uppercase m-0 Timer">
+                                            {{feeEstimateTimerCount}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body transparent_Card">
+                                <div class="col-md-12 mb-20">
+                                    <div *ngIf="feeDetails" class="InnerBlock mt-10">
+                                        <p
+                                            class="font14 font700 mb-10 d-flex align-items-center justify-content-between ">
+                                            Your Current Wallet Balance ({{common.selectedChain}}): <span
+                                                class="font400">{{feeDetails.balance.balance}}</span></p>
+
+                                        <p
+                                            class="font14 font700 mb-10 d-flex align-items-center justify-content-between ">
+                                            Suffient Balance for this Transaction : <span
+                                                class="font400">{{feeDetails.needFunding !== true ? 'Yes' :
+                                                'No'}}</span></p>
+
+                                        <div class="accordion NftTagsMainDiv">
+                                            <div class="card mt-20">
+                                                <div class="card-header border-0">
+                                                    <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                        data-target="#snc_box" aria-expanded="true"> IMPORT [in USD]:
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="in collapse show" id="snc_box">
+                                                    <div class="card-body p-0">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr class="Voter_TR">
+                                                                    <td class="text-left font700">Current Charge:</td>
+                                                                    <td class="text-right">
+                                                                        {{feeDetails?.estimate?.stakeCharges?.USD?.currentCharge
+                                                                        | currency:'USD'}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="accordion NftTagsMainDiv">
+                                            <div class="card mt-20">
+                                                <div class="card-header border-0">
+                                                    <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                        data-target="#secureNFT_box" aria-expanded="true"> SECURE [in
+                                                        USD]:
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="in collapse show" id="secureNFT_box">
+                                                    <div class="card-body p-0">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr class="Voter_TR">
+                                                                    <td class="text-left font700">Current Charge:</td>
+                                                                    <td class="text-right">
+                                                                        {{feeDetails?.estimate?.issueCharges?.USD?.currentCharge
+                                                                        | currency:'USD'}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="accordion NftTagsMainDiv">
+                                            <div class="card mt-20">
+                                                <div class="card-header border-0">
+                                                    <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                        data-target="#tep_box" aria-expanded="true"> Total Estimated
+                                                        Price [in USD]:
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="in collapse show" id="tep_box">
+                                                    <div class="card-body p-0">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr class="Voter_TR">
+                                                                    <td class="text-left font700">Total Estimated
+                                                                        Charge:</td>
+                                                                    <td class="text-right">
+                                                                        {{(feeDetails?.estimate?.stakeCharges?.USD?.currentCharge
+                                                                        +
+                                                                        feeDetails?.estimate?.issueCharges?.USD?.currentCharge
+                                                                        ) | currency:'USD'}} </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="feeDetails.needFunding" class="accordion NftTagsMainDiv">
+                                            <div class="card mt-20">
+                                                <div class="card-header border-0">
+                                                    <button class="btn btn-link font700 font14" data-toggle="collapse"
+                                                        data-target="#eff_box" aria-expanded="true"> Estimated Fees
+                                                        Fund:
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="in collapse show" id="eff_box">
+                                                    <div class="card-body p-0">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr class="Voter_TR">
+                                                                    <td class="text-left font700">Gas fees for Staking:
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        {{feeDetails?.differenceInCrypto}}</td>
+                                                                </tr>
+                                                                <tr class="Voter_TR">
+                                                                    <td class="text-left font700">Fees for Funding:</td>
+                                                                    <td class="text-right">
+                                                                        {{(feeDetails?.differenceInUSD ) |
+                                                                        currency:'USD'}} </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="d-block pl-20 pr-20 mb-20">
+                            <div class="col-md-12 d-flex align-items-center justify-content-between mb-20">
+                                <!-- <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                    aria-hidden="true">Back</button> -->
+                                <!-- <button class="btn btn-secondary BackBtnCustom" type="button" data-dismiss="modal"
+                                    aria-label="Close">Back</button> -->
+                                <button *ngIf="feeDetails?.needFunding" class="btn btn-primary"
+                                    (click)="fundWallet()">Fund
+                                    the Wallet</button>
+                                <button [disabled]="feeEstimateTimerCount <=0 || feeDetails?.needFunding"
+                                    class="btn btn-primary" (click)="importNFT(selectedRequestData.assetDetails)">Import
+                                    Selected NFT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
